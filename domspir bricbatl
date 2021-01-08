@@ -78,7 +78,7 @@ do -- Main scope
                 local msg = require(game:GetService("ReplicatedStorage").Shared.Utils.Messages)
                 local sendServerHooked = false
                 local sendHooked = false
-                local vars = {switch_state_speed = false, speed = 5000, switch_state_damage = false, damage = 500} -- not true now -- Upvalue limit of 1, need to keep variables inside a table which is gonna be the only upvalue
+                local vars = {switch_state_speed = false, speed = 5000, switch_state_damage = false, damage = 1000} -- not true now -- Upvalue limit of 1, need to keep variables inside a table which is gonna be the only upvalue
                 local hook_sendServer = function(oldfunc, self, action, ...) -- not true now -- cant hook the client version of this function due to it having no upvalues
                     if (vars.switch_state_speed or vars.switch_state_damage) and action == "CreateProjectileOnServer" and typeof(({...})[#{...}]) == "table" and ({...})[#{...}].speed then
                         local args = {...}
