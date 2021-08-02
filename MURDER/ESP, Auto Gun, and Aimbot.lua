@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("http://scriptstream.xyz/ScriptStorage/ESPForArsenal.lua", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/rscripts/main/Dependencies/ROLVe%20MURDER/ESP.lua?token=ALLESGTSEYZWWKFHIQV2TATBCDZVE", true))()
 
 local LocalPlayer = game.Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
