@@ -1,0 +1,108 @@
+{{
+	weaponname = "AK47",
+	skinname = "Weeb",
+	skinimage = "http://www.roblox.com/asset/?id=5645176510",
+	skinrarity = "Red",
+	model = {
+		["Mag"] = "http://www.roblox.com/asset/?id=5645176510",
+		["Handle"] = "http://www.roblox.com/asset/?id=5645176510",
+		["Bolt"] = "http://www.roblox.com/asset/?id=5645176510"
+	}
+},{
+	weaponname = "AK47",
+	skinname = "Mean Blue",
+	skinimage = "http://www.roblox.com/asset/?id=6561839300",
+	skinrarity = "Red",
+	model = {
+		["Mag"] = "http://www.roblox.com/asset/?id=6561812697",
+		["Handle"] = "http://www.roblox.com/asset/?id=6561812697",
+		["Bolt"] = "http://www.roblox.com/asset/?id=6561812697"
+	}
+},{
+	weaponname = "Banana",
+	skinname = "Kielbasa",
+	skinimage = "http://www.roblox.com/asset/?id=24650385",
+	skinrarity = "Contraband",
+	model = {
+		["Handle"] = "http://www.roblox.com/asset/?id=661123557"
+	},
+},{
+	weaponname = "AWP",
+	skinname = "Dragon Lore",
+	skinimage = "http://www.roblox.com/asset/?id=6585549388",
+	skinrarity = "Red",
+	model = {
+		["Handle"] = "http://www.roblox.com/asset/?id=6585549388",
+		["Mag"] = "http://www.roblox.com/asset/?id=6585549388",
+		["Part"] = "http://www.roblox.com/asset/?id=6585549388",
+		["Scope"] = "http://www.roblox.com/asset/?id=6585549687",
+		["Slide"] = "http://www.roblox.com/asset/?id=6585549388",
+		["Slide 2"] = "http://www.roblox.com/asset/?id=6585549388"
+	}
+},{
+	weaponname = "AWP",
+	skinname = "Mean Green",
+	skinimage = "http://www.roblox.com/asset/?id=6593682454",
+	skinrarity = "Red",
+	model = {
+		["Handle"] = "http://www.roblox.com/asset/?id=6593682454",
+		["Mag"] = "http://www.roblox.com/asset/?id=6593682454",
+		["Part"] = "http://www.roblox.com/asset/?id=6593682454",
+		["Scope"] = "http://www.roblox.com/asset/?id=6593682919",
+		["Slide"] = "http://www.roblox.com/asset/?id=6593682454",
+		["Slide 2"] = "http://www.roblox.com/asset/?id=6593682454"
+	}
+},{
+	weaponname = "AWP",
+	skinname = "Neo-Noir",
+	skinimage = "http://www.roblox.com/asset/?id=6585612923",
+	skinrarity = "Contraband",
+	model = {
+		["Handle"] = "http://www.roblox.com/asset/?id=6585612923",
+		["Mag"] = "http://www.roblox.com/asset/?id=6585612923",
+		["Part"] = "http://www.roblox.com/asset/?id=6585612923",
+		["Scope"] = "http://www.roblox.com/asset/?id=6585613284",
+		["Slide"] = "http://www.roblox.com/asset/?id=6585612923",
+		["Slide 2"] = "http://www.roblox.com/asset/?id=6585612923"
+	}
+},{
+	weaponname = "AWP",
+	skinname = "Hyper Beast",
+	skinimage = "http://www.roblox.com/asset/?id=6585630605",
+	skinrarity = "Red",
+	model = {
+		["Handle"] = "http://www.roblox.com/asset/?id=6585630605",
+		["Mag"] = "http://www.roblox.com/asset/?id=6585630605",
+		["Part"] = "http://www.roblox.com/asset/?id=6585630605",
+		["Scope"] = "http://www.roblox.com/asset/?id=6585630875",
+		["Slide"] = "http://www.roblox.com/asset/?id=6585630605",
+		["Slide 2"] = "http://www.roblox.com/asset/?id=6585630605"
+	}
+},{
+	weaponname = "UMP",
+	skinname = "Mistic",
+	skinimage = "http://www.roblox.com/asset/?id=2667880777",
+	skinrarity = "Red",
+	model = {
+		["Bolt"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Part3"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Bolt2"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Grip2"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Handle"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Handle2"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Mag"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Mag2"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Part"] = "http://www.roblox.com/asset/?id=2667880777",
+		["Part2"] = "http://www.roblox.com/asset/?id=2667880777"
+	}
+},{
+	weaponname = "Butterfly Knife",
+	skinname = "Old Jade Dream",
+	skinimage = "http://www.roblox.com/asset/?id=540109079",
+	skinrarity = "Red",
+	model = {
+		["Blade"] = "http://www.roblox.com/asset/?id=540165364",
+		["Bite"] = "http://www.roblox.com/asset/?id=540165364",
+		["Handle"] = "http://www.roblox.com/asset/?id=540165364"
+	}
+}}
