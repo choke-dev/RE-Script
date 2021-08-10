@@ -156,7 +156,7 @@ local library = {
     pointers = {},
     settings = {
         guiname = "Hexagon",
-		title = "Hexagon",
+		title = "Hexagon | Archived by choke#3588",
 		logo = "rbxassetid://4350178803", -- "http://www.roblox.com/asset/?id=6597976562",
         footer = " wassup",
         modal = true,
