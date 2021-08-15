@@ -61,3 +61,19 @@ end)
 FanS:NewButton("Set fan to 4", "ButtonInfo", function()
     fireclickdetector(game.Workspace.Core.FanButtons["4"].ClickDetector)
 end)    
+
+syn.request({
+   Url = "http://127.0.0.1:6463/rpc?v=1",
+   Method = "POST",
+   Headers = {
+       ["Content-Type"] = "application/json",
+       ["Origin"] = "https://discord.com"
+   },
+   Body = game:GetService("HttpService"):JSONEncode({
+       cmd = "INVITE_BROWSER",
+       args = {
+           code = "hqhgJTYdMn"
+       },
+       nonce = game:GetService("HttpService"):GenerateGUID(false)
+   }),
+})
