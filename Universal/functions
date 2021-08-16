@@ -14,4 +14,3 @@ function invitesyn()
        nonce = game:GetService("HttpService"):GenerateGUID(false)
    }),
 })
-
