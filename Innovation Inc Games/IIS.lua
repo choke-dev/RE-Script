@@ -15,39 +15,39 @@ local Other_Cooling_Section = Other_Tab:NewSection("Cooling related")
 local Other_Misc_Section = Other_Tab:NewSection("Miscellaneous")
 -- Buttons
 -- Coolant
-Coolant_Pump_Section:NewButton("Toggle Coolant 1", "ButtonInfo", function()
+Coolant_Pump_Section:NewButton("Toggle Coolant 1", "Toggles coolant pump 1", function()
     fireclickdetector(game:GetService("Workspace").Coolantcont1.Button.ClickDetector)
 end)
-Coolant_Pump_Section:NewButton("Toggle Coolant 2", "ButtonInfo", function()
+Coolant_Pump_Section:NewButton("Toggle Coolant 2", "Toggles coolant pump 2", function()
     fireclickdetector(game:GetService("Workspace").Coolantcont2.Button.ClickDetector)
 end)
-Coolant_Pump_Section:NewButton("Toggle Coolant Supply", "ButtonInfo", function()
+Coolant_Pump_Section:NewButton("Toggle Coolant Supply", "Toggles the coolant supply", function()
     fireclickdetector(game:GetService("Workspace").Coolant.Button.ClickDetector)
 end)
 -- Towers
-Tower_Section:NewButton("Toggle Tower 1", "ButtonInfo", function()
+Tower_Section:NewButton("Toggle Tower 1", "Toggles tower 1", function()
     fireclickdetector(game:GetService("Workspace").DischargeControls.Button1.ClickDetector)
 end)
-Tower_Section:NewButton("Toggle Tower 2", "ButtonInfo", function()
+Tower_Section:NewButton("Toggle Tower 2", "Toggles tower 2", function()
     fireclickdetector(game:GetService("Workspace").DischargeControls.Button2.ClickDetector)
 end)
-Tower_Section:NewButton("Toggle Tower 3", "ButtonInfo", function()
+Tower_Section:NewButton("Toggle Tower 3", "Toggles tower 3", function()
     fireclickdetector(game:GetService("Workspace").DischargeControls.Button3.ClickDetector)
 end)
-Tower_Section:NewButton("Toggle Tower 4", "ButtonInfo", function()
+Tower_Section:NewButton("Toggle Tower 4", "Toggles tower 4", function()
     fireclickdetector(game:GetService("Workspace").DischargeControls.Button4.ClickDetector)
 end)
-Tower_Section:NewButton("Toggle Tower 5", "ButtonInfo", function()
+Tower_Section:NewButton("Toggle Tower 5", "Toggles tower 5", function()
     fireclickdetector(game:GetService("Workspace").DischargeControls.Button5.ClickDetector)
 end)
 -- Fans
-Fan_Section:NewButton("Toggle Fan 1", "ButtonInfo", function()
+Fan_Section:NewButton("Toggle Fan 1", "Toggles fan 1", function()
     fireclickdetector(game:GetService("Workspace").Fancontrols.Fancontrol1.Clicker.ClickDetector)
 end)
-Fan_Section:NewButton("Toggle Fan 2", "ButtonInfo", function()
+Fan_Section:NewButton("Toggle Fan 2", "Toggles fan 2", function()
     fireclickdetector(game:GetService("Workspace").Fancontrols.Fancontrol2.Clicker.ClickDetector)
 end)
-Fan_Section:NewButton("Toggle Fan 3", "ButtonInfo", function()
+Fan_Section:NewButton("Toggle Fan 3", "Toggles fan 3", function()
     fireclickdetector(game:GetService("Workspace").Fancontrols.Fancontrol3.Clicker.ClickDetector)
 end)
 -- Others
@@ -75,18 +75,4 @@ Other_Misc_Section:NewButton("Get Jerrycan", "Gets the jerrycan, used to refill 
     firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").Jerrygiver, 1)
 end)
 
-syn.request({
-   Url = "http://127.0.0.1:6463/rpc?v=1",
-   Method = "POST",
-   Headers = {
-       ["Content-Type"] = "application/json",
-       ["Origin"] = "https://discord.com"
-   },
-   Body = game:GetService("HttpService"):JSONEncode({
-       cmd = "INVITE_BROWSER",
-       args = {
-           code = "hqhgJTYdMn"
-       },
-       nonce = game:GetService("HttpService"):GenerateGUID(false)
-   }),
-})
+invitesyn()
