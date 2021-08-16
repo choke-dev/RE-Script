@@ -1,5 +1,5 @@
 loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterCompat.lua"))() -- make this shit compatible with other exploits
-loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/rscripts/main/Universal/functions?token=ALLESGWJZN7IILSX4RQE2T3BEMDYK"))() -- the functions i probably dont need lol
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/rscripts/main/Universal/functions?token=ALLESGWJZN7IILSX4RQE2T3BEMDYK"))() -- the functions i probably dont need lol
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))() --Initialize the UI Lib
 local MainWindow = Library.CreateLib("Artic Base Remote Control Panel by choke#3588", "Ocean")
 local CTC = MainWindow:NewTab("Core Temp Control")
@@ -64,4 +64,4 @@ FanS:NewButton("Set fan to 4", "ButtonInfo", function()
     fireclickdetector(game.Workspace.Core.FanButtons["4"].ClickDetector)
 end)    
 
-invitesyn()
+--invitesyn()
