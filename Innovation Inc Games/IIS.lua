@@ -1,4 +1,4 @@
-loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterCompat.lua"))() -- make this shit compatible with other exploits
+--loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterCompat.lua"))() -- make this shit compatible with other exploits
 --loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/rscripts/main/Universal/functions?token=ALLESGWJZN7IILSX4RQE2T3BEMDYK"))()
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("IIS Control Panel by choke#3588", "Midnight")
