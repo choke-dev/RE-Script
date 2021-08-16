@@ -1,3 +1,4 @@
+loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterCompat.lua"))() -- make this shit compatible with other exploits
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))() --Initialize the UI Lib
 local MainWindow = Library.CreateLib("Artic Base Remote Control Panel by choke#3588", "Ocean")
 local CTC = MainWindow:NewTab("Core Temp Control")
