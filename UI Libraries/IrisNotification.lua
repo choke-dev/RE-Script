@@ -232,7 +232,6 @@ NotificationTable.InsertNotification = function(Notification, Duration, Retracti
 end
 
 NotificationTable.Notify = function(...)
-	CheckAd();
 	coroutine.wrap(function(...)
 		local Args = {...};
 
