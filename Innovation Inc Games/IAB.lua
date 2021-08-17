@@ -1,3 +1,34 @@
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+-- Fetch the thumbnail
+local userId = player.UserId
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local lolcontent, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+getgenv()["IrisAdd"] = true
+local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+
+Notification.Notify("Success", "choke's IAB Control Panel loaded!", lolcontent, {
+    Duration = 7,
+
+    TitleSettings = {
+        TextXAlignment = Enum.TextXAlignment.Center,
+        Font = Enum.Font.SourceSansSemibold,
+    },
+
+    GradientSettings = {
+        GradientEnabled = false,
+        SolidColorEnabled = true,
+        SolidColor = Color3.fromRGB(99, 255, 107),
+        Retract = true
+    }
+})
+
+-- idk how to call a function while using a loadstring :sob:
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))() --Initialize the UI Lib
 local MainWindow = Library.CreateLib("Artic Base Remote Control Panel by choke#3588", "Ocean")
 local CTC = MainWindow:NewTab("Core Temp Control")
