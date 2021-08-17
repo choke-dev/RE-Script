@@ -6,12 +6,12 @@ local player = Players.LocalPlayer
 local userId = player.UserId
 local thumbType = Enum.ThumbnailType.HeadShot
 local thumbSize = Enum.ThumbnailSize.Size420x420
-local lolcontent, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+local chokepng, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
 
 getgenv()["IrisAdd"] = true
 local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
-Notification.Notify("Success", "choke's IIS Control Panel loaded!", lolcontent, {
+Notification.Notify("Success", "choke's IIS Control Panel loaded!", chokepng, {
     Duration = 7,
 
     TitleSettings = {
