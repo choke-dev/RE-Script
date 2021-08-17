@@ -8,8 +8,7 @@ local thumbType = Enum.ThumbnailType.HeadShot
 local thumbSize = Enum.ThumbnailSize.Size420x420
 local chokepng, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
 
-getgenv()["IrisAdd"] = true
-local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/UI%20Libraries/IrisNotification.lua?token=ALLESGVDM32YI7U277KCIRDBESX36"))()
 
 Notification.Notify("Success", "choke's IIS Control Panel loaded!", chokepng, {
     Duration = 7,
