@@ -232,7 +232,6 @@ NotificationTable.InsertNotification = function(Notification, Duration, Retracti
 end
 
 NotificationTable.Notify = function(...)
-	CheckAd();
 	coroutine.wrap(function(...)
 		local Args = {...};
 
@@ -489,7 +488,6 @@ NotificationTable.InsertWallNotification = function(Notification, Duration, Sett
 end
 
 NotificationTable.WallNotification = function(...)
-	CheckAd();
 	coroutine.wrap(function(...)
 		local Args = {...};
 
@@ -531,7 +529,6 @@ NotificationTable.WallNotification = function(...)
 end
 
 NotificationTable.ClearOverride = function()
-	CheckAd();
 	for _, Folder in next, game:GetService("CoreGui"):FindFirstChild("RobloxGui"):GetChildren() do
 		if Folder.Name:match("NotificationFolder") or Folder.Name:match("WallNotificationFolder") then
 			Folder:Destroy();
