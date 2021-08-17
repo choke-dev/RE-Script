@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 -- Fetch the thumbnail
-local userId = player.UserId
+local userId = 113657695
 local thumbType = Enum.ThumbnailType.HeadShot
 local thumbSize = Enum.ThumbnailSize.Size420x420
 local chokepng, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
