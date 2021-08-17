@@ -1,4 +1,4 @@
-function IAB()
+local function IAB()
 local Players = game:GetService("Players")
  
 local player = Players.LocalPlayer
@@ -29,7 +29,7 @@ Notification.Notify("Success", "choke's IAB Control Panel loaded!", lolcontent, 
 })
 end
 
-function IIS()
+local function IIS()
 local Players = game:GetService("Players")
  
 local player = Players.LocalPlayer
