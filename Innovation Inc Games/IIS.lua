@@ -1,3 +1,34 @@
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+-- Fetch the thumbnail
+local userId = player.UserId
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local lolcontent, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
+
+getgenv()["IrisAdd"] = true
+local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+
+Notification.Notify("Success", "choke's IIS Control Panel loaded!", lolcontent, {
+    Duration = 7,
+
+    TitleSettings = {
+        TextXAlignment = Enum.TextXAlignment.Center,
+        Font = Enum.Font.SourceSansSemibold,
+    },
+
+    GradientSettings = {
+        GradientEnabled = false,
+        SolidColorEnabled = true,
+        SolidColor = Color3.fromRGB(99, 255, 107),
+        Retract = true
+    }
+})
+
+-- idk how to call a function in a loadstring :sob:
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("IIS Control Panel by choke#3588", "Midnight")
 -- Tabs
@@ -53,7 +84,7 @@ Other_Cooling_Section:NewButton("🚪 Toggle Safety Door", "Toggles the core's s
     fireclickdetector(game:GetService("Workspace").Doorcontrol.Open2.ClickDetector)
 end)
 Other_Cooling_Section:NewButton("💡 Toggle Cooling Lamp", "Toggles the core's cooling lamp", function()
-    fireclickdetector(game:GetService("Workspace").coolinglight.Button.ClickDetector) 
+    fireclickdetector(game:GetService("Workspace").coolinglight.Button.ClickDetector)
 end)
 Other_Misc_Section:NewButton("👨‍🚀 Get Astronaut Suit", "Allows you to survive outside the ship.", function()
     firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace")["Space Suit"].MorphButton, 0)
