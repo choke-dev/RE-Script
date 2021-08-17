@@ -1,33 +1,35 @@
+--this script might be patched ~choke
+
 --[[
 	-> don't waste your money on athena, or any other script. <-
 	Lunahax (Electric State DarkRP script) source release
-	
-	now there'll be no point in buying any ES script. 
+
+	now there'll be no point in buying any ES script.
 	-> don't waste your money on athena, or any other script. <-
 	every feature athena has/had is in here, including MANY more athena doesnt have
 	car teleportation, wishbot (item selling bot), a working node copy (lolo), nodekill, item sniper (not too sure if athena has an item sniper tbh). just to name a few
-	
+
 	athena doesnt even have a nodecopy that can do resizable walls (at the time of posting this)
 	they probably will do soon tho! wonder why :troll:
-	
+
 	athena/abena devs/mods or whatever spent a full 24 hours cracking this LMFAO, backstory:
-	
+
 	harry got salty because i said "i'd rather not sell to an athena mod" or something,
 	but then he bought it on an alt (after i told him no on his main), but was using a roblox account he had walmart + cajun etc friends on LMFAO
 	called him out for it, removed his key
 	and then called me a scammer for not giving him a refund after i told him, before he used an alt to purchase, i am not selling to you.
-	
+
 	so, i decided, best course of action? to release my script, fully open source, give everyone a reason not to purchase ANY es script
 	it'd affect their sales than it would mine, since i honestly do not care about money LMFAO
 	hope this gets some of the stuff patched soon, since at that point, it'd affect every es script.
-	
+
 	this script is so messy, it will probably be pretty painful to read, dont expect it to be neat + organized, or even incredibly efficient
 	my primary programming language is c# lol, bear that in mind when going thru this
 	anywho i'd appreciate if yall could take the time to neg rep walmart and any of the other people involved in contributing to this
-	
+
 	auth/whitelist has been removed, to the average person: just paste this script into your executor and away you go.
 	my discord: vyzia#2791
-	
+
 --]]
 
 local ScreenGui = Instance.new("ScreenGui")
@@ -1779,43 +1781,43 @@ if variables.hasAuthed then
 		playerListFrame.Parent = mainMenuFrame;
 		weatherFrame.Parent = mainMenuFrame;
 		dispenserFrame.Parent = mainMenuFrame
-		
+
 		miscFrame.Visible = false;
 		combatFrame.Visible = false;
 		playerListFrame.Visible = false;
 		weatherFrame.Visible = false;
 		dispenserFrame.Visible = false
-		
+
 		_G.AlreadyLoaded = true;
 
 		mainMenuFrame.Draggable = true;
 		mainMenuFrame.Active = true;
 		mainMenuFrame.Selectable = true;
-		
+
 		playerListFrame.Draggable = true;
 		playerListFrame.Active = true;
 		playerListFrame.Selectable = true;
-		
+
 		playerInfoFrame.Draggable = true;
 		playerInfoFrame.Active = true;
 		playerInfoFrame.Selectable = true;
-		
+
 		combatFrame.Draggable = true;
 		combatFrame.Active = true;
 		combatFrame.Selectable = true;
-		
+
 		miscFrame.Draggable = true;
 		miscFrame.Active = true;
 		miscFrame.Selectable = true;
-		
+
 		weatherFrame.Draggable = true;
 		weatherFrame.Active = true;
 		weatherFrame.Selectable = true;
-		
+
 		dispenserFrame.Draggable = true;
 		dispenserFrame.Active = true;
 		dispenserFrame.Selectable = true;
-		
+
 
 		variables.menuOpen = false;
 		variables.dispenserListOpen = false;
@@ -1865,7 +1867,7 @@ if variables.hasAuthed then
 		variables.kickOnModJoin = false;
 		variables.autoScrapFarm = false;
 		variables.autoPrinterFarm = false;
-		
+
 		variables.infSmgAmmo = false;
 		variables.infRifAmmo = false;
 		variables.infPisAmmo = false;
@@ -1875,7 +1877,7 @@ if variables.hasAuthed then
 
 		notice:Fire("Lunahax", "Welcome to Lunahax, Press C to open.");
 
-		
+
 		function makeBuffer(lenght)
 			buffstr = "";
 			for i=1,lenght do
@@ -1895,18 +1897,18 @@ if variables.hasAuthed then
 
 
 		newName = "";
-		
+
 		spawn(function()
 			while true do
 				if variables.scrollingNameEnabled and game.Players.LocalPlayer.Flagged.Value == false then
 					pcall(function()
 						newName = variables.scrollingName;
-						
+
 						lastChar = string.sub(newName, -1);
 
 						substring = newName:sub(1, #newName - 1)
 						newName = lastChar .. substring;
-						
+
 						Game:GetService("ReplicatedStorage").Events.MenuActionEvent:FireServer(8, { newName, "", false });
 						variables.scrollingName = newName;
 					end)
@@ -1915,8 +1917,8 @@ if variables.hasAuthed then
 				wait();
 			end
 		end)
-		
-		
+
+
 		if isfile == nil then
 			function isfile(file)
 				local fexistt = false;
@@ -1937,8 +1939,8 @@ if variables.hasAuthed then
 				end
 			end
 		end
-		
-		modList = { 
+
+		modList = {
 			"2J0Y",
 			"PsychoBuckett",
 			"J_mey",
@@ -1980,11 +1982,11 @@ if variables.hasAuthed then
 			end
 			return areTheyFriend;
 		end
-		
+
 		function isUserEnemy(username)
 			validF = isfile("lunahaxEnemies.txt")
 			areTheyFriend = false;
-			if validF then			
+			if validF then
 				validF = isfile("lunahaxEnemies.txt")
 				if validF then
 					contents = readfile("lunahaxEnemies.txt");
@@ -2003,14 +2005,14 @@ if variables.hasAuthed then
 		okNotificationButton.Activated:Connect(function()
 			notificationFrame.Parent = nil;
 		end)
-		
+
 		function showPopUpBox(text)
 			notificationText.Text = text;
-			notificationFrame.Parent = ScreenGui;			
+			notificationFrame.Parent = ScreenGui;
 		end
-		
-		
-		
+
+
+
 		-- menu open/close logic
 		--main menu
 		spawn(function()
@@ -2025,22 +2027,22 @@ if variables.hasAuthed then
 
 					if variables.clickTpEnabled then
 						tpDest = CFrame.new(mousezzz.Hit.Position) * offsetzzz;
-						
+
 						tpDestVect = Vector3.new(tpDest.X, tpDest.Y, tpDest.Z)
-						
+
 						characterzzz = clientzzz.Character or clientzzz.CharacterAdded:Wait()
 						HumanoidRootPartzzz = characterzzz:WaitForChild("HumanoidRootPart")
-						
+
 						if (HumanoidRootPartzzz.Position - tpDestVect).magnitude > 500 then
-						
+
 						else
 							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (CFrame.new(mousezzz.Hit.Position) * offsetzzz)
 						end
 					end
 				end
-				
+
 				if key == "c" then
-					if variables.menuOpen then 
+					if variables.menuOpen then
 						mainMenuFrame.Visible = false;
 						variables.menuOpen = false;
 					else
@@ -2068,19 +2070,19 @@ if variables.hasAuthed then
 			weatherFrame.Visible = false;
 			variables.weatherOptionsOpen = false;
 		end)
-		
+
 		--x button on combat menu
 		combatCloseButton.Activated:Connect(function()
 			combatFrame.Visible = false;
 			variables.combatOptionsOpen = false;
 		end)
-		
+
 		--x button on misc menu
 		miscCloseButton.Activated:Connect(function()
 			miscFrame.Visible = false;
 			variables.miscOptionsOpen = false;
 		end)
-		
+
 
 		--x button on player list
 		playerListCloseButton.Activated:Connect(function()
@@ -2109,7 +2111,7 @@ if variables.hasAuthed then
 				variables.weatherOptionsOpen = true;
 			end
 		end)
-		
+
 		teleportVehicleTextButton.Activated:Connect(function()
 			pcall(function()
 				for i,v in pairs(game:GetService("Workspace").Vehicles:GetChildren()) do
@@ -2128,11 +2130,11 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Teleported all vehicles to player!");
 			end)
 		end)
-		
-		
+
+
 		makeInvisibleButton.Activated:Connect(function()
 			isdoneee = false;
-			
+
 			pcall(function()
 				game.Players.LocalPlayer.Character.LowerTorso.Root:Destroy();
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false;
@@ -2146,23 +2148,23 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Error! Maybe your already invisible?", 4);
 			end
 		end)
-		
-		
+
+
 		isWaitingForClick = false;
-		
-		
+
+
 		hotKeys = {};
-		
-		
+
+
 		UserInputServiceaa = game:GetService("UserInputService");
-									
-									 
+
+
 		function Input(input, gameProcessedEvent)
 			for ilol, vlol in pairs(hotKeys) do
 				if UserInputService:IsKeyDown(vlol[1]) then
 					if not gameProcessedEvent then
 						print("hotkey pressed");
-						
+
 						button = vlol[2];
 
 						events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
@@ -2176,27 +2178,27 @@ if variables.hasAuthed then
 				end
 			end
 		end
-		
+
 		UserInputServiceaa.InputBegan:Connect(Input);
-		
+
 		assignHotkeyButton.Activated:Connect(function()
 			notice:Fire("Lunahax", "Please press the key you'd like to bind now!");
-			
+
 			UserInputService = game:GetService("UserInputService")
 			key = nil
 			repeat key = UserInputService.InputEnded:Wait() until key.KeyCode ~= Enum.KeyCode.Unknown
 			print(key.KeyCode)
-			
-			
+
+
 			buttonPressed = "";
 			frameMember = "";
-			
+
 			isWaitingForClick = true;
-			
+
 			notice:Fire("Lunahax", "Got input! Please wait...");
-			
-			
-			
+
+
+
 			for i,v in pairs(game.Players.LocalPlayer.PlayerGui.ScreenGui:GetDescendants()) do
 				pcall(function()
 					if v.ClassName == "TextButton" then
@@ -2205,37 +2207,37 @@ if variables.hasAuthed then
 								isWaitingForClick = false;
 								buttonPressed = v.Name;
 								frameMember = v:GetFullName();
-								
+
 								ibuttonPressed = v.Name;
 								frameMember = v:GetFullName();
-								
+
 								print("Got press!");
-								
+
 								table.insert(hotKeys, { key.KeyCode, v });
 							end
 						end)
 					end
 				end)
 			end
-			
+
 			notice:Fire("Lunahax", "Please press the button you'd like to bind it to");
-			
+
 			while buttonPressed == "" do
 				wait();
 			end
-			
+
 			buttonPressed = "";
 			frameMember = "";
-			
-			notice:Fire("Lunahax", "Added hotkey!");
-			
 
-			
-			
+			notice:Fire("Lunahax", "Added hotkey!");
+
+
+
+
 		end)
-		
-		setsimulationradius(math.huge) -- l o l 
-		
+
+		setsimulationradius(math.huge) -- l o l
+
 		--dispenser button click
 		dispenserButton.Activated:Connect(function()
 			if variables.dispenserListOpen then
@@ -2258,7 +2260,7 @@ if variables.hasAuthed then
 				variables.miscOptionsOpen = true;
 			end
 		end)
-		
+
 
 		--combat button click
 		combatButton.Activated:Connect(function()
@@ -2277,7 +2279,7 @@ if variables.hasAuthed then
 			if validF then
 				isFriend = false;
 				isEnemy = false;
-				
+
 				validF = isfile("lunahaxFriends.txt")
 				if validF then
 					contents = readfile("lunahaxFriends.txt");
@@ -2289,7 +2291,7 @@ if variables.hasAuthed then
 						end
 					end
 				end
-				
+
 				validE = isfile("lunahaxEnemies.txt")
 				if validE then
 					contentsE = readfile("lunahaxEnemies.txt");
@@ -2314,7 +2316,7 @@ if variables.hasAuthed then
 			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 				isFriend = false;
 				isEnemy = false;
-				
+
 				validF = isfile("lunahaxFriends.txt")
 				if validF then
 					contents = readfile("lunahaxFriends.txt");
@@ -2335,8 +2337,8 @@ if variables.hasAuthed then
 						end
 					end
 				end
-				
-				
+
+
 				newButton = Instance.new("TextButton")
 				newButton.Parent = playerListScrollingFrame
 				newButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2345,7 +2347,7 @@ if variables.hasAuthed then
 				newButton.Position = UDim2.new(0, 0, numbtest, 0);
 				newButton.Font = Enum.Font.SourceSans
 				newButton.Text = v.Name
-				
+
 				ImageLabel = Instance.new("ImageLabel")
 				ImageLabel.Parent = newButton
 				ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2355,7 +2357,7 @@ if variables.hasAuthed then
 				ImageLabel.Size = UDim2.new(0, 33, 0, 32)
 				ImageLabel.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?userid=" .. v.UserId
 				ImageLabel.ScaleType = Enum.ScaleType.Fit
-				
+
 				if isEnemy then
 					newButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 				elseif isFriend then
@@ -2371,10 +2373,10 @@ if variables.hasAuthed then
 				end)
 			end
 		end)
-		
-		
+
+
 		HttpService = game:GetService("HttpService")
-		
+
 		function HttpGet(url)
 			return HttpService:JSONDecode(httprequesty(url))
 		end
@@ -2390,9 +2392,9 @@ if variables.hasAuthed then
 			Status("Thank you synapse! Scanning games...")
 			usernameToJoin = joinGameUserTextbox.Text
 			UserId = game:GetService("Players"):GetUserIdFromNameAsync(usernameToJoin)
-			
+
 			Thumbnail = HttpGet("https://www.roblox.com/headshot-thumbnail/json?userId=" .. UserId .. "&width=48&height=48").Url
-			
+
 			local Index = 0
 			while true do
 				local GameInstances = HttpGet("https://loell.ca/api.php?startindex=" .. Index)
@@ -2426,10 +2428,10 @@ if variables.hasAuthed then
 				Index = Index + 10
 			end
 		end)
-		
-		
-		
-		
+
+
+
+
 		-- store items button
 		storeAllItemsButton.Activated:Connect(function()
 			function GetClosestItem()
@@ -2441,7 +2443,7 @@ if variables.hasAuthed then
 				local Target
 				for i,v in ipairs(game:GetService("Workspace").Entities:GetChildren()) do
 					pcall(function()
-						local mesh = nil;	
+						local mesh = nil;
 						pcall(function()
 							if v.ManualWeld.Name ~= "" then
 								mesh = v.ManualWeld
@@ -2463,7 +2465,7 @@ if variables.hasAuthed then
 
 				return Target
 			end
-			
+
 			local player = game.Players.LocalPlayer
 			local character = player.Character or player.CharacterAdded:Wait()
 			local hum = character.Humanoid
@@ -2473,7 +2475,7 @@ if variables.hasAuthed then
 				for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 					local amtInInv = tonumber(string.split(game:GetService("Players")[game.Players.LocalPlayer.Name].PlayerGui.Client.Inventory.Slots.Amt.Text, "/")[1]);
 					if amtInInv >= 11 then
-					
+
 					else
 						game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
 						wait(0.1)
@@ -2500,8 +2502,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Please stand on the ground to store!", 4);
 			end
 		end)
-		
-		
+
+
 		function split(s, delimiter)
 			result = {};
 			for match in (s..delimiter):gmatch("(.-)"..delimiter) do
@@ -2510,8 +2512,8 @@ if variables.hasAuthed then
 			return result;
 		end
 
-		
-		
+
+
 		saveConfigButton.Activated:Connect(function()
 			local configFile = "";
 			configFile = configFile .. "variables.espEnabled=" .. tostring(variables.espEnabled) .. "\n"
@@ -2545,7 +2547,7 @@ if variables.hasAuthed then
 			if validE then
 				local isFriend = false;
 				local isEnemy = false;
-				
+
 				local validF = isfile("lunahaxFriends.txt")
 				if validF then
 					local contents = readfile("lunahaxFriends.txt");
@@ -2556,7 +2558,7 @@ if variables.hasAuthed then
 						end
 					end
 				end
-				
+
 				if validE then
 					local contentsE = readfile("lunahaxEnemies.txt");
 					for line in contentsE:gmatch("[^\r\n]+") do
@@ -2576,13 +2578,13 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Added " .. variables.playerNameClicked .. " to enemies!");
 			end
 
-			
+
 			local numbtest = 0;
 			--repop
 			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 				local isFriend = false;
 				local isEnemy = false;
-				
+
 				local validF = isfile("lunahaxFriends.txt")
 				if validF then
 					local contents = readfile("lunahaxFriends.txt");
@@ -2603,8 +2605,8 @@ if variables.hasAuthed then
 						end
 					end
 				end
-				
-				
+
+
 				local newButton = Instance.new("TextButton")
 				newButton.Parent = playerListScrollingFrame
 				newButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2613,7 +2615,7 @@ if variables.hasAuthed then
 				newButton.Position = UDim2.new(0, 0, numbtest, 0);
 				newButton.Font = Enum.Font.SourceSans
 				newButton.Text = v.Name
-				
+
 				local ImageLabel = Instance.new("ImageLabel")
 				ImageLabel.Parent = newButton
 				ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2623,8 +2625,8 @@ if variables.hasAuthed then
 				ImageLabel.Size = UDim2.new(0, 33, 0, 32)
 				ImageLabel.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?userid=" .. v.UserId
 				ImageLabel.ScaleType = Enum.ScaleType.Fit
-				
-				
+
+
 				if isEnemy then
 					newButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 				elseif isFriend then
@@ -2640,9 +2642,9 @@ if variables.hasAuthed then
 				end)
 			end
 		end)
-		
-				
-				
+
+
+
 		tpToBaseplateButton.Activated:Connect(function()
 			if _G.deathBarrierBypassEnabled then
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 10, 0);
@@ -2651,10 +2653,10 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Please enable death barrier bypass", 4);
 			end
 		end)
-		
-		
+
+
 		------------------------
-		
+
 		warButton.Activated:Connect(function()
 			game.Lighting.Condition.Value = "Rain"
 			game.Lighting:SetMinutesAfterMidnight(1025)
@@ -2671,7 +2673,7 @@ if variables.hasAuthed then
 			game:GetService("Lighting").FogColor = Color3.fromRGB(145.00000655651, 144.00000661612, 138.00000697374)
 			game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(118.00000056624, 115.00000074506, 113.00000086427)
 		end)
-		
+
 		eveningButton.Activated:Connect(function()
 			game.Lighting.Condition.Value = "Night"
 			game.Lighting:SetMinutesAfterMidnight(1020)
@@ -2707,7 +2709,7 @@ if variables.hasAuthed then
 			game:GetService("Lighting").FogEnd = 7000;
 			game:GetService("Lighting").FogStart = 0;
 		end)
-		
+
 		nuclearWinterButton.Activated:Connect(function()
 			game.Lighting.Condition.Value = "Snowstorm"
 			game.Lighting:SetMinutesAfterMidnight(720)
@@ -2724,8 +2726,8 @@ if variables.hasAuthed then
 			game:GetService("Lighting").FogColor = Color3.fromRGB(193.00000369549, 193.00000369549, 193.00000369549)
 			game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(195.00000357628, 195.00000357628, 195.00000357628)
 		end)
-		
-		
+
+
 		morningButton.Activated:Connect(function()
 			game.Lighting.Condition.Value = "Night"
 			game.Lighting:SetMinutesAfterMidnight(402)
@@ -2760,7 +2762,7 @@ if variables.hasAuthed then
 			game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(33, 40, 61)
 
 		end)
-		
+
 		rainButton.Activated:Connect(function()
 			game.Lighting.Condition.Value = "Rain"
 			game.Lighting:SetMinutesAfterMidnight(720)
@@ -2796,8 +2798,8 @@ if variables.hasAuthed then
 			game:GetService("Lighting").OutdoorAmbient =  Color3.fromRGB(162, 130, 91)
 		end)
 
-		
-		
+
+
 		specificEarRapeButton.Activated:Connect(function()
 			if variables.playerNameClicked ~= nil then
 				pcall(function()
@@ -2813,11 +2815,11 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Please click a player.", 4);
 			end
 		end)
-		
-		
-		
+
+
+
 		-- node copy
-		
+
 		local allItems = {};
 		function addPropToArray(itemProperties)
 			table.insert(allItems, itemProperties);
@@ -2942,8 +2944,8 @@ if variables.hasAuthed then
 		addPropToArray({"Door Double", "110.00000275671"});
 		addPropToArray({"Door", "34.749816894531"});
 		addPropToArray({"Door Vault", "49.000025033951"});
-		
-		
+
+
 
 		function getItemNameFromId(itemId)
 			for i,v in pairs(allItems) do
@@ -2953,7 +2955,7 @@ if variables.hasAuthed then
 			end
 			return "";
 		end
-		
+
 		viewBackpackButton.Activated:Connect(function()
 			if variables.playerNameClicked == "" then
 				notice:Fire("Lunahax", "Please click a player.", 4);
@@ -2965,8 +2967,8 @@ if variables.hasAuthed then
 				showPopUpBox("Inventory items: " .. bckpackstring);
 			end
 		end)
-		
-		
+
+
 		viewPermsButton.Activated:Connect(function()
 			if variables.playerNameClicked == "" then
 				notice:Fire("Lunahax", "Please click a player.", 4);
@@ -2975,11 +2977,11 @@ if variables.hasAuthed then
 				showPopUpBox("Perm items: " .. bckpackstring);
 			end
 		end)
-		
-		
+
+
 		copyNodeButton.Activated:Connect(function()
 			wassuccessyy = false;
-			pcall(function()			
+			pcall(function()
 				if game:GetService("Workspace").Buildings[variables.playerNameClicked].Node.Name == "Node" then
 					pcall(function()
 						fullStringOutput = "--Lunahax node copier\n--Please execute this as a script in a new server to paste the node!\n--Please report bugs to https://discord.gg/jWe6WQff5x\n\nGame:GetService(\"ReplicatedStorage\").Events.BuildingEvent:FireServer(1, \"Node\", CFrame.new(" .. tostring(game:GetService("Workspace").Buildings[variables.playerNameClicked].Node.PrimaryPart.CFrame) .. "));\n";
@@ -3037,8 +3039,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Error, does that player have a node?", 4);
 			end
 		end)
-		
-		
+
+
 		spectatePlayerButton.Activated:Connect(function()
 			if spectatePlayerButton.Text == "[OFF] Spectate Player" then
 				spectatePlayerButton.Text = "[ON] Spectate Player"
@@ -3050,9 +3052,9 @@ if variables.hasAuthed then
 				game.Workspace.CurrentCamera.CameraSubject = PlayerToSpec.Character.Humanoid;
 			end
 		end)
-		
-	
-		
+
+
+
 		-- weapon multiplier
 		weaponMultiplierButton.Activated:Connect(function()
 			if variables.weaponMultiplierEnabled then
@@ -3069,7 +3071,7 @@ if variables.hasAuthed then
 		end)
 
 
-		
+
 		kickOnModJoinButton.Activated:Connect(function()
 			if variables.kickOnModJoin then
 				variables.kickOnModJoin = false;
@@ -3081,9 +3083,9 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Mod Kick enabled.");
 			end
 		end)
-		
-		
-		
+
+
+
 		local vu = game:GetService("VirtualUser")
 		game:GetService("Players").LocalPlayer.Idled:connect(function()
 			if variables.antiAfkEnabled then
@@ -3092,8 +3094,8 @@ if variables.hasAuthed then
 				vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 			end
 		end)
-		
-		
+
+
 		-- anti afk
 		antiAfkButton.Activated:Connect(function()
 			if variables.antiAfkEnabled then
@@ -3106,9 +3108,9 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "AntiAFK enabled.");
 			end
 		end)
-		
-		
-		
+
+
+
 		spawn(function()
 			while true do
 				pcall(function()
@@ -3119,7 +3121,7 @@ if variables.hasAuthed then
 				wait();
 			end
 		end)
-		
+
 		autoReloadButton.Activated:Connect(function()
 			if variables.autoReloadEnabled then
 				variables.autoReloadEnabled = false;
@@ -3131,9 +3133,9 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "AutoReload enabled.");
 			end
 		end)
-		
-		
-		
+
+
+
 		scrollingNameButton.Activated:Connect(function()
 			if variables.scrollingNameEnabled then
 				variables.scrollingNameEnabled = false;
@@ -3153,7 +3155,7 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "ScrollingName enabled.");
 			end
 		end)
-		
+
 		textSpeedTextBox.FocusLost:Connect(function(enterPressed, inputThatCausedFocusLost)
 			value = textSpeedTextBox.Text;
 			if tonumber(value) == 0 then
@@ -3166,10 +3168,10 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		
-	
-		
+
+
+
+
 		-- weapon inf clip
 		infiniteClipButton.Activated:Connect(function()
 			if variables.infiniteClipEnabled then
@@ -3178,10 +3180,10 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Infinite Clip is disabled for the meantime.");
 			end
 		end)
-		
-		
-		
-		
+
+
+
+
 		hitboxExpandButton.Activated:Connect(function()
 			if variables.hitboxExpandEnabled then
 				variables.hitboxExpandEnabled = false;
@@ -3198,11 +3200,11 @@ if variables.hasAuthed then
 			else
 				variables.hitboxExpandEnabled = true;
 				hitboxExpandButton.Text = "[ON] Hitbox Expand"
-				
+
 				for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 					pcall(function()
 						if v ~= game:GetService("Players").LocalPlayer then
-							v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20);						
+							v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20);
 							v.Character.HumanoidRootPart.Transparency = 0.7;
 							v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Bright green");
 							v.Character.HumanoidRootPart.Material = "Neon";
@@ -3213,18 +3215,18 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Hitbox Expander enabled.");
 			end
 		end)
-		
+
 		game:GetService("Players").PlayerAdded:Connect(function(v)
 			if variables.hitboxExpandEnabled then
-				v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20);						
+				v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20);
 				v.Character.HumanoidRootPart.Transparency = 0.7;
 				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Bright green");
 				v.Character.HumanoidRootPart.Material = "Neon";
 				v.Character.HumanoidRootPart.CanCollide = false;
 			end
 		end)
-		
-		
+
+
 		deathBarrierBypassButton.Activated:Connect(function()
 			if variables.deathBarrierBypassEnabled then
 				variables.deathBarrierBypassEnabled = false;
@@ -3238,9 +3240,9 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Death Barrier Bypass enabled.");
 			end
 		end)
-		
-		
-		
+
+
+
 		speedHackButton.Activated:Connect(function()
 			if variables.speedHackEnabled then
 				if _G.bypassEnabled then
@@ -3267,8 +3269,8 @@ if variables.hasAuthed then
 			end
 		end)
 
-		
-		
+
+
 		-- item sniper
 		itemSniperButton.Activated:Connect(function()
 			if variables.itemSniperEnabled then
@@ -3291,7 +3293,7 @@ if variables.hasAuthed then
 			local Target
 			for i,v in ipairs(game:GetService("Workspace").Entities:GetChildren()) do
 				pcall(function()
-					local mesh = nil;	
+					local mesh = nil;
 					pcall(function()
 						if v.ManualWeld.Name ~= "" then
 							mesh = v.ManualWeld
@@ -3324,45 +3326,45 @@ if variables.hasAuthed then
 				wait();
 			end
 		end)
-		
-		
+
+
 		local isDoingItem = false;
 		game:GetService("Workspace").Entities.ChildAdded:Connect(function(child)
 			if variables.itemSniperEnabled then
 				pcall(function()
 					local cFrameRn = nil;
 					local lmaozz = 0;
-					
+
 					wait(1);
 					if string.match(child.Name, "Shipment") then
-						
+
 					else
 						if isDoingItem then
-						
+
 						else
 							nameOfItem = child.Int.Value;
 							local Player = game:GetService("Players").LocalPlayer
 							if child.ToolOwner.Value == Player.Name then
-							
+
 							else
 								if isUserFriend(child.ToolOwner.Value) then
-								
+
 								else
-								
+
 									local mainPart = child.PrimaryPart;
 									local character = Player.Character or Player.CharacterAdded:Wait()
 									local HumanoidRootPart = character:WaitForChild("HumanoidRootPart")
 									local Humanoid =  character:WaitForChild("Humanoid")
 									cFrameRn = CFrame.new(Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z))
-									
+
 									print(mainPart.CFrame.X);
-									
+
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(mainPart.CFrame.X, mainPart.CFrame.Y, mainPart.CFrame.Z))
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.Angles(0,math.rad(90),0)
-									
+
 									variables.noclipBool = true;
 									isDoingItem = true;
-									
+
 									spawn(function()
 										while isDoingItem do
 											wait(1);
@@ -3376,14 +3378,14 @@ if variables.hasAuthed then
 											end
 										end
 									end)
-									
+
 									local doneFirstThingy = false;
-									
-									
-									
+
+
+
 									while (child) and (isDoingItem) do
 										local cExists = false
-										
+
 										for i,v in pairs(game:GetService("Workspace").Entities:GetChildren()) do
 											if child == v then
 												cExists = true;
@@ -3391,7 +3393,7 @@ if variables.hasAuthed then
 										end
 										if cExists then
 											if doneFirstThingy then
-												
+
 											else
 												doneFirstThingy = true;
 											end
@@ -3405,16 +3407,16 @@ if variables.hasAuthed then
 										controls:Disable()
 										wait(0.1)
 									end
-									
+
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(cFrameRn.X, cFrameRn.Y, cFrameRn.Z))
-									
-									
+
+
 									wait(1);
 									if game.Players.LocalPlayer.Character.Humanoid.FloorMaterial ~= nil and game.Players.LocalPlayer.Character.Humanoid.FloorMaterial ~= Enum.Material.Air then
 										pcall(function()
 											local amtInInv = tonumber(string.split(game:GetService("Players")[game.Players.LocalPlayer.Name].PlayerGui.Client.Inventory.Slots.Amt.Text, "/")[1]);
 											if amtInInv >= 11 then
-												
+
 											else
 												if game:GetService("Players").LocalPlayer.Flagged.Value == false then
 													print(nameOfItem);
@@ -3436,11 +3438,11 @@ if variables.hasAuthed then
 											end
 										end)
 									end
-									
+
 									isDoingItem = false
 
-									
-									
+
+
 									controls:Enable()
 									variables.noclipBool = false;
 									local Players = game:GetService("Players")
@@ -3472,8 +3474,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		
+
+
 		nodeKillButton.Activated:Connect(function()
 			if variables.isNodeKillEnabled then
 				variables.isNodeKillEnabled = false;
@@ -3513,7 +3515,7 @@ if variables.hasAuthed then
 			end
 		end)
 
-		
+
 		--clicktp click
 		clickTpButton.Activated:Connect(function()
 			if variables.clickTpEnabled then
@@ -3528,7 +3530,7 @@ if variables.hasAuthed then
 		end)
 
 
-		
+
 		--global chat click
 		globalChatButton.Activated:Connect(function()
 			if variables.globalChat then
@@ -3541,9 +3543,9 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Global chat enabled.");
 			end
 		end)
-		
+
 		spawn(function()
-			pcall(function()				
+			pcall(function()
 				function deathreturnnn()
 					game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 						pcall(function()
@@ -3568,7 +3570,7 @@ if variables.hasAuthed then
 				deathreturnnn();
 			end)
 		end)
-		
+
 		--death return click
 		deathReturnButton.Activated:Connect(function()
 			if variables.deathReturnEnabled then
@@ -3581,7 +3583,7 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Death Return enabled.");
 			end
 		end)
-		
+
 
 
 		--rageaura, red players click
@@ -3596,8 +3598,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Red RageAura enabled.");
 			end
 		end)
-		
-		
+
+
 		--rageaura, yellow players click
 		yellowRageAuraRedButton.Activated:Connect(function()
 			if _G.yellowRageAuraEnabled then
@@ -3625,8 +3627,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Auto Cola Drink enabled.");
 			end
 		end)
-		
-		
+
+
 		function NoteRecieved(p1, p2, p3)
 			pcall(function()
 				if string.match(tostring(p2), "All 6 drones used") and variables.autoAureus then
@@ -3637,8 +3639,8 @@ if variables.hasAuthed then
 			end)
 		end
 		game.ReplicatedStorage.Events:WaitForChild("NoteServer").OnClientEvent:connect(NoteRecieved);
-		
-		
+
+
 		--autocornfarm click
 		autoCornFarmButton.Activated:Connect(function()
 			if variables.autoCornFarm then
@@ -3651,8 +3653,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Auto Corn Farm enabled.");
 			end
 		end)
-		
-		
+
+
 		autoScrapFarmButton.Activated:Connect(function()
 			if variables.autoScrapFarm then
 				variables.autoScrapFarm = false;
@@ -3664,8 +3666,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Auto Scrap Farm enabled.");
 			end
 		end)
-		
-		
+
+
 		autoPrinterButton.Activated:Connect(function()
 			if variables.autoPrinterFarm then
 				variables.autoPrinterFarm = false;
@@ -3677,8 +3679,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Auto Printer Farm enabled.");
 			end
 		end)
-		
-		
+
+
 		autoAureusButton.Activated:Connect(function()
 			if variables.autoAureus then
 				variables.autoAureus = false;
@@ -3690,8 +3692,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "AutoAureus enabled.");
 			end
 		end)
-		
-		
+
+
 		--AutoScav click
 		autoScavButton.Activated:Connect(function()
 			if variables.autoScavEnabled then
@@ -3704,8 +3706,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Auto Scavenge Crate enabled.");
 			end
 		end)
-		
-		
+
+
 
 		-- nearest car button
 		getInNearestCarButton.Activated:Connect(function()
@@ -3735,7 +3737,7 @@ if variables.hasAuthed then
 			notice:Fire("Lunahax", "You are now driving the closest not-in-use car!");
 		end)
 
-		
+
 		-- unlock all passenger button
 		unlockPassengerButton.Activated:Connect(function()
 			for i,v in ipairs(game:GetService("Workspace").Vehicles:GetChildren()) do
@@ -3746,8 +3748,8 @@ if variables.hasAuthed then
 			notice:Fire("Lunahax", "All passenger seats have now been unlocked!");
 		end)
 
-		
-		
+
+
 		--noclip click
 		noclipButton.Activated:Connect(function()
 			if variables.noclipBool then
@@ -3780,7 +3782,7 @@ if variables.hasAuthed then
 			main.Name = "Main"
 			main.Parent = model
 			model.Parent = game:GetService("Workspace")[clientzzz.Name].Util
-			
+
 			notice:Fire("Lunahax", "Done! Press y to activate jetpack!");
 		end)
 
@@ -3836,14 +3838,14 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Infinite Ammo enabled");
 			end
 		end)
-		
+
 		game.Players.LocalPlayer.PlayerData["Hunger"].Changed:connect(function()
 			if variables.infHunger then
 				game.Players.LocalPlayer.PlayerData["Hunger"].Value = 100;
 				game.Players.LocalPlayer.PlayerData["Hunger"].RobloxLocked = true;
 			end
 		end)
-		
+
 
 		infiniteHungerButton.Activated:Connect(function()
 			if variables.infHunger then
@@ -3859,8 +3861,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Infinite Hunger enabled");
 			end
 		end)
-		
-		
+
+
 
 		spawn(function()
 			local Player = game:GetService("Players").LocalPlayer
@@ -3927,7 +3929,7 @@ if variables.hasAuthed then
 							local theirChar = personClicked.Character
 							local theirRoot = theirChar:WaitForChild("HumanoidRootPart")
 							HumanoidRootPart.CFrame = theirRoot.CFrame;
-							
+
 							pcall(function()
 								wait(1)
 								Game:GetService("ReplicatedStorage").Events.MenuActionEvent:FireServer(33, game:GetService("Workspace")[variables.playerNameClicked].HumanoidRootPart.CFrame, 1, game:GetService("Workspace")[variables.playerNameClicked].Humanoid, 26, game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool"));
@@ -3960,8 +3962,8 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Please equip a gun!", 4);
 			end
 		end)
-		
-		
+
+
 		earRapePlayersButton.Activated:Connect(function()
 			notice:Fire("Lunahax", "Loading, please wait...");
 			for i1,v1 in pairs(game.Players:GetChildren()) do
@@ -3972,11 +3974,11 @@ if variables.hasAuthed then
 					end
 				end)
 			end
-			
+
 			notice:Fire("Lunahax", "Ear rape'd all players!");
 		end)
-		
-		
+
+
 		local http = game:GetService('HttpService')
 		function getOutfits(id)
 			local data
@@ -3991,7 +3993,7 @@ if variables.hasAuthed then
 			end
 		   return stuff
 		end
-		
+
 		stealOutfitButton.Activated:Connect(function()
 			local playerToSteal = game:GetService("Players")[variables.playerNameClicked];
 			local daOutfits = getOutfits(playerToSteal.UserId);
@@ -4002,7 +4004,7 @@ if variables.hasAuthed then
 			Game:GetService("ReplicatedStorage").Events.MenuActionEvent:FireServer(8, { playerToSteal.PlayerData.RoleplayName.Value, curOutfitString .. playerToSteal.PlayerData.Outfit.Value, true });
 			notice:Fire("Lunahax", "You have stolen their outfit!");
 		end)
-		
+
 		stealOutfitFromTextButton.Activated:Connect(function()
 			local Players = game:GetService("Players")
 			local playerToSteal = Players:GetUserIdFromNameAsync(joinGameUserTextbox.Text)
@@ -4014,9 +4016,9 @@ if variables.hasAuthed then
 			Game:GetService("ReplicatedStorage").Events.MenuActionEvent:FireServer(8, { joinGameUserTextbox.Text, curOutfitString, true });
 			notice:Fire("Lunahax", "You have stolen their outfit!");
 		end)
-			
-		
-		
+
+
+
 		copyOutfitButton.Activated:Connect(function()
 			local playerToSteal = game:GetService("Players")[variables.playerNameClicked];
 			syn.write_clipboard(playerToSteal.PlayerData.Outfit.Value)
@@ -4043,7 +4045,7 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "Error! Does this player have a node or a jukebox?", 4);
 			end
 		end)
-		
+
 		tpToPlayerButton.Activated:Connect(function()
 			local Player = game:GetService("Players").LocalPlayer
 			local character = Player.Character or Player.CharacterAdded:Wait()
@@ -4053,9 +4055,9 @@ if variables.hasAuthed then
 			local bonc = bon.Character or bon.CharacterAdded:Wait()
 			local bonroot = bonc:WaitForChild("HumanoidRootPart")
 			HumanoidRootPart.CFrame = CFrame.new(Vector3.new(bonroot.CFrame.X, bonroot.CFrame.Y, bonroot.CFrame.Z))
-			
+
 			local testAmt = 0;
-			
+
 			pcall(function()
 				local seat = game.Players.LocalPlayer.Character.Humanoid.SeatPart
 				if seat then
@@ -4096,7 +4098,7 @@ if variables.hasAuthed then
 		excludeFromEspButton.Activated:Connect(function()
 			table.insert(variables.espIgnored, variables.playerNameClicked)
 			notice:Fire("Lunahax", "Player will no longer be visible on ESP until you re-join!")
-			
+
 			local playerVar = game:GetService("Players")[variables.playerNameClicked];
 			UnloadPlayerExt(playerVar)
 		end)
@@ -4129,37 +4131,37 @@ if variables.hasAuthed then
 			playtimeInfoText.Text = "Playtime: " .. SecondsToClock(playerVar.PlayerData.PlayTime.Value) .. " hours";
 			moneyAmtInfoText.Text = "$: " .. playerVar.PlayerData.Currency.Value;
 			aureusInfoText.Text = "A$: " .. playerVar.PlayerData.PCurrency.Value;
-			
+
 			hdlItem = "";
 			pcall(function()
-				for _asd, vCharItems in pairs(game:GetService("Players")[variables.playerNameClicked].Character:GetChildren()) do 
-					if vCharItems:IsA("Tool") then 
+				for _asd, vCharItems in pairs(game:GetService("Players")[variables.playerNameClicked].Character:GetChildren()) do
+					if vCharItems:IsA("Tool") then
 						hdlItem = vCharItems.Name;
 					end
 				end
 			end)
-			
+
 			heldItemInfoText.Text = "Held: " .. hdlItem;
-			
+
 			inventoryInfoText.Text = "Inventory: " .. playerVar.PlayerData.Inventory.Value;
 			bankInfoText.Text = "Bank: " .. playerVar.PlayerData.Bank.Value;
 			--table.insert(variables.espIgnored, variables.playerNameClicked)
 		end
-		
-		
+
+
 		function populateDispInfoWhenClicked()
 			local itemCount = variables.dispClicked.Dispencer.Count.Value;
 			local itemPrice = variables.dispClicked.Dispencer.Price.Value
 			local itemName = variables.dispClicked.Dispencer.Value;
-			
+
 			dispenserItemNameText.Text = "Item: " .. itemName;
 			dispenserItemPriceText.Text = "Price: " .. itemPrice;
 			dispenserItemCountText.Text = "Left: " .. itemCount;
-			
-			
+
+
 		end
 
-		
+
 		teleportToDispenserButton.Activated:Connect(function()
 			local Player = game:GetService("Players").LocalPlayer
 			local character = Player.Character or Player.CharacterAdded:Wait()
@@ -4168,7 +4170,7 @@ if variables.hasAuthed then
 			HumanoidRootPart.CFrame = cfrr;
 		end)
 
-		
+
 		game:GetService("Players").PlayerAdded:Connect(function(v)
 			pcall(function()
 				if isUserEsMod(v.Name) then
@@ -4176,10 +4178,10 @@ if variables.hasAuthed then
 				end
 			end)
 			-- remove all first
-			for _asd, vp in pairs(playerListScrollingFrame:GetChildren()) do 
+			for _asd, vp in pairs(playerListScrollingFrame:GetChildren()) do
 				vp:destroy();
 			end
-			
+
 			local numbtest = 0;
 			--repop
 			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -4207,8 +4209,8 @@ if variables.hasAuthed then
 						end
 					end
 				end)
-				
-				
+
+
 				local newButton = Instance.new("TextButton")
 				newButton.Parent = playerListScrollingFrame
 				newButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4217,7 +4219,7 @@ if variables.hasAuthed then
 				newButton.Position = UDim2.new(0, 0, numbtest, 0);
 				newButton.Font = Enum.Font.SourceSans
 				newButton.Text = v.Name
-				
+
 				local ImageLabel = Instance.new("ImageLabel")
 				ImageLabel.Parent = newButton
 				ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4227,8 +4229,8 @@ if variables.hasAuthed then
 				ImageLabel.Size = UDim2.new(0, 33, 0, 32)
 				ImageLabel.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?userid=" .. v.UserId
 				ImageLabel.ScaleType = Enum.ScaleType.Fit
-				
-				
+
+
 				if isEnemy then
 					newButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 				elseif isFriend then
@@ -4246,10 +4248,10 @@ if variables.hasAuthed then
 		end)
 		game:GetService("Players").PlayerRemoving:Connect(function(v)
 			-- remove all first
-			for _asd, vp in pairs(playerListScrollingFrame:GetChildren()) do 
+			for _asd, vp in pairs(playerListScrollingFrame:GetChildren()) do
 				vp:destroy();
 			end
-			
+
 			local numbtest = 0;
 			--repop
 			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -4277,8 +4279,8 @@ if variables.hasAuthed then
 						end
 					end
 				end)
-				
-				
+
+
 				local newButton = Instance.new("TextButton")
 				newButton.Parent = playerListScrollingFrame
 				newButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4287,7 +4289,7 @@ if variables.hasAuthed then
 				newButton.Position = UDim2.new(0, 0, numbtest, 0);
 				newButton.Font = Enum.Font.SourceSans
 				newButton.Text = v.Name
-				
+
 				local ImageLabel = Instance.new("ImageLabel")
 				ImageLabel.Parent = newButton
 				ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4297,8 +4299,8 @@ if variables.hasAuthed then
 				ImageLabel.Size = UDim2.new(0, 33, 0, 32)
 				ImageLabel.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?userid=" .. v.UserId
 				ImageLabel.ScaleType = Enum.ScaleType.Fit
-				
-				
+
+
 				if isEnemy then
 					newButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 				elseif isFriend then
@@ -4315,7 +4317,7 @@ if variables.hasAuthed then
 			end
 		end)
 		-- remove all first
-		for _asd, vp in pairs(playerListScrollingFrame:GetChildren()) do 
+		for _asd, vp in pairs(playerListScrollingFrame:GetChildren()) do
 			vp:destroy();
 		end
 
@@ -4324,7 +4326,7 @@ if variables.hasAuthed then
 		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 			local isFriend = false;
 			local isEnemy = false;
-			
+
 			pcall(function()
 				local validF = isfile("lunahaxFriends.txt")
 				if validF then
@@ -4347,9 +4349,9 @@ if variables.hasAuthed then
 					end
 				end
 			end)
-			
-			
-			
+
+
+
 			local newButton = Instance.new("TextButton")
 			newButton.Parent = playerListScrollingFrame
 			newButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4358,7 +4360,7 @@ if variables.hasAuthed then
 			newButton.Position = UDim2.new(0, 0, numbtest, 0);
 			newButton.Font = Enum.Font.SourceSans
 			newButton.Text = v.Name
-			
+
 			local ImageLabel = Instance.new("ImageLabel")
 			ImageLabel.Parent = newButton
 			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4368,8 +4370,8 @@ if variables.hasAuthed then
 			ImageLabel.Size = UDim2.new(0, 33, 0, 32)
 			ImageLabel.Image = "http://www.roblox.com/Thumbs/Avatar.ashx?userid=" .. v.UserId
 			ImageLabel.ScaleType = Enum.ScaleType.Fit
-			
-				
+
+
 			if isEnemy then
 				newButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 			elseif isFriend then
@@ -4384,10 +4386,10 @@ if variables.hasAuthed then
 				populateWhenClicked();
 			end)
 		end
-		
-	
 
-		
+
+
+
 
 		flyJumpButton.Activated:Connect(function()
 			if variables.flyJump then
@@ -4417,7 +4419,7 @@ if variables.hasAuthed then
 
 
 
-		
+
 
 		local oldText = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("TopBar"):WaitForChild("Frame"):WaitForChild("TextLabel").Text;
 		local oldColor = game:GetService("Players").LocalPlayer.PlayerGui.TopBar.Frame.BackgroundColor3;
@@ -4453,30 +4455,30 @@ if variables.hasAuthed then
 				if #textArray < randomInt then
 					randomInt = 1;
 				end;
-				wait(0.1);	
+				wait(0.1);
 			end;
 		end);
 
 
 		game:GetService("Players").PlayerAdded:Connect(function(v)
-			
+
 			v.Chatted:connect(function(msg)
 				if variables.globalChat then
 					if isUserFriend(v.Name) then
 						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-							Text = "[" .. v.Name .. "]: " .. msg, 
+							Text = "[" .. v.Name .. "]: " .. msg,
 							Font = Enum.Font.SourceSansBold,
 							Color = BrickColor.new("Bright green").Color
 						});
 					elseif isUserEnemy(v.Name) then
 						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-							Text = "[" .. v.Name .. "]: " .. msg, 
+							Text = "[" .. v.Name .. "]: " .. msg,
 							Font = Enum.Font.SourceSansBold,
 							Color = BrickColor.new("Bright red").Color
 						});
 					else
 						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-							Text = "[" .. v.Name .. "]: " .. msg, 
+							Text = "[" .. v.Name .. "]: " .. msg,
 							Font = Enum.Font.SourceSansBold
 						});
 					end
@@ -4489,15 +4491,15 @@ if variables.hasAuthed then
 					notice:Fire("Lunahax", "Enemy " .. v.name .. " has joined the game!", 4)
 				end
 			end)
-			
+
 			pcall(function()
 				if isUserEsMod(v.Name) then
 					notice:Fire("Lunahax", "WARNING! Moderator " .. v.Name .. " is in your game.", 4);
 				end
 			end)
-			
+
 		end)
-		 
+
 		game:GetService("Players").PlayerRemoving:Connect(function(v)
 			pcall(function()
 				if isUserFriend(v.Name) then
@@ -4553,8 +4555,8 @@ if variables.hasAuthed then
 							end;
 							return v23;
 						end;
-						
-						
+
+
 						for i,vPlayer in pairs(game:GetService("Players"):GetPlayers()) do
 							pcall(function()
 								if vPlayer.Name == localPlayer.Name then
@@ -4581,7 +4583,7 @@ if variables.hasAuthed then
 															local theirChar = vPlayer.Character
 															local theirRoot = theirChar:WaitForChild("HumanoidRootPart")
 															HumanoidRootPart.CFrame = theirRoot.CFrame;
-															
+
 															pcall(function()
 																for count = 1, 10 do
 																	if vPlayer.Character.Humanoid.Health == 0 then
@@ -4618,7 +4620,7 @@ if variables.hasAuthed then
 			-- esp stuff, player
 			Holder = Instance.new("Folder", game.CoreGui)
 			Holder.Name = "ESP"
-			 
+
 			local Box = Instance.new("BoxHandleAdornment")
 			Box.Name = "nilBox"
 			Box.Size = Vector3.new(4, 7, 4)
@@ -4627,7 +4629,7 @@ if variables.hasAuthed then
 			Box.ZIndex = 0
 			Box.AlwaysOnTop = true
 			Box.Visible = true
-			 
+
 			local NameTag = Instance.new("BillboardGui")
 			NameTag.Name = "nilNameTag"
 			NameTag.Enabled = false
@@ -4646,14 +4648,14 @@ if variables.hasAuthed then
 			Tag.Text = "nil"
 			Tag.Font = Enum.Font.SourceSansBold
 			Tag.TextScaled = false
-			 
+
 			local LoadCharacter = function(v)
 			spawn(function()
 				repeat wait(1) until v.Character ~= nil
 				if v.Name == game:GetService("Players").LocalPlayer.Name then
-				
+
 				elseif v.Name == nil then
-				
+
 				else
 					if has_value(variables.espIgnored, v.Name) then
 					else
@@ -4661,7 +4663,7 @@ if variables.hasAuthed then
 						local vHolder = Holder:FindFirstChild(v.Name)
 						local HumanoidRootPartPlyr = v.Character:WaitForChild("HumanoidRootPart")
 						if HumanoidRootPartPlyr.CFrame.Y < 125 then
-						
+
 						else
 							vHolder:ClearAllChildren()
 							local b = Box:Clone()
@@ -4685,30 +4687,30 @@ if variables.hasAuthed then
 									v.Character.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
 									local maxh = math.floor(v.Character.Humanoid.MaxHealth)
 									local h = math.floor(v.Character.Humanoid.Health)
-									
+
 									local prependText = ""
 									local appendText = ""
-									
-									
+
+
 									local isSpy = false;
-									
+
 									if v.Character.Head.Transparency == 2 then
 										prependText = prependText .. "[CAR] "
 									end
-									
+
 									if v.Character.Head.Transparency == 11 then
 										prependText = prependText .. "[SPY] "
 										isSpy = true
 									end
-									
-									
+
+
 									if isSpy then
 										t.Tag.TextColor3 = Color3.new(0, 255, 234)
 									else
 										t.Tag.TextColor3 = Color3.new(255, 255, 255)
 									end
-									
-									
+
+
 									if game:GetService("Players")[v.Name].Flagged.Value then
 										if game:GetService("Workspace")[v.Name].NameTag.TextLabel.TextColor3 ==  Color3.fromRGB(255, 187, 69) then
 											prependText = prependText .. "[F] "
@@ -4720,14 +4722,14 @@ if variables.hasAuthed then
 											prependText = prependText .. "[F] "
 										end
 									end
-									
-									for _asd, vCharItems in pairs(game:GetService("Players")[v.Name].Character:GetChildren()) do 
-										if vCharItems:IsA("Tool") then 
+
+									for _asd, vCharItems in pairs(game:GetService("Players")[v.Name].Character:GetChildren()) do
+										if vCharItems:IsA("Tool") then
 											appendText = vCharItems.Name .. "\n"
 										end
 									end
 									local distance = round((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude)
-	
+
 									t.Tag.Text = prependText .. v.Name .. " " .. ((maxh ~= 0 and tostring(math.floor((h / maxh) * 100))) or "0") .. "%\n" .. appendText .. "H: " .. game:GetService("Players")[v.Name].PlayerData.Hunger.Value .. " Karma: " .. game:GetService("Players")[v.Name].PlayerData.Karma.Value .. "\nA$" .. game:GetService("Players")[v.Name].PlayerData.PCurrency.Value .. "/$" .. game:GetService("Players")[v.Name].PlayerData.Currency.Value .. " (" .. distance .. " studs)\n"
 								end) then
 									Update:Disconnect()
@@ -4740,17 +4742,17 @@ if variables.hasAuthed then
 				end
 				end)
 			end
-			 
-			 
 
-			 
+
+
+
 			local UnloadCharacter = function(v)
 				local vHolder = Holder:FindFirstChild(v.Name)
 				if vHolder and (vHolder:FindFirstChild(v.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Name .. "NameTag") ~= nil) then
 					vHolder:ClearAllChildren()
 				end
 			end
-			 
+
 			local LoadPlayer = function(v)
 				local vHolder = Instance.new("Folder", Holder)
 				vHolder.Name = v.Name
@@ -4804,7 +4806,7 @@ if variables.hasAuthed then
 					pcall(LoadCharacter, v)
 				end
 			end
-			 
+
 			local UnloadPlayer = function(v)
 				UnloadCharacter(v)
 				local vHolder = Holder:FindFirstChild(v.Name)
@@ -4812,9 +4814,9 @@ if variables.hasAuthed then
 					vHolder:Destroy()
 				end
 			end
-			
-			
-						 
+
+
+
 			specificEspButton.Activated:Connect(function()
 				local PlayerToESP = game:GetService("Players")[variables.playerNameClicked]
 				LoadPlayer(PlayerToESP)
@@ -4827,7 +4829,7 @@ if variables.hasAuthed then
 						spawn(function() pcall(LoadPlayer, v) end)
 					end
 				end
-				 
+
 				game:GetService("Players").PlayerAdded:Connect(function(v)
 					if variables.espEnabled then
 						if variables.friendEspEnabled then
@@ -4843,7 +4845,7 @@ if variables.hasAuthed then
 						end
 					end
 				end)
-				 
+
 				game:GetService("Players").PlayerRemoving:Connect(function(v)
 					pcall(UnloadPlayer, v)
 				end)
@@ -4862,7 +4864,7 @@ if variables.hasAuthed then
 						notice:Fire("Lunahax", "ESP Enabled.");
 
 						for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-							spawn(function() 
+							spawn(function()
 								if variables.friendEspEnabled then
 									if isUserFriend(v.Name) then
 										pcall(LoadPlayer, v)
@@ -4878,10 +4880,10 @@ if variables.hasAuthed then
 						end
 					end
 				end)
-				 
+
 				game:GetService("Players").LocalPlayer.NameDisplayDistance = 0
 			end);
-		
+
 
 		pcall(function()
 			local player = game.Players.LocalPlayer
@@ -4908,7 +4910,7 @@ if variables.hasAuthed then
 								Target = v
 							end
 						else
-							
+
 						end
 					end
 				end
@@ -4927,7 +4929,7 @@ if variables.hasAuthed then
 						if v.Character then
 							if mouse.Icon == "rbxassetid://2872049636" then
 								if player:DistanceFromCharacter(game:GetService("Players")[v.Name].Character.HumanoidRootPart.Position) > 450 then
-								
+
 								else
 									local withinScreenBounds = game:GetService("Workspace").Camera:WorldToScreenPoint(game:GetService("Players")[v.Name].Character.HumanoidRootPart.Position)
 									if withinScreenBounds then
@@ -4963,9 +4965,9 @@ if variables.hasAuthed then
 				end
 			end)
 		end)
-		
-		
-		
+
+
+
 		------------
 		-- global chat
 		for i,v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -4978,32 +4980,32 @@ if variables.hasAuthed then
 				if variables.globalChat then
 					if isUserFriend(v.Name) then
 						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-							Text = "[" .. v.Name .. "]: " .. msg, 
+							Text = "[" .. v.Name .. "]: " .. msg,
 							Font = Enum.Font.SourceSansBold,
 							Color = BrickColor.new("Bright green").Color
 						});
 					elseif isUserEnemy(v.Name) then
 						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-							Text = "[" .. v.Name .. "]: " .. msg, 
+							Text = "[" .. v.Name .. "]: " .. msg,
 							Font = Enum.Font.SourceSansBold,
 							Color = BrickColor.new("Bright red").Color
 						});
 					else
 						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-							Text = "[" .. v.Name .. "]: " .. msg, 
+							Text = "[" .. v.Name .. "]: " .. msg,
 							Font = Enum.Font.SourceSansBold
 						});
 					end
 				end
 			end)
 		end
-		
-		
-		
+
+
+
 		--------------------
 		-- nlr bypass stuffs
 		local function nlrLoop()
-			while true do 
+			while true do
 				local wrkspce = game:GetService("Workspace")
 				for _, v in pairs(wrkspce:GetChildren()) do
 					if v.Name == "NL" then
@@ -5030,8 +5032,8 @@ if variables.hasAuthed then
 			end
 		end)
 
-		
-		
+
+
 		friendEspButton.Activated:Connect(function()
 			if variables.friendEspEnabled then
 				variables.friendEspEnabled = false;
@@ -5044,7 +5046,7 @@ if variables.hasAuthed then
 			end
 		end)
 
-		
+
 		enemyEspButton.Activated:Connect(function()
 			if variables.enemyEspEnabled then
 				variables.enemyEspEnabled = false;
@@ -5056,13 +5058,13 @@ if variables.hasAuthed then
 				notice:Fire("Lunahax", "FriendESP Enabled.");
 			end
 		end)
-		
+
 
 
 		--------------------
 		-- door disable collisions (unlock all doors)
 
-		unlockDoorsButton.Activated:Connect(function() 
+		unlockDoorsButton.Activated:Connect(function()
 			spawn(function()
 				doors = { "Door", "Door Double", "Door Vault", "Door Double Rapture" }
 
@@ -5070,7 +5072,7 @@ if variables.hasAuthed then
 				local wrkspce = game:GetService("Workspace")
 				for _, v in pairs(wrkspce.Buildings:GetChildren()) do
 				   local success, problem = pcall(function()
-				   
+
 						local successasd, problemasd = pcall(function()
 							for _z, vz in pairs(v:GetChildren()) do
 								if has_value(doors, vz.Name) then
@@ -5087,7 +5089,7 @@ if variables.hasAuthed then
 						if successasd then
 						else
 						end
-						
+
 					end)
 					if success then
 					else
@@ -5106,7 +5108,7 @@ if variables.hasAuthed then
 		function doPrinters()
 			PHolder = Instance.new("Folder", game.CoreGui)
 			PHolder.Name = "PrinterESP"
-			 
+
 			local Box = Instance.new("BoxHandleAdornment")
 			Box.Name = "nilBox"
 			Box.Size = Vector3.new(2, 2, 2)
@@ -5115,7 +5117,7 @@ if variables.hasAuthed then
 			Box.ZIndex = 0
 			Box.AlwaysOnTop = true
 			Box.Visible = true
-			 
+
 			local NameTag = Instance.new("BillboardGui")
 			NameTag.Name = "nilNameTag"
 			NameTag.Enabled = false
@@ -5192,7 +5194,7 @@ if variables.hasAuthed then
 		function doCrates()
 			CHolder = Instance.new("Folder", game.CoreGui)
 			CHolder.Name = "CrateESP"
-			 
+
 			local Box = Instance.new("BoxHandleAdornment")
 			Box.Name = "nilBox"
 			Box.Size = Vector3.new(2, 2, 2)
@@ -5201,7 +5203,7 @@ if variables.hasAuthed then
 			Box.ZIndex = 0
 			Box.AlwaysOnTop = true
 			Box.Visible = true
-			 
+
 			local NameTag = Instance.new("BillboardGui")
 			NameTag.Name = "nilNameTag"
 			NameTag.Enabled = false
@@ -5226,7 +5228,7 @@ if variables.hasAuthed then
 					if string.match(v.Name, "Shipment") then
 						if v.Int.Uses.Value > 0 then
 							if v.MeshPart.CFrame.Y < 125 then
-							
+
 							else
 								local printer = v
 								local b = Box:Clone()
@@ -5275,12 +5277,12 @@ if variables.hasAuthed then
 				doCrates()
 			end
 		end)
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 
 		---------------
 		-- esp stuff, entitys
@@ -5288,7 +5290,7 @@ if variables.hasAuthed then
 		function doEntities()
 			EHolder = Instance.new("Folder", game.CoreGui)
 			EHolder.Name = "EntityESP"
-			 
+
 			local Box = Instance.new("BoxHandleAdornment")
 			Box.Name = "nilBox"
 			Box.Size = Vector3.new(2, 2, 2)
@@ -5297,7 +5299,7 @@ if variables.hasAuthed then
 			Box.ZIndex = 0
 			Box.AlwaysOnTop = true
 			Box.Visible = true
-			 
+
 			local NameTag = Instance.new("BillboardGui")
 			NameTag.Name = "nilNameTag"
 			NameTag.Enabled = false
@@ -5318,11 +5320,11 @@ if variables.hasAuthed then
 			for _, v in pairs(wrkspce.Entities:GetChildren()) do
 			   local success, problem = pcall(function()
 					if string.match(v.Name, "Shipment") then
-					
+
 					else
 						local printer = v
 						local mesh = nil;
-						
+
 						for _, vx in pairs(printer:GetChildren()) do
 							pcall(function()
 								if vx.ManualWeld.Name ~= "" then
@@ -5330,7 +5332,7 @@ if variables.hasAuthed then
 								end
 							end)
 						end
-						
+
 						if mesh == nil then
 							mesh = printer.Handle
 						end
@@ -5402,7 +5404,7 @@ if variables.hasAuthed then
 		local renamedItems = {};
 		local cooldownPeople = {};
 		local bypassChatEnabled = false;
-		
+
 
 		function addTrade(username, price, item)
 			table.insert(allOpenTrades, { tostring(username), tonumber(price), (tonumber(os.time(os.date("!*t"))) + 120), tostring(item) });
@@ -5411,8 +5413,8 @@ if variables.hasAuthed then
 		function addInProgTrade(price)
 			table.insert(tradesInProgress, { tonumber(price) } );
 		end
-		
-		
+
+
 		function doCooldown(username) -- true = can talk, false = cant
 			if username == game.Players.LocalPlayer.Name then
 				return true;
@@ -5444,7 +5446,7 @@ if variables.hasAuthed then
 		function bypassChat(chat)
 			if bypassChatEnabled then
 				stringReturn = "";
-				
+
 				for i,v in pairs(string.split(chat, " ")) do
 					if string.len(v) > 1 then
 						stringReturn = stringReturn .. insertstring(v, "ة", 1) .. " ";
@@ -5456,7 +5458,7 @@ if variables.hasAuthed then
 			end
 			return chat;
 		end
-		
+
 
 		function removeInProgTrade(price)
 			table.remove(tradesInProgress, tablefind(tradesInProgress, { price }));
@@ -5484,7 +5486,7 @@ if variables.hasAuthed then
 						pcall(function()
 							if difference == v[2] then
 								Game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(bypassChat("/ad [wishbot] Hey " .. v[1] .. ", I recieved your payment, please stand still!"), "All");
-								
+
 								hasFoundTrade = false;
 								for ilol,vlol in pairs(tradesInProgress) do
 									if tonumber(vlol[1]) == v[2] then
@@ -5506,16 +5508,16 @@ if variables.hasAuthed then
 										controls:Disable();
 										buyersUsername = v[1];
 										buyersItem = string.lower(v[4]);
-										
+
 										localitm = nil;
-										
+
 										for i1, v1 in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 											if string.lower(v1.Name) == buyersItem then
 												localitm = v1;
 												break;
 											end
 										end
-										
+
 										if localitm == nil then
 											for i2,v2 in pairs(string.split(game.Players.LocalPlayer.PlayerData.Inventory.Value, ",")) do
 												if string.lower(tostring(v2)) == buyersItem then
@@ -5535,12 +5537,12 @@ if variables.hasAuthed then
 												end
 											end
 										end
-										
+
 										itemNamee = "";
 										pcall(function()
 											itemNamee = localitm.Name;
 										end)
-										
+
 										if itemNamee == "" then
 											Game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(bypassChat("[/ad wishbot] Hey " .. v[1] .. ", Coulden't find the item, refunding..."), "All");
 											table.remove(allOpenTrades, tablefind(allOpenTrades, v));
@@ -5552,7 +5554,7 @@ if variables.hasAuthed then
 											local character = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait();
 											local HumanoidRootPart = character:WaitForChild("HumanoidRootPart");
 											cFrameRn = CFrame.new(Vector3.new(HumanoidRootPart.CFrame.X, HumanoidRootPart.CFrame.Y, HumanoidRootPart.CFrame.Z));
-											
+
 											_G.redRageAuraEnabled = false;
 											_G.yellowRageAuraEnabled = false;
 											_G.nlrLoop = true;
@@ -5677,7 +5679,7 @@ if variables.hasAuthed then
 						break;
 					end
 				end
-				
+
 				if localitm == nil then
 					for i2,v2 in pairs(string.split(game.Players.LocalPlayer.PlayerData.Inventory.Value, ",")) do
 						if string.lower(v2) == string.lower(buyersItem) then
@@ -5714,8 +5716,8 @@ if variables.hasAuthed then
 			fullResult = "";
 			for i = 1, #text do
 				c = text:sub(i,i)
-				if c == "1" or c == "2" or c == "3" or c == "4" or c == "5" or c == "6" or c == "7" or c == "8" or c == "9" or c == "0" then -- why doesnt lua have if char numeric like c# 
-				
+				if c == "1" or c == "2" or c == "3" or c == "4" or c == "5" or c == "6" or c == "7" or c == "8" or c == "9" or c == "0" then -- why doesnt lua have if char numeric like c#
+
 				else
 					fullResult = fullResult .. c;
 				end
@@ -5738,12 +5740,12 @@ if variables.hasAuthed then
 
 
 		wishBotPrefix = "!";
-		
+
 		function envIsAlphaNum(sIn)
 			return (string.match(sIn,"[^%w]") == nil)
 		end
-		
-		
+
+
 		function checkIfUsedPrice(price)
 			for iasdasd,viasdasd in pairs(allOpenTrades) do
 				if tonumber(viasdasd[2]) == tonumber(uniqPrice) then
@@ -5752,8 +5754,8 @@ if variables.hasAuthed then
 			end
 			return false;
 		end
-		
-		
+
+
 		local function onPlayerChatted(player, message)
 			if _G.wishBotEnabled then
 				pcall(function()
@@ -5762,7 +5764,7 @@ if variables.hasAuthed then
 						spawn(function()
 							username = player.Name:gsub('%s+', '');
 							if isUserEnemy(username) then
-								
+
 							else
 								if doCooldown(username) then
 									if command == "buy" then
@@ -5931,10 +5933,10 @@ if variables.hasAuthed then
 											pcall(function()
 												itemToSet = "";
 												itemRenamedName = "";
-												
-												
+
+
 												counterer = 0;
-												for chunk in string.gmatch(message, "\"(.-)\"") do 
+												for chunk in string.gmatch(message, "\"(.-)\"") do
 													counterer = counterer + 1;
 													if counterer == 1 then
 														itemToSet = chunk;
@@ -5950,10 +5952,10 @@ if variables.hasAuthed then
 															table.remove(renamedItems, tablefind(renamedItems, { vqqq[1], vqqq[2] }));
 														end
 													end
-													
+
 													if itemToSet ~= "" and itemRenamedName ~= "" then
 														table.insert(renamedItems, { itemToSet, itemRenamedName });
-														
+
 														Game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(bypassChat("/ad [wishbot] " .. itemToSet .. " is now " .. itemRenamedName .. "!"), "All");
 														wasSuccess = true;
 													end
@@ -6018,7 +6020,7 @@ if variables.hasAuthed then
 			end)
 		end
 		print("wishbot loaded");
-		
+
 		-- button
 		wishBotButton.Activated:Connect(function()
 			if _G.wishBotEnabled then
@@ -6033,16 +6035,16 @@ if variables.hasAuthed then
 				Game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/ad [wishbot] Wishbot has been enabled! Type '/.ad !help' for info", "All");
 			end
 		end)
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
 		----
 
 
@@ -6075,7 +6077,7 @@ if variables.hasAuthed then
 										end
 									end
 								else
-									
+
 								end
 							end
 						end)
@@ -6091,7 +6093,7 @@ if variables.hasAuthed then
 						local HumanoidRootPart = Character and Character:FindFirstChild("HumanoidRootPart")
 						local closesttt = GetClosestFlaggedRed();
 						local mag = (HumanoidRootPart.Position - closesttt.Character.HumanoidRootPart.Position).magnitude
-						
+
 						if mag < 250 then
 							if closesttt.Flagged.Value then -- if the user is flagged
 								if game:GetService("Workspace")[closesttt.Name].NameTag.TextLabel.TextColor3 ==  Color3.fromRGB(255, 33, 33) then
@@ -6145,7 +6147,7 @@ if variables.hasAuthed then
 										end
 									end
 								else
-									
+
 								end
 							end
 						end)
@@ -6161,7 +6163,7 @@ if variables.hasAuthed then
 						local HumanoidRootPart = Character and Character:FindFirstChild("HumanoidRootPart")
 						local closesttt = GetClosestFlaggedYellow();
 						local mag = (HumanoidRootPart.Position - closesttt.Character.HumanoidRootPart.Position).magnitude
-						
+
 						if mag < 250 then
 							if closesttt.Flagged.Value and player.Flagged.Value then -- if the user is flagged
 								if game:GetService("Workspace")[closesttt.Name].NameTag.TextLabel.TextColor3 ==  Color3.fromRGB(255, 187, 69) then
@@ -6192,7 +6194,7 @@ if variables.hasAuthed then
 			while true do
 				pcall(function()
 					if variables.autoColaDrink then
-						for _, vItm in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do 
+						for _, vItm in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
 							if vItm.Name == "Bloxy Cola" then
 								if game.Players.LocalPlayer.Character.Humanoid.Health <= 80 then
 									Game:GetService("ReplicatedStorage").Events.ToolsEvent:FireServer(4, vItm);
@@ -6204,11 +6206,11 @@ if variables.hasAuthed then
 			wait();
 			end
 		end);
-		
-		
-		
-		
-		
+
+
+
+
+
 		function GetClosestOwnedMaterial()
 			local lplayer = game.Players.LocalPlayer
 			local Character = lplayer.Character
@@ -6218,7 +6220,7 @@ if variables.hasAuthed then
 			local Target
 			for i,v in ipairs(game:GetService("Workspace").Materials:GetChildren()) do
 				pcall(function()
-					mesh = nil;	
+					mesh = nil;
 					pcall(function()
 						if v.PrimaryPart.Name ~= "" then
 							mesh = v.PrimaryPart
@@ -6244,7 +6246,7 @@ if variables.hasAuthed then
 
 			return Target
 		end
-					
+
 		function runAutoScrapFarm()
 			if variables.autoScrapFarm then
 				pcall(function()
@@ -6268,30 +6270,30 @@ if variables.hasAuthed then
 										if didFindPart then
 											local cFrameRn = nil;
 											cFrameRn = CFrame.new(Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z));
-											
+
 											if variables.autoScrapFarm and game.Players.LocalPlayer.PlayerData.CraftCharges.Value > 0 then
 												local controls = require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls()
 												controls:Disable();
-												
+
 												CFrameEnd = v.PrimaryPart.CFrame;
 												Time = 3
 												tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
 												tween:Play()
 												tween.Completed:Wait()
-												
+
 												wait(2);
 												Game:GetService("ReplicatedStorage").Events.MenuActionEvent:FireServer(52, v);
 												wait(1);
 												itm = GetClosestOwnedMaterial();
 												Game:GetService("ReplicatedStorage").Events.PickUpEvent:FireServer(itm, true);
 												wait(1);
-												
+
 												CFrameEnd = cargoStation.Union.CFrame;
 												Time = 3
 												tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
 												tween:Play()
 												tween.Completed:Wait()
-												
+
 												wait(1);
 												Game:GetService("ReplicatedStorage").Events.MenuActionEvent:FireServer(41, cargoStation, itm);
 												CFrameEnd = CFrame.new(Vector3.new(cFrameRn.X, cFrameRn.Y, cFrameRn.Z));
@@ -6305,7 +6307,7 @@ if variables.hasAuthed then
 												tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
 												tween:Play()
 												tween.Completed:Wait()
-												
+
 												notice:Fire("Lunahax", "Disabling autoscrapfarm!");
 												variables.autoScrapFarm = false;
 												autoScrapFarmButton.Text = "[OFF] AutoScrapFarm"
@@ -6327,10 +6329,10 @@ if variables.hasAuthed then
 				controls:Enable();
 			end
 		end
-		
-		
-		
-		
+
+
+
+
 		function autoCornFarmRun()
 			if variables.autoCornFarm then
 				hasFoundCargoStation = false;
@@ -6388,8 +6390,8 @@ if variables.hasAuthed then
 				end
 			end
 		end
-		
-		
+
+
 		function auroAureusRun()
 			if variables.autoAureus then
 				hasFoundScavStation = false;
@@ -6410,26 +6412,26 @@ if variables.hasAuthed then
 								local controls = require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls()
 								controls:Disable();
 								pcall(function()
-								
+
 									CFrameEnd = scavStation.Union.CFrame;
 									Time = 5
 									tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
 									tween:Play()
 									tween.Completed:Wait()
-									
-									
+
+
 									wait(1);
 									Game:GetService("ReplicatedStorage").Events.InteractEvent:FireServer(scavStation);
 									wait(1);
 									Game:GetService("ReplicatedStorage").Events.MenuAcitonEvent:FireServer(1, scavStation);
 									wait(1);
-									
+
 									CFrameEnd = game:GetService("Workspace").DroneShipment.MeshPart.CFrame;
 									Time = 5
 									tween =  game:GetService("TweenService"):Create(game:GetService("Workspace").Drones[game.Players.LocalPlayer.Name].Hull, TweenInfo.new(Time), {CFrame = CFrameEnd})
 									tween:Play()
 									tween.Completed:Wait()
-									
+
 									wait(2);
 									Game:GetService("ReplicatedStorage").Events.MenuAcitonEvent:FireServer(3);
 									wait(1);
@@ -6440,17 +6442,17 @@ if variables.hasAuthed then
 									Game:GetService("ReplicatedStorage").Events.InteractEvent:FireServer(scavStation);
 								end)
 								wait(1);
-								
+
 								CFrameEnd = CFrame.new(Vector3.new(cFrameRn.X, cFrameRn.Y, cFrameRn.Z));
 								Time = 5
 								tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
 								tween:Play()
 								tween.Completed:Wait()
-								
+
 								wait(1);
 								controls:Enable();
 								Game:GetService("ReplicatedStorage").Events.ScavengeFunction:InvokeServer("Old-World Crate");
-								
+
 							end)
 						end
 					end)
@@ -6459,11 +6461,11 @@ if variables.hasAuthed then
 				end
 			end
 		end
-		
-		
-		
-		
-		
+
+
+
+
+
 		function autoScavRun()
 			if variables.autoScavEnabled then
 				local controls = require(game:GetService("Players").LocalPlayer.PlayerScripts.PlayerModule):GetControls()
@@ -6476,7 +6478,7 @@ if variables.hasAuthed then
 								pcall(function()
 									controls:Disable();
 									local cFrameRn = nil;
-									cFrameRn = CFrame.new(Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z));									
+									cFrameRn = CFrame.new(Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z));
 									local CFrameEnd = v.LootCrate.CFrame;
 									local Time = 5
 									local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
@@ -6485,13 +6487,13 @@ if variables.hasAuthed then
 									wait(2);
 									Game:GetService("ReplicatedStorage").Events.CratePickUpEvent:FireServer(v);
 									wait(2);
-																		
+
 									local CFrameEnd = CFrame.new(Vector3.new(cFrameRn.X, cFrameRn.Y, cFrameRn.Z));
 									local Time = 5
 									local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = CFrameEnd})
 									tween:Play()
 									tween.Completed:Wait()
-									
+
 									shouldBreak = true;
 									wait(1);
 								end)
@@ -6510,9 +6512,9 @@ if variables.hasAuthed then
 				Game:GetService("ReplicatedStorage").Events.ScavengeFunction:InvokeServer("Scavenge Crate");
 			end
 		end
-		
-		
-		
+
+
+
 		function getClosestOwnedPrinter()
 			local lplayer = game.Players.LocalPlayer
 			local Character = lplayer.Character
@@ -6522,7 +6524,7 @@ if variables.hasAuthed then
 			local Target
 			for i,v in ipairs(game:GetService("Workspace").MoneyPrinters:GetChildren()) do
 				pcall(function()
-					mesh = nil;	
+					mesh = nil;
 					pcall(function()
 						if v.PrimaryPart.Name ~= "" then
 							mesh = v.PrimaryPart
@@ -6563,14 +6565,14 @@ if variables.hasAuthed then
 									if string.lower(tostring(v.TrueOwner.Value)) == tostring(string.lower(game.Players.LocalPlayer.Name)) then
 										if tonumber(v.Int.Money.Value) > 0 then
 											howManyIsLeft = v.Int.Uses.Value;
-											
-											cframeyy = CFrame.new(v.PrimaryPart.CFrame.X, v.PrimaryPart.CFrame.Y + 3, v.PrimaryPart.CFrame.Z); 
-											
+
+											cframeyy = CFrame.new(v.PrimaryPart.CFrame.X, v.PrimaryPart.CFrame.Y + 3, v.PrimaryPart.CFrame.Z);
+
 											game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = cframeyy;
-											
+
 											wait(2);
 											Game:GetService("ReplicatedStorage").Events.InteractEvent:FireServer(v);
-											
+
 											if howManyIsLeft == 0 then
 												wait(1);
 												runAutoPrinter();
@@ -6585,7 +6587,7 @@ if variables.hasAuthed then
 					end
 					isDoingPrinterRn = false;
 				else
-					
+
 				end
 			end)
 			isDoingPrinterRn = false;
@@ -6612,7 +6614,7 @@ if variables.hasAuthed then
 								Game:GetService("ReplicatedStorage").Events.BuildingEvent:FireServer(1, "Node", CFrame.new(-0.609249473, 0, 0.498477787, 0, 0, 1, 0, 1, -0, -1, 0, 0));
 								wait(1);
 								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-444.14743, 137.24617, -672.167603, -0.18111819, 0, -0.983460665, 0, 1, 0, 0.983460665, 0, -0.18111819);
-								
+
 								wait(1);
 								Game:GetService("ReplicatedStorage").Events.MenuEvent:FireServer(2, "Money Printer Advanced", nil, 8);
 								wait(1);
@@ -6637,25 +6639,25 @@ if variables.hasAuthed then
 									end
 								end)
 								if didSuccessyy then
-								
+
 								else
 									Game:GetService("ReplicatedStorage").Events.PickUpEvent:FireServer(printer, true);
 									wait(1);
 									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0.609249473, 3, 0.498477787, 0, 0, 1, 0, 1, -0, -1, 0, 0);
 								end
-								
+
 								wait(2);
 							end)
 							pcall(function()
 								Game:GetService("ReplicatedStorage").Events.PickUpEvent:FireServer(printer, false);
 							end)
 							wait(2);
-							
-							
+
+
 							printer.Int.Money.Changed:connect(function(newVal)
 								doPrinterStuffy();
 							end)
-							
+
 							printersMade = printersMade + 1;
 							runAutoPrinter();
 						end
@@ -6665,10 +6667,10 @@ if variables.hasAuthed then
 				end
 			end
 		end
-		
-	
-		
-		
+
+
+
+
 		---------------------------------
 		-- global every 5s loop, do things here
 		spawn(function()
@@ -6681,14 +6683,14 @@ if variables.hasAuthed then
 					else
 						killPrinters();
 					end
-					
+
 					if crateEspEnabled then
 						killCrates();
 						doCrates();
 					else
 						killCrates();
 					end
-					
+
 					if entityEspEnabled then
 						killEntities();
 						doEntities();
@@ -6696,14 +6698,14 @@ if variables.hasAuthed then
 						killEntities();
 					end
 				end)
-				
-				
+
+
 				pcall(function()
 					if variables.speedHackEnabled then
 						game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100;
 					end
 				end)
-				
+
 				pcall(function()
 					autoCornFarmRun();
 					autoScavRun();
@@ -6712,13 +6714,13 @@ if variables.hasAuthed then
 					runAutoPrinter();
 					doPrinterStuffy();
 				end)
-			
+
 				pcall(function()
 					if variables.hitboxExpandEnabled then
 						for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 							pcall(function()
 								if v ~= game:GetService("Players").LocalPlayer then
-									v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20);						
+									v.Character.HumanoidRootPart.Size = Vector3.new(20,20,20);
 									v.Character.HumanoidRootPart.Transparency = 0.7;
 									v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Bright green");
 									v.Character.HumanoidRootPart.Material = "Neon";
@@ -6737,16 +6739,16 @@ if variables.hasAuthed then
 						end
 					end
 				end)
-				
+
 				pcall(function()
 					for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 						if isUserEsMod(v.Name) then
 							notice:Fire("Lunahax", "WARNING! Moderator " .. v.Name .. " is in your game.", 4);
 						end
 					end
-				
+
 				end)
-				
+
 				wait(5);
 			end
 		end);
@@ -6787,7 +6789,7 @@ if variables.hasAuthed then
 				end)
 				wait(15);
 				pcall(function()
-					for _asd, vp in pairs(dispenserListScrollingFrame:GetChildren()) do 
+					for _asd, vp in pairs(dispenserListScrollingFrame:GetChildren()) do
 						vp:destroy();
 					end
 				end)
@@ -6803,18 +6805,18 @@ if variables.hasAuthed then
 					local key = split(line,"=")[1]
 					local value = split(line,"=")[2]
 					local lval = nil;
-					if value == "true" then 
+					if value == "true" then
 						lval = true
 					else
 						lval = false;
 					end
 					local onOff = "";
-					if lval then 
+					if lval then
 						onOff = "[ON] "
 					else
 						onOff = "[OFF] "
 					end
-					
+
 					if key == "variables.espEnabled" then
 						variables.espEnabled = lval;
 						playerEspButton.Text = onOff .. "Player ESP"
@@ -6969,7 +6971,7 @@ if variables.hasAuthed then
 			end
 		end)
 
-		
+
 		local mt = getrawmetatable(game);
 		local backup = mt.__namecall;
 		if setreadonly then setreadonly(mt, false) else make_writeable(mt, true) end
@@ -6993,8 +6995,8 @@ if variables.hasAuthed then
 					return backup(...)
 				end
 			end
-			
-			
+
+
 			if method == "FireServer" or method == "InvokeServer" then
 				if _G.weaponMultiplierEnabled then
 					if args[1].Name == "MenuActionEvent" then
@@ -7035,7 +7037,7 @@ if variables.hasAuthed then
 						args[8] = "";
 						return backup(unpack(args))
 					else
-						
+
 					end
 				end
 			end
@@ -7051,10 +7053,10 @@ if variables.hasAuthed then
 		end
 		_G.bypassEnabled = true;
 		print("workaround loaded");
-		
+
 
 		------------------------------------
-		-- this should always be at the end of the script, this loads the map 
+		-- this should always be at the end of the script, this loads the map
 		-- load map by teleporting
 		local function loadmap()
 			game:GetService("Workspace").Camera.CameraType = Enum.CameraType.Scriptable;
@@ -7081,8 +7083,8 @@ if variables.hasAuthed then
 			game:GetService("Workspace").Camera.CameraType = Enum.CameraType.Custom;
 		end
 		--spawn(loadmap())
-		
-		
+
+
 		--todo make this into a library would be neater
 		function addButton(buttonText, frame, func)
 			howMuch = 0;
@@ -7097,7 +7099,7 @@ if variables.hasAuthed then
 					howMuch = lastItem.Position.Y.Offset + 35;
 				end
 			end)
-			
+
 			lhImgButtonAdd = Instance.new("ImageButton");
 			lhImgButtonAdd.Name = "lhButton";
 			lhImgButtonAdd.Image = "rbxassetid://725697201"
@@ -7110,7 +7112,7 @@ if variables.hasAuthed then
 			lhImgButtonAdd.Size = UDim2.new(1, -14, 0, 30);
 			lhImgButtonAdd.ScaleType = 1;
 			lhImgButtonAdd.SliceCenter = Rect.new(34, 34, 34, 34);
-			
+
 			lhTextLabelAdd = Instance.new("TextLabel");
 			lhTextLabelAdd.Name = "TextLabel";
 			lhTextLabelAdd.Font = 4;
@@ -7125,11 +7127,11 @@ if variables.hasAuthed then
 			lhTextLabelAdd.TextColor3 = Color3.fromRGB(255, 255, 255);
 			lhTextLabelAdd.TextStrokeTransparency = 0.5;
 			lhTextLabelAdd.ZIndex = 3;
-			
+
 			lhImgButtonAdd.Parent = frame;
-			
+
 			oldColor = lhImgButtonAdd.ImageColor3;
-			
+
 			--lhImgButtonAdd.MouseEnter:connect(function()
 			--	lhImgButtonAdd.ImageColor3 = Color3.fromRGB(54, 49, 44);
 			--end);
@@ -7137,10 +7139,10 @@ if variables.hasAuthed then
 			--lhImgButtonAdd.MouseLeave:connect(function()
 			--	lhImgButtonAdd.ImageColor3 = oldColor;
 			--end);
-				
-			
+
+
 			lhImgButtonAdd.Activated:Connect(func);
-			
+
 			return true;
 		end
 
@@ -7298,7 +7300,7 @@ if variables.hasAuthed then
 
 
 		addCategory("General Features", mainMenuScrollingFrame);
-		addButton("Player ESP", mainMenuScrollingFrame, function() 
+		addButton("Player ESP", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.playerEspButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7307,8 +7309,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Crate ESP", mainMenuScrollingFrame, function() 
+
+		addButton("Crate ESP", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.crateEspButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7317,8 +7319,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Entity ESP", mainMenuScrollingFrame, function() 
+
+		addButton("Entity ESP", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.entityEspButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7327,8 +7329,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Printer ESP", mainMenuScrollingFrame, function() 
+
+		addButton("Printer ESP", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.printerEspButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7337,8 +7339,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Disable NLR", mainMenuScrollingFrame, function() 
+
+		addButton("Disable NLR", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.disableNlrButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7347,10 +7349,10 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
+
 		addCategory("Movement", mainMenuScrollingFrame);
-		
-		addButton("Noclip", mainMenuScrollingFrame, function() 
+
+		addButton("Noclip", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.noclipButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7359,8 +7361,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("(x) MouseTP", mainMenuScrollingFrame, function() 
+
+		addButton("(x) MouseTP", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.clickTpButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7369,8 +7371,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("SpeedHack", mainMenuScrollingFrame, function() 
+
+		addButton("SpeedHack", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.speedHackButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7379,8 +7381,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Flyjump", mainMenuScrollingFrame, function() 
+
+		addButton("Flyjump", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.flyJumpButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7389,10 +7391,10 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
+
 		addCategory("Weapon", mainMenuScrollingFrame);
-		
-		addButton("Infinite Ammo", mainMenuScrollingFrame, function() 
+
+		addButton("Infinite Ammo", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.infiniteAmmoButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7401,8 +7403,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Auto Reload", mainMenuScrollingFrame, function() 
+
+		addButton("Auto Reload", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.combatFrame.combatScrollingFrame.autoReloadButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7411,13 +7413,13 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		
-		
-		
+
+
+
+
 		addCategory("Miscellaneous", mainMenuScrollingFrame);
-		
-		addButton("Store All Items", mainMenuScrollingFrame, function() 
+
+		addButton("Store All Items", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.storeAllItemsButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7426,8 +7428,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Global Chat", mainMenuScrollingFrame, function() 
+
+		addButton("Global Chat", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.globalChatButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7436,8 +7438,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Steal Nearest Car", mainMenuScrollingFrame, function() 
+
+		addButton("Steal Nearest Car", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.getInNearestCarButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7446,8 +7448,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Earrape all players", mainMenuScrollingFrame, function() 
+
+		addButton("Earrape all players", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.earRapePlayersButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7456,8 +7458,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("AntiAFK", mainMenuScrollingFrame, function() 
+
+		addButton("AntiAFK", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.antiAfkButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7466,8 +7468,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Infinite Hunger", mainMenuScrollingFrame, function() 
+
+		addButton("Infinite Hunger", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.infiniteHungerButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7476,8 +7478,8 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		addButton("Bypass Death Barriers", mainMenuScrollingFrame, function() 
+
+		addButton("Bypass Death Barriers", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.deathBarrierBypassButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7486,10 +7488,10 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		
-		
-		addButton("WishBot", mainMenuScrollingFrame, function() 
+
+
+
+		addButton("WishBot", mainMenuScrollingFrame, function()
 			dabutton = game.Players.LocalPlayer.PlayerGui.ScreenGui.mainMenuFrame.miscFrame.miscScrollingFrame.wishBotButton;
 			events = {"MouseButton1Click", "MouseButton1Down", "Activated"}
 			for iasda,vaaaa in pairs(events) do
@@ -7498,9 +7500,9 @@ if variables.hasAuthed then
 				end
 			end
 		end)
-		
-		
+
+
 		game.Players.LocalPlayer.PlayerGui.Client.Inventory.ScrollingFrame.CanvasSize = UDim2.new(0, 0, 15, 0);
-		
+
 	end
 end
