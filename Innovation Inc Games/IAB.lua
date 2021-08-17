@@ -27,7 +27,7 @@ Notification.Notify("Success", "choke's IAB Control Panel loaded!", lolcontent, 
     }
 })
 
--- idk how to call a function while using a loadstring :sob:
+-- idk how to call a function in a loadstring :sob:
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))() --Initialize the UI Lib
 local MainWindow = Library.CreateLib("Artic Base Remote Control Panel by choke#3588", "Ocean")
