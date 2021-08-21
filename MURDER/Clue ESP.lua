@@ -15,5 +15,5 @@ while wait() do
                     clues.AlwaysOnTop = true
                 end
             end
+        end
     end
-end
