@@ -74,7 +74,6 @@ function Create(base, team, role, fakedname)
   end
 end
 end
-end
 
 -- Clear our ESP out
 function Clear()
