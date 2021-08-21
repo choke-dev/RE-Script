@@ -1,4 +1,5 @@
-
+local e = {}
+e.invitesyn = function()
 print("inviting")
   syn.request({
    Url = "http://127.0.0.1:6463/rpc?v=1",
@@ -15,3 +16,8 @@ print("inviting")
        nonce = game:GetService("HttpService"):GenerateGUID(false)
    }),
 })
+end
+
+-- in executor
+loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Universal/functions?token=ALLESGXBSO4VS35NFHJMBNLBFGYGS"))()
+namethisanything.invitesyn()
