@@ -34,8 +34,6 @@ function Create(base, team, role, fakedname)
   end
 end
 
-end
-
 -- Clear our ESP out
 function Clear()
 for _,v in pairs(game.CoreGui:GetChildren()) do
