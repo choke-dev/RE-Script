@@ -73,7 +73,7 @@ function Create(base, team, role, fakedname)
     frame.BackgroundColor3 = Color3.new(128,128,128)
   end
 end
-
+end
 end
 
 -- Clear our ESP out
