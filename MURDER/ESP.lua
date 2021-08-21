@@ -28,13 +28,9 @@ function Create(base, team, role, fakedname)
   else if role == "Sheriff" then
     txtlbl.TextColor3 = Color3.new(0,0,250)
     frame.BackgroundColor3 = Color3.new(0,0,250)
-  else if role == "Bystander" then
-    txtlbl.TextColor3 = Color3.new(128,128,128)
-    frame.BackgroundColor3 = Color3.new(128,128,128)
   end
 end
-end
-end
+
 end
 
 -- Clear our ESP out
@@ -84,4 +80,3 @@ end
 Clear()
 Find()
 -- HamstaGang on V3RM
-end
