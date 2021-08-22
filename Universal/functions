@@ -1,4 +1,4 @@
-local e = {}
+local https = {}
 e.invitesyn = function()
 print("inviting")
   syn.request({
@@ -19,5 +19,5 @@ print("inviting")
 end
 
 -- in executor
-loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Universal/functions?token=ALLESGXBSO4VS35NFHJMBNLBFGYGS"))()
-namethisanything.invitesyn()
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Universal/functions?token=ALLESGXBSO4VS35NFHJMBNLBFGYGS"))()
+--https.invitesyn()
