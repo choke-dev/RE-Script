@@ -3,8 +3,9 @@ function inviscam()
 end
 
 function invite(discordcode)
-	if not syn then
+	if not syn and not _G.CompatibilityEnabled then
 		loadstring(game:HttpGet("https://irisapp.ca/api/Scripts/IrisBetterCompat.lua"))()
+		_G.CompatibilityEnabled = true
 	end
 	syn.request({
 	Url = "http://127.0.0.1:6463/rpc?v=1",
