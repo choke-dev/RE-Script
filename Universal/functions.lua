@@ -4,7 +4,6 @@ end
 
 function invite(discordcode)
 	if not syn and not getgenv().CompatibilityEnabled then
-		warn("Non-synapse exploit detected! Initializing Compatibility...")
 		loadstring(game:HttpGet("https://irisapp.ca/api/Scripts/IrisBetterCompat.lua"))()
 		getgenv().CompatibilityEnabled = true
 	end
