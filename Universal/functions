@@ -21,3 +21,5 @@ function invite(discordcode)
 		nonce = game:GetService("HttpService"):GenerateGUID(false)
    }),
 })
+print("Invited.")
+end
