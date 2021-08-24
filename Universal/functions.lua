@@ -6,8 +6,6 @@ function invite(discordcode)
 	if not syn and not getgenv().CompatibilityEnabled then
 		loadstring(game:HttpGet("https://irisapp.ca/api/Scripts/IrisBetterCompat.lua"))()
 		getgenv().CompatibilityEnabled = true
-		else
-		print("Synapse Detected")
 	end
 	syn.request({
 	Url = "http://127.0.0.1:6463/rpc?v=1",
@@ -19,10 +17,9 @@ function invite(discordcode)
 	Body = game:GetService("HttpService"):JSONEncode({
 		cmd = "INVITE_BROWSER",
 		args = {
-			code = discordcode
+			code = tostring(discordcode)
 		},
 		nonce = game:GetService("HttpService"):GenerateGUID(false)
    }),
 })
-	print("Invited.")
 end
