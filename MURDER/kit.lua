@@ -1,0 +1,5 @@
+task.spawn(loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/MURDER/Clue%20ESP.lua?token=ALLESGTUAGH66KRVAG7ACA3BIHPTK")))()
+task.spawn(loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/MURDER/ESP.lua?token=ALLESGTZXC5YIZBLXKD2DP3BIHPXO")))()
+task.spawn(loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/MURDER/Get%20Clue.lua?token=ALLESGQSPMFSFBQ3PJSGRQTBIHPXQ")))()
+task.spawn(loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source')))()
+task.spawn(loadstring(game:HttpGet("https://raw.githubusercontent.com/Herrtt/AimHot-v8/master/Main.lua", true)))()
