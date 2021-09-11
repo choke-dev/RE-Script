@@ -1,7 +1,7 @@
 local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()
 
 local win = Flux:Window("Remote Control\nPanel", "\n\nby choke#3588", Color3.fromRGB(255, 110, 48), Enum.KeyCode.LeftControl)
-Flux:Notification("Made by choke#3588", "ok.")
+--Flux:Notification("Made by choke#3588", "ok.")
 local CoolTab = win:Tab("Cooling", "http://www.roblox.com/asset/?id=4384392025")
 local ValvTab = win:Tab("Valves", "http://www.roblox.com/asset/?id=4370347078")
 local FanTab = win:Tab("Fan", "http://www.roblox.com/asset/?id=7340322600")
