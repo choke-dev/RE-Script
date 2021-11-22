@@ -1,4 +1,9 @@
--- im sorry with the else if's :c
+--[[ 
+
+coded by choke#3588
+the else ifs are bad i know :c
+
+]]--
 
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
