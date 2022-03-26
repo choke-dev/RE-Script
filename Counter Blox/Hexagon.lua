@@ -1021,6 +1021,7 @@ end)
 
 MiscellaneousTabCategoryMain:AddSlider("Open Case Amount", {1, 100, 1, 1, ""}, "MiscellaneousTabCategoryMainOpenCaseAmount")
 
+pcall(function()
 MiscellaneousTabCategoryMain:AddMultiDropdown("Custom Models", TableToNames(loadstring("return "..readfile("hexagon/custom_models.txt"))(), true), {}, "MiscellaneousTabCategoryMainCustomModels", function(val)
 	if not ViewmodelsBackup then
 		ViewmodelsBackup = game.ReplicatedStorage.Viewmodels:Clone()
@@ -1035,6 +1036,7 @@ MiscellaneousTabCategoryMain:AddMultiDropdown("Custom Models", TableToNames(load
 			AddCustomModel(v)
 		end
 	end
+end)
 end)
 
 MiscellaneousTabCategoryMain:AddDropdown("Inventory Changer", TableToNames(Inventories), "-", "MiscellaneousTabCategoryMainInventoryChanger", function(val)
