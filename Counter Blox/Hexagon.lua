@@ -127,8 +127,8 @@ local nocw_m = {}
 local curVel = 16
 local isBhopping = false
 
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/Hexagon/ESP%20Library.lua?token=ALLESGV5G3KYDC42TWACDALBFB5XY"))()
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/Hexagon/UI%20Library.lua?token=ALLESGQTHW3WN4KRA5L2BSDBFB5X2"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/Hexagon/ESP%20Library.lua?token=GHSAT0AAAAAABNSALBDPSFQTFVIKNQYJ6HSYSH74HQ"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/Hexagon/UI%20Library.lua?token=GHSAT0AAAAAABNSALBCZUCRXHTVIBPRQ6VSYSH76AQ"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((workspace.CurrentCamera.ViewportSize.X/2)-250, (workspace.CurrentCamera.ViewportSize.Y/2)-250))
 
