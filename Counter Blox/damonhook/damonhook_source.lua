@@ -1,16 +1,3 @@
-if not getgenv().Keybind then
-  getgenv().Keybind = Enum.KeyCode.F1
-end
-
-game.StarterGui:SetCore(
-    "SendNotification",
-    {Title = "damonhook", Text = "Thank you for using damonhook!", Duration = 5}
-)
-game.StarterGui:SetCore(
-    "SendNotification",
-    {Title = "Warning", Text = "Keybind was not specified. F1 has been set as default.", Duration = 7}
-)
-
 BeforeLoad = tick()
 getgenv().values = {}
 local a = loadstring(game:HttpGet("https://raw.githubusercontent.com/CatzCode/PikaHub/main/Libraries/UI/bruh.lua")()
