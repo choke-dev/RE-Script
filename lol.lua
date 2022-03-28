@@ -65,7 +65,7 @@ function Utility:Create(class, properties, radius)
 end
 
 function Utility:GetCodeFromInvite(invite)
-    if invite.find("/") then
+    if string.find(invite, "/") then
         for i = 1, #invite do
             local newIdx = #invite - i
             if invite:sub(newIdx, newIdx) == "/" then
