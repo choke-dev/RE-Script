@@ -1461,7 +1461,8 @@ function Library:dropdown(options)
 		Position = UDim2.new(1, -50, 0, 16),
 		Size = UDim2.fromOffset(200, 20),
 		TextSize = 14,
-		Text = options.StartingText
+		Text = options.StartingText,
+		RichText = true
 	}):round(5):stroke("Tertiary")
 
 	local itemContainer = dropdownContainer:object("Frame", {
