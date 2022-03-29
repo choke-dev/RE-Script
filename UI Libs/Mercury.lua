@@ -1515,7 +1515,8 @@ function Library:dropdown(options)
 				TextColor3 = {"StrongText", 25}
 			},
 			Text = label,
-			TextSize = 14
+			TextSize = 14,
+			RichText = true
 		}):round(5)
 
 		items[i] = {{label, value}, newItem} 
