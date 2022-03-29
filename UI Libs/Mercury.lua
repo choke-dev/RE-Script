@@ -810,7 +810,7 @@ function Library:create(options)
 		Theme = {TextColor3 = {"WeakText", -20}},
 		TextScaled = true,
 		TextXAlignment = Enum.TextXAlignment.Left,
-		Text = tostring(os.date("%X")):sub(1, os.date("%X"):len()-3)
+		Text = tostring(os.date(%I)).." "..tostring(os.date(%p))
 	})
 
 	do
