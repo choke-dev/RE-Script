@@ -29,6 +29,10 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HTTPService = game:GetService("HttpService")
 
+if getgenv().MercuryBind == nil then
+	getgenv().MercuryBind = Enum.KeyCode.Tab
+end
+
 local Library = {
 	Themes = {
 		Legacy = {
