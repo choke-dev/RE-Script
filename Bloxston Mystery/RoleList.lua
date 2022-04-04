@@ -14,7 +14,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke
 local gui = Library:create{
     Name = "BM GUI",
     Theme = Library.Themes.Rust,
-    Link = "https://chokes.software/bloxston-mystery",
+    Link = "https://github.com/choke-dev/RE-Script",
 }
 gui:set_status("GUI Version: 1.1 | Stable")
 
