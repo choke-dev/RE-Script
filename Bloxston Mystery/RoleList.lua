@@ -1,3 +1,8 @@
+if not syn or identifyexecutor or KRNL_LOADED then
+	warn("Exploit probably not supported, Initializing Compatibility...")
+	loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterCompat.lua"))()
+end
+
 local Players = game:GetService("Players")
 local Teams = game:GetService("Teams")
 
