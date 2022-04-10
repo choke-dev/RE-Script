@@ -1,3 +1,6 @@
+if getgenv().KeycardESPLoaded then return end
+getgenv().KeycardESPLoaded = true
+
 local CS = game:GetService("CollectionService")
 
 local function WTS(part)
