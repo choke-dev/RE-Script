@@ -68,7 +68,15 @@ for _,v in pairs(workspace.Debris:GetChildren()) do
         local cardlvl = getLevel(v) or "❌"
         ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(255,255,255))
         CS:AddTag(v, "ESP_Present")
-    elseif CS:HasTag(v, "ESP_Present") then
-        warn(getLevel(v).." already has an ESP!, Skipping...")
     end
 end
+
+workspace.Debris.ChildAdded:Connect(function()
+    for _,v in pairs(workspace.Debris:GetChildren()) do
+        if v:FindFirstChild("Level") and not CS:HasTag(v, "ESP_Present") then
+            local cardlvl = getLevel(v) or "❌"
+            ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(255,255,255))
+            CS:AddTag(v, "ESP_Present")
+	end
+    end
+end)
