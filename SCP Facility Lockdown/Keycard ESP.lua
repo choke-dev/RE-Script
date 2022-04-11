@@ -1,3 +1,5 @@
+local guns = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower"}
+
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
     return Vector2.new(screen.x, screen.y)
@@ -53,7 +55,7 @@ local function ESP(part, text, color)
 end
 
 local function isGun(name)
-    if name == {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower"} then
+    if table.find(guns, name) then
         return true
     else
         return false
