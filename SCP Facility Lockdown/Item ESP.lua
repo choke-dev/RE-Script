@@ -1,4 +1,5 @@
-local guns = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower", "Beretta93r", "Famas", "M249", "HK416"}
+local Weapons = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower", "Beretta93r", "Famas", "M249", "HK416", "Grenade"}
+local Items = {"MedKit", "Smoothie", "FireExtinguisher", "Lavender", "FlashDrive", "Sponges", "CoverBag", "Medbag"}
 
 -- // DO NOT EDIT ANYTHING BELOW UNLESS YOU KNOW WHAT YOU ARE DOING!!! \\ --
 
@@ -61,8 +62,15 @@ local function ESP(part, text, color)
 end
 
 local function isGun(name)
-    print("Checking if "..name.." is a gun...")
-    if table.find(guns, name) then
+    if table.find(Weapons, name) then
+        return true
+    else
+        return false
+    end
+end
+
+local function isItem(name)
+    if table.find(Items, name) then
         return true
     else
         return false
@@ -82,6 +90,9 @@ local function search()
             CS:AddTag(v, "ESP")
         elseif isGun(v.Name) and not CS:HasTag(v, "ESP") then
             ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
+            CS:AddTag(v, "ESP")
+        elseif isItem(name) and not CS:HasTag(v, "ESP") then
+            ESP(v.hand, v.Name, Color3.fromRGB(171, 98, 255))
             CS:AddTag(v, "ESP")
         end
     end
