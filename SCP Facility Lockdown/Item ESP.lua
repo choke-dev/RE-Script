@@ -32,8 +32,8 @@ local function ESP(part, text, color)
 
     game:GetService("RunService").Stepped:Connect(function()
         pcall(function()
-            --local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
-            local Distance = (game:GetService("Players").LocalPlayer.Character.Head.Position - part.Position).Magnitude
+            local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
+            --local Distance = (game:GetService("Players").LocalPlayer.Character.Head.Position - part.Position).Magnitude
             name.Text = "["..round(Distance).."] "..text
             local destroyed = not part:IsDescendantOf(workspace)
             if destroyed and name ~= nil then
