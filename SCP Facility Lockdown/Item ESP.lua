@@ -1,5 +1,7 @@
 local guns = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower"}
 
+-- // DO NOT EDIT ANYTHING BELOW UNLESS YOU KNOW WHAT YOU ARE DOING!!! \\ --
+
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
     return Vector2.new(screen.x, screen.y)
@@ -55,6 +57,7 @@ local function ESP(part, text, color)
 end
 
 local function isGun(name)
+    print("Checking if "..name.." is a gun...")
     if table.find(guns, name) then
         return true
     else
@@ -70,12 +73,10 @@ end
 local function search()
     for _,v in pairs(workspace.Debris:GetChildren()) do
         if v.Name == "KeyCard" then
-            if v:WaitForChild("Level") then
-                local cardlvl = getLevel(v) or "❌"
-                ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(52, 255, 154))
-            elseif isGun(v.Name) then
-                ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
-            end
+            local cardlvl = getLevel(v) or "❌"
+            ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(52, 255, 154))
+        elseif isGun(v.Name) then
+            ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
         end
     end
 end
