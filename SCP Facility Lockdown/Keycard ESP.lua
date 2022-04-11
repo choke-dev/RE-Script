@@ -1,7 +1,3 @@
----@diagnostic disable: undefined-global
-if getgenv().KeycardESPLoaded then return end
-getgenv().KeycardESPLoaded = true
-
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
     return Vector2.new(screen.x, screen.y)
@@ -10,7 +6,7 @@ end
 local function round(n)
 	return math.ceil(n - 0.5)
 end
-    
+
 local function ESP(part, text, color)
     local box = Drawing.new("Square")
     local name = Drawing.new("Text")
@@ -30,7 +26,7 @@ local function ESP(part, text, color)
     box.Thickness = 0.5
     box.Visible = true
 
-    local RdSt = game:GetService("RunService").Stepped:Connect(function()
+    game:GetService("RunService").Stepped:Connect(function()
         pcall(function()
             --local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
             local Distance = (game:GetService("Players").LocalPlayer.Character.Head.Position - part.Position).Magnitude
@@ -39,7 +35,6 @@ local function ESP(part, text, color)
             if destroyed and name ~= nil then
                 name:Remove()
                 box:Remove()
-                RdSt:Disconnect()
             end
             if part ~= nil then
                 name.Position = WTS(part)
@@ -72,17 +67,19 @@ end
 
 local function search()
     for _,v in pairs(workspace.Debris:GetChildren()) do
-        if v:WaitForChild("Level") then
-            local cardlvl = getLevel(v) or "❌"
-            ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(52, 255, 154))
-        elseif isGun(v.Name) then
-            ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
+        if v.Name == "KeyCard" then
+            if v:WaitForChild("Level") then
+                local cardlvl = getLevel(v) or "❌"
+                ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(52, 255, 154))
+            elseif isGun(v.Name) then
+                ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
+            end
         end
     end
 end
 
+search()
+
 workspace.Debris.ChildAdded:Connect(function()
     search()
 end)
-
-search()

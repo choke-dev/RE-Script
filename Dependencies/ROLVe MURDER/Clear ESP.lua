@@ -3,4 +3,3 @@ for _,v in pairs(game.CoreGui:GetChildren()) do
     v:Destroy()
   end
 end
-end
