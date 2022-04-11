@@ -1,7 +1,3 @@
----@diagnostic disable: undefined-global
-if getgenv().KeycardESPLoaded then return end
-getgenv().KeycardESPLoaded = true
-
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
     return Vector2.new(screen.x, screen.y)
@@ -79,9 +75,3 @@ local function search()
         end
     end
 end
-
-workspace.Debris.ChildAdded:Connect(function()
-    search()
-end)
-
-search()
