@@ -30,7 +30,7 @@ local function ESP(part, text, color)
     box.Thickness = 0.5
     box.Visible = true
 
-    game:GetService("RunService").Stepped:Connect(function()
+    local RdSt = game:GetService("RunService").Stepped:Connect(function()
         pcall(function()
             --local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
             local Distance = (game:GetService("Players").LocalPlayer.Character.Head.Position - part.Position).Magnitude
@@ -39,6 +39,7 @@ local function ESP(part, text, color)
             if destroyed and name ~= nil then
                 name:Remove()
                 box:Remove()
+                RdSt:Disconnect()
             end
             if part ~= nil then
                 name.Position = WTS(part)
