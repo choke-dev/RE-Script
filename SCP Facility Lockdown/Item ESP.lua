@@ -1,4 +1,4 @@
-local guns = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower"}
+local guns = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower", "Beretta93r", "Famas", "M249", "HK416"}
 
 -- // DO NOT EDIT ANYTHING BELOW UNLESS YOU KNOW WHAT YOU ARE DOING!!! \\ --
 
