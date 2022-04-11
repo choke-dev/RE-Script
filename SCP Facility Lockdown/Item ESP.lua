@@ -1,5 +1,5 @@
 local Weapons = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower", "Beretta93r", "Famas", "M249", "HK416", "Grenade"}
-local Items = {"MedKit", "Smoothie", "FireExtinguisher", "Lavender", "FlashDrive", "Sponges", "CoverBag", "Medbag", "FlashLight", "Restraints", "Radio", "Candy"}
+local Items = {"MedKit", "Smoothie", "FireExtinguisher", "Lavender", "FlashDrive", "Sponges", "CoverBag", "Medbag", "FlashLight", "Restraints", "Radio", "Candy", "SCP-096Pic"}
 
 -- // DO NOT EDIT ANYTHING BELOW UNLESS YOU KNOW WHAT YOU ARE DOING!!! \\ --
 
@@ -102,4 +102,10 @@ search()
 
 workspace.Debris.ChildAdded:Connect(function()
     search()
+end)
+
+workspace.Debris.ChildRemoved:Connect(function(instance)
+    pcall(function()
+        CS:RemoveTag(instance, "ESP")
+    end)
 end)
