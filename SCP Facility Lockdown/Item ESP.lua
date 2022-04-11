@@ -91,7 +91,7 @@ local function search()
         elseif isGun(v.Name) and not CS:HasTag(v, "ESP") then
             ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
             CS:AddTag(v, "ESP")
-        elseif isItem(name) and not CS:HasTag(v, "ESP") then
+        elseif isItem(v.Name) and not CS:HasTag(v, "ESP") then
             ESP(v.hand, v.Name, Color3.fromRGB(171, 98, 255))
             CS:AddTag(v, "ESP")
         end
