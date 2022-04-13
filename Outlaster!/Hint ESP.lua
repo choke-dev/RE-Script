@@ -1,10 +1,7 @@
-local Weapons = {"Glock17", "P90", "MP7", "AKS-74U", "FlameThrower", "FreezeThrower", "Beretta93r", "Famas", "M249", "HK416", "Grenade"}
-local Items = {"MedKit", "Smoothie", "FireExtinguisher", "Lavender", "FlashDrive", "Sponges", "CoverBag", "Medbag", "FlashLight", "Restraints", "Radio", "Candy", "SCP-096Pic"}
-local SCPS = {"096", "939", "3199"}
-
--- // DO NOT EDIT ANYTHING BELOW UNLESS YOU KNOW WHAT YOU ARE DOING!!! \\ --
-
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
 local CS = game:GetService("CollectionService")
+local foundhints = 0
 
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
@@ -62,55 +59,30 @@ local function ESP(part, text, color)
     end)
 end
 
-local function isGun(name)
-    if table.find(Weapons, name) then
-        return true
-    else
-        return false
+for i,v in pairs(workspace:GetDescendants()) do
+    if v:IsA("TouchTransmitter") and v.Parent:IsA("MeshPart") and v.Parent.Parent:IsA("Model") and v.Parent.Parent.Parent:IsA("MeshPart") and v.Parent.Parent.Parent.Parent:IsA("Model") and not CS:HasTag(v, "ESP") then
+        foundhints = foundhints + 1
+        ESP(v.Parent, "Hint", Color3.fromRGB(0,255,0))
+        CS:AddTag(v, "ESP")
     end
 end
 
-local function isItem(name)
-    if table.find(Items, name) then
-        return true
-    else
-        return false
-    end
+if foundhints == 0 then
+    Notify({
+        Title = "<b><font color=\"rgb(255, 255, 0)\">Warning</font></b>";
+        Description = "No <b><font color=\"rgb(97, 255, 126)\">hints</font></b> were found!";
+        Duration = 5;
+    });
+elseif #game:GetService("Players"):GetPlayers() <= 5 then
+    Notify({
+        Title = "<b><font color=\"rgb(255, 0, 0)\">Error!</font></b>";
+        Description = "Game has "..#game:GetService("Players"):GetPlayers().." players, No <b><font color=\"rgb(97, 255, 126)\">hints</font></b> can no longer spawn!";
+        Duration = 5;
+    });
+else
+    Notify({
+        Title = "<b><font color=\"rgb(0, 255, 0)\">Success!</font></b>";
+        Description = "Found <b><font color=\"rgb(97, 255, 126)\">"..foundhints.." hints</font></b>!";
+        Duration = 5;
+    });
 end
-
-local function getLevel(card)
-    local cardLevel = math.floor(card:WaitForChild("Level").Value / 10)
-    return cardLevel
-end
-
-local function search()
-    for _,v in pairs(workspace.Debris:GetChildren()) do
-        pcall(function()
-            local splitstr = string.split(v.Name, "-")
-        end)
-
-        if v.Name == "KeyCard" and not CS:HasTag(v, "ESP") then
-            local cardlvl = getLevel(v) or "❌"
-            ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(52, 255, 154))
-            CS:AddTag(v, "ESP")
-        elseif isGun(v.Name) and not CS:HasTag(v, "ESP") then
-            ESP(v.hand, v.Name, Color3.fromRGB(255, 106, 37))
-            CS:AddTag(v, "ESP")
-        elseif isItem(v.Name) and not CS:HasTag(v, "ESP") then
-            ESP(v.hand, v.Name, Color3.fromRGB(171, 98, 255))
-            CS:AddTag(v, "ESP")
-        end
-    end
-end
-
-search()
-
-workspace.Debris.ChildAdded:Connect(function()
-    search()
-end)
-
-workspace.Debris.ChildRemoved:Connect(function(instance)
-    pcall(function()
-        CS:RemoveTag(instance, "ESP")
-    end)
-end)
