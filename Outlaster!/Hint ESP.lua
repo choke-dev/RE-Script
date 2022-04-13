@@ -1,3 +1,5 @@
+if game.PlaceId ~= 5343994291 or game.PlaceId ~= 5765666934 then return end
+
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
 local CS = game:GetService("CollectionService")
@@ -67,16 +69,16 @@ for i,v in pairs(workspace:GetDescendants()) do
     end
 end
 
-if foundhints == 0 then
+if #game:GetService("Players"):GetPlayers() <= 5 then
+    Notify({
+        Title = "<b><font color=\"rgb(255, 0, 0)\">Error!</font></b>";
+        Description = "Game needs 5+ players to spawn new <b><font color=\"rgb(97, 255, 126)\">hints</font></b>!\nCurrently, there are "..#game:GetService("Players"):GetPlayers().." players.";
+        Duration = 5;
+    });
+elseif foundhints == 0 <= 5 then
     Notify({
         Title = "<b><font color=\"rgb(255, 255, 0)\">Warning</font></b>";
         Description = "No <b><font color=\"rgb(97, 255, 126)\">hints</font></b> were found!";
-        Duration = 5;
-    });
-elseif #game:GetService("Players"):GetPlayers() <= 5 then
-    Notify({
-        Title = "<b><font color=\"rgb(255, 0, 0)\">Error!</font></b>";
-        Description = "Game has "..#game:GetService("Players"):GetPlayers().." players, No <b><font color=\"rgb(97, 255, 126)\">hints</font></b> can no longer spawn!";
         Duration = 5;
     });
 else
