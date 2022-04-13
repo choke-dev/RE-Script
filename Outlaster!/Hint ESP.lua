@@ -1,4 +1,4 @@
-if game.PlaceId ~= 5343994291 or game.PlaceId ~= 5765666934 then return end
+--if game.PlaceId ~= 5343994291 or game.PlaceId ~= 5765666934 then return end
 
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
@@ -66,25 +66,31 @@ for i,v in pairs(workspace:GetDescendants()) do
         foundhints = foundhints + 1
         ESP(v.Parent, "Hint", Color3.fromRGB(0,255,0))
         CS:AddTag(v, "ESP")
+        Notify({
+            Title = "<b><font color=\"rgb(255, 0, 0)\">Wait...</font></b>";
+            Description = "Teleporting hint...";
+            Duration = 1;
+        });
+        --v.Parent.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
     end
 end
 
-if #game:GetService("Players"):GetPlayers() <= 5 then
+if foundhints ~= 0 then
+    Notify({
+        Title = "<b><font color=\"rgb(0, 255, 0)\">Success!</font></b>";
+        Description = "Found <b><font color=\"rgb(97, 255, 126)\">"..foundhints.." hints</font></b>!";
+        Duration = 5;
+    });
+elseif #game:GetService("Players"):GetPlayers() <= 5 then
     Notify({
         Title = "<b><font color=\"rgb(255, 0, 0)\">Error!</font></b>";
         Description = "Game needs 5+ players to spawn new <b><font color=\"rgb(97, 255, 126)\">hints</font></b>!\nCurrently, there are "..#game:GetService("Players"):GetPlayers().." players.";
         Duration = 5;
     });
-elseif foundhints == 0 <= 5 then
+elseif foundhints == 0 then
     Notify({
         Title = "<b><font color=\"rgb(255, 255, 0)\">Warning</font></b>";
         Description = "No <b><font color=\"rgb(97, 255, 126)\">hints</font></b> were found!";
-        Duration = 5;
-    });
-else
-    Notify({
-        Title = "<b><font color=\"rgb(0, 255, 0)\">Success!</font></b>";
-        Description = "Found <b><font color=\"rgb(97, 255, 126)\">"..foundhints.." hints</font></b>!";
         Duration = 5;
     });
 end
