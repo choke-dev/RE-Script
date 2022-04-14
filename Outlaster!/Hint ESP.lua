@@ -1,4 +1,5 @@
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
 if game.PlaceId ~= 5765666934 then 
     Notify({
         Title = "<b><font color=\"rgb(255, 0, 0)\">❌  Error!</font></b>";
@@ -9,7 +10,6 @@ if game.PlaceId ~= 5765666934 then
 end
 
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
-local Notify = AkaliNotif.Notify;
 local CoSe = game:GetService("CollectionService")
 local ContextActionService = game:GetService("ContextActionService")
 local contextButton = false
