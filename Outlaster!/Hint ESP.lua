@@ -82,7 +82,7 @@ local foundhints = 0
 
 for i,v in pairs(workspace:GetDescendants()) do
     if v:IsA("TouchTransmitter") and v.Parent:IsA("MeshPart") and v.Parent.Parent:IsA("Model") and v.Parent.Parent.Parent:IsA("MeshPart") and v.Parent.Parent.Parent.Parent:IsA("Model") and not CoSe:HasTag(v, "ESP") then
-        ESP(v.Parent, "Hint", Color3.fromRGB(0,255,0))
+        ESP(v.Parent, "Advantage Hint", Color3.fromRGB(0,255,0))
         CoSe:AddTag(v, "ESP")
         foundhints = foundhints + 1
     end
