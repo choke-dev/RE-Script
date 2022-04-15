@@ -102,7 +102,7 @@ function module.Create3DESP(objected, text, coloror)
 
     local name = Drawing.new("Text")
     name.Text = "Initializing..."
-    name.Color = color
+    name.Color = coloror or Color3.fromRGB(255, 255, 255)
     name.Position = WTS(part)
     name.Size = 20.0
     name.Outline = true
