@@ -124,6 +124,7 @@ function module.Create3DESP(objected, text, coloror)
     name.Outline = true
     name.Center = true
     name.Visible = true
+    name.ZIndex = 15
 
     --// Updates ESP (lines) in render loop
     local function Updater()
