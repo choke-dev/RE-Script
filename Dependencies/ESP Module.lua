@@ -138,10 +138,12 @@ function module.Create3DESP(objected, text, coloror)
                     for i,v in pairs(lines) do
                         v:Remove()
                     end
+                    name:Remove()
                     CoSe:RemoveTag(objected, "3D_ESP")
                     connection:Disconnect()
                 end
                 if on and onscreen then
+                    name.Position = WTS(part)
                     local size_X = part.Size.X/2
                     local size_Y = part.Size.Y/2
                     local size_Z = part.Size.Z/2
