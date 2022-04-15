@@ -100,15 +100,6 @@ function module.Create3DESP(objected, text, coloror)
     CoSe:AddTag(objected, "3D_ESP")
     local part = objected   
 
-    local name = Drawing.new("Text")
-    name.Text = text or "Part"
-    name.Color = coloror or Color3.new(1, 1, 1)
-    name.Position = WTS(part)
-    name.Size = 20.0
-    name.Outline = true
-    name.Center = true
-    name.Visible = true
-
     --// Lines for 3D box (12)
     local lines = {
         line1  = NewLine(coloror),
@@ -124,6 +115,15 @@ function module.Create3DESP(objected, text, coloror)
         line11 = NewLine(coloror),
         line12 = NewLine(coloror)
     }
+
+    local name = Drawing.new("Text")
+    name.Text = text or "Part"
+    name.Color = coloror or Color3.new(1, 1, 1)
+    name.Position = WTS(part)
+    name.Size = 20.0
+    name.Outline = true
+    name.Center = true
+    name.Visible = true
 
     --// Updates ESP (lines) in render loop
     local function Updater()
