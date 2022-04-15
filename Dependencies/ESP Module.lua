@@ -134,7 +134,7 @@ function module.Create3DESP(objected, text, coloror)
                 local destroyed = not objected:IsDescendantOf(workspace)
                 local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
                 name.Text = "["..round(Distance).."] "..text
-                name.Position = WTS(part)
+                name.Position = assert(WTS(part))
                 if destroyed then
                     for i,v in pairs(lines) do
                         v:Remove()
