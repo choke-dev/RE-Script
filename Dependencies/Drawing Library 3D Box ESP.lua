@@ -6,6 +6,7 @@ local module = {}
 
 --// Locals:
 local workspace = game:GetService("Workspace")
+local CoSe = game:GetService("CollectionService")
 local player = game:GetService("Players").LocalPlayer
 local camera = workspace.CurrentCamera
 
@@ -36,6 +37,7 @@ end
     ESP(Part)
 ]]
 function module.ESP(objected, coloror)
+    CoSe:AddTag(objected, "3D_ESP")
     local part = objected
 
     --// Lines for 3D box (12)
@@ -65,6 +67,7 @@ function module.ESP(objected, coloror)
                     for i,v in pairs(lines) do
                         v:Remove()
                     end
+                    CoSe:RemoveTag(objected, "3D_ESP")
                     connection:Disconnect()
                 end
                 if on and onscreen then

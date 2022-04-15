@@ -1,5 +1,7 @@
 local module = {}
 
+local CoSe = game:GetService("CollectionService")
+
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
     return Vector2.new(screen.x, screen.y)
@@ -28,6 +30,8 @@ function module.ESP(part, text, color)
     box.Thickness = 0.5
     box.Visible = true
 
+    CoSe:AddTag(part, "2D_ESP")
+
     local RdSt = game:GetService("RunService").Stepped:Connect(function()
         pcall(function()
             local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
@@ -37,7 +41,7 @@ function module.ESP(part, text, color)
             if destroyed and name ~= nil then
                 name:Remove()
                 box:Remove()
-                CS:RemoveTag(part, "ESP")
+                CoSe:RemoveTag(part, "2D_ESP")
                 RdSt:Disconnect()
             end
             if part ~= nil then
