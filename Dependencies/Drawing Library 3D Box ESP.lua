@@ -146,3 +146,5 @@ function module.ESP(objected, color)
     end
     coroutine.wrap(Updater)()
 end
+
+return module
