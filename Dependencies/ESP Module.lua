@@ -134,6 +134,7 @@ function module.Create3DESP(objected, text, coloror)
                 local destroyed = not objected:IsDescendantOf(workspace)
                 local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
                 name.Text = "["..round(Distance).."] "..text
+                name.Position = WTS(part)
                 if destroyed then
                     for i,v in pairs(lines) do
                         v:Remove()
@@ -143,7 +144,6 @@ function module.Create3DESP(objected, text, coloror)
                     connection:Disconnect()
                 end
                 if on and onscreen then
-                    name.Position = WTS(part)
                     local size_X = part.Size.X/2
                     local size_Y = part.Size.Y/2
                     local size_Z = part.Size.Z/2
