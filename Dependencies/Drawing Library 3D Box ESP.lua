@@ -2,12 +2,12 @@
 
 -- // Editied a bit by choke#3588 to remove the esp when the part is destroyed
 
+local module = {}
+
 --// Locals:
 local workspace = game:GetService("Workspace")
 local player = game:GetService("Players").LocalPlayer
 local camera = workspace.CurrentCamera
-
-local module = {}
 
 --// Settings:
 local on = true -- Use this if your making gui
