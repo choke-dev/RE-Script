@@ -119,7 +119,7 @@ function module.Create3DESP(objected, text, coloror)
     local name = Drawing.new("Text")
     name.Text = text or "Part"
     name.Color = coloror or Color3.new(1, 1, 1)
-    name.Position = Vector2.new(WTS(part).X, WTS(part).Y + 20)
+    name.Position = WTS(part)
     name.Size = 20.0
     name.Outline = true
     name.Center = true
