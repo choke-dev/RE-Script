@@ -17,8 +17,8 @@ local Box_Transparency = 1 -- 1 Visible, 0 Not Visible
 
 local Autothickness = true -- Makes screen less encumbered
 
-local function NewLine(color)
-    local Box_Color = color or Color3.fromRGB(255, 0, 0)
+local function NewLine(coloror)
+    local Box_Color = coloror or Color3.fromRGB(255, 0, 0)
     local line = Drawing.new("Line")
     line.Visible = false
     line.From = Vector2.new(0, 0)
@@ -35,23 +35,23 @@ end
     local Part = workspace.Part      
     ESP(Part)
 ]]
-function module.ESP(objected, color)
+function module.ESP(objected, coloror)
     local part = objected
 
     --// Lines for 3D box (12)
     local lines = {
-        line1  = NewLine(color),
-        line2  = NewLine(color),
-        line3  = NewLine(color),
-        line4  = NewLine(color),
-        line5  = NewLine(color),
-        line6  = NewLine(color),
-        line7  = NewLine(color),
-        line8  = NewLine(color),
-        line9  = NewLine(color),
-        line10 = NewLine(color),
-        line11 = NewLine(color),
-        line12 = NewLine(color)
+        line1  = NewLine(coloror),
+        line2  = NewLine(coloror),
+        line3  = NewLine(coloror),
+        line4  = NewLine(coloror),
+        line5  = NewLine(coloror),
+        line6  = NewLine(coloror),
+        line7  = NewLine(coloror),
+        line8  = NewLine(coloror),
+        line9  = NewLine(coloror),
+        line10 = NewLine(coloror),
+        line11 = NewLine(coloror),
+        line12 = NewLine(coloror)
     }
 
     --// Updates ESP (lines) in render loop
