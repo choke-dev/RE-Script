@@ -1,7 +1,5 @@
 local module = {}
 
-local CS = game:GetService("CollectionService")
-
 local function WTS(part)
     local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
     return Vector2.new(screen.x, screen.y)
