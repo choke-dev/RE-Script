@@ -13,7 +13,7 @@ local function round(n)
 	return math.ceil(n - 0.5)
 end
 
-function module.ESP(part, text, color)
+function module.Create2DESP(part, text, color)
     local box = Drawing.new("Square")
     local name = Drawing.new("Text")
     -- // text settings // --
@@ -96,9 +96,18 @@ end
     local Part = workspace.Part      
     ESP(Part)
 ]]
-function module.ESP(objected, coloror)
+function module.Create3DESP(objected, text, coloror)
     CoSe:AddTag(objected, "3D_ESP")
     local part = objected
+
+    local name = Drawing.new("Text")
+    name.Text = "Initializing..."
+    name.Color = color
+    name.Position = WTS(part)
+    name.Size = 20.0
+    name.Outline = true
+    name.Center = true
+    name.Visible = true
 
     --// Lines for 3D box (12)
     local lines = {
