@@ -98,11 +98,11 @@ end
 ]]
 function module.Create3DESP(objected, text, coloror)
     CoSe:AddTag(objected, "3D_ESP")
-    local part = objected
+    local part = objected   
 
     local name = Drawing.new("Text")
-    name.Text = "Initializing..."
-    name.Color = coloror or Color3.fromRGB(255, 255, 255)
+    name.Text = text or "Part"
+    name.Color = coloror or Color3.new(1, 1, 1)
     name.Position = WTS(part)
     name.Size = 20.0
     name.Outline = true
@@ -132,6 +132,8 @@ function module.Create3DESP(objected, text, coloror)
             pcall(function()
                 local partpos, onscreen = camera:WorldToViewportPoint(part.Position)
                 local destroyed = not objected:IsDescendantOf(workspace)
+                local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
+                name.Text = "["..round(Distance).."] "..text
                 if destroyed then
                     for i,v in pairs(lines) do
                         v:Remove()
