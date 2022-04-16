@@ -210,10 +210,12 @@ function module.Create3DESP(objected, text, coloror)
                         end
                     end
 
+                    name.Visible = true
                     for u, x in pairs(lines) do
                         x.Visible = true
                     end
                 else 
+                    name.Visible = false
                     for u, x in pairs(lines) do
                         x.Visible = false
                     end
