@@ -131,7 +131,8 @@ function module.Create3DESP(objected, text, coloror)
         local connection
         connection = game:GetService("RunService").RenderStepped:Connect(function()
             pcall(function()
-                local partpos, onscreen = camera:WorldToViewportPoint(part.Position)
+                local partpos, onscreen = camera:WorldToScreenPoint(part.Position)
+                --local partpos, onscreen = camera:WorldToViewportPoint(part.Position)
                 local destroyed = not objected:IsDescendantOf(workspace)
                 local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
                 name.Text = "["..round(Distance).."] "..text
