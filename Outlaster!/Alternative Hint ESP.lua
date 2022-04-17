@@ -31,7 +31,7 @@ local function search()
     if foundhints ~= 0 then
         synlog:success("Found " .. foundhints .. " hints!")
     else
-        synlog:warning("No new hints were found!")
+        synlog:warn("No new hints were found!")
     end
 end
 

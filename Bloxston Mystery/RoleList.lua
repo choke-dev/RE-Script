@@ -1,18 +1,5 @@
-if not syn or identifyexecutor or KRNL_LOADED then
-	warn("Exploit probably not supported, Initializing Compatibility...")
-	loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterCompat.lua"))()
-end
-
 local Players = game:GetService("Players")
 local Teams = game:GetService("Teams")
-
-if game.PlaceId ~= 8326774084 then return end
-if not getgenv().Loaded then
-    repeat task.wait() until game:IsLoaded()
-    repeat task.wait() until #Teams.Dead:GetPlayers() ~= 0 -- waits for all players to load in
-    repeat task.wait() until #Teams.Dead:GetPlayers() == 0 -- waits for the game to start
-end
-getgenv().Loaded = true
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/UI%20Libs/Mercury.lua"))()
 
