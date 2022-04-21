@@ -13,10 +13,12 @@ local function isCamera(object)
 end
 
 for i,v in pairs(workspace.Map:GetDescendants()) do
-    if v.Name == "Attachment" or "Attatchment" and isCamera(v.Parent) and not CollectionService:HasTag(v.Parent.Part, "3D_ESP") then
-        ESPModule.Create3DESP(v.Parent.Part, v.Parent.Name, Color3.fromRGB(255, 0, 0))
-        synlog:info("Found "..v.Parent.Name)
-    end
+    pcall(function()
+        if v.Name == "Attachment" or "Attatchment" and isCamera(v.Parent) and not CollectionService:HasTag(v.Parent.Part, "3D_ESP") then
+            ESPModule.Create3DESP(v.Parent.Part, v.Parent.Name, Color3.fromRGB(255, 0, 0))
+            synlog:info("Found "..v.Parent.Name)
+        end
+    end)
 end
 
 if foundcams == 0 then
