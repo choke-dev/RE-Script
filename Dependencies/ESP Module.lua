@@ -14,6 +14,10 @@ local function round(n)
 end
 
 function module.Create2DESP(part, text, color)
+    if CoSe:HasTag(part, "2D_ESP") then
+        return warn("Object already has 3D ESP!")
+    end
+
     local box = Drawing.new("Square")
     local name = Drawing.new("Text")
     -- // text settings // --
@@ -97,6 +101,9 @@ end
     ESP(Part)
 ]]
 function module.Create3DESP(objected, text, coloror)
+    if CoSe:HasTag(objected, "3D_ESP") then
+        return warn("Object already has 3D ESP!")
+    end
     CoSe:AddTag(objected, "3D_ESP")
     local part = objected   
 
