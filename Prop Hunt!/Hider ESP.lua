@@ -1,3 +1,5 @@
+if game.PlaceId ~= 9289724442 then return end
+
 -- // Services \\ --
 local Players = game:GetService("Players")
 local CollectionService = game:GetService("CollectionService")
