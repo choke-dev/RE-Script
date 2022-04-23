@@ -9,10 +9,10 @@ local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/cho
 -- // Main \\ --
 while task.wait() do
     pcall(function()
-    for i,v in pairs(workspace:GetDescendants()) do
-        if v.Name == "AnimateScript" and v.Parent:IsA("Model") and v:IsA("LocalScript") and not CollectionService:HasTag(v.Parent.HumanoidRootPart, "3D_ESP") then
-            ESPModule.Create3DESP(v.Parent.HumanoidRootPart, "Hider", Color3.fromRGB(112, 149, 120))
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v.Name == "AnimateScript" and v.Parent:IsA("Model") and v:IsA("LocalScript") and not CollectionService:HasTag(v.Parent.HumanoidRootPart, "3D_ESP") then
+                ESPModule.Create3DESP(v.Parent.HumanoidRootPart, "Hider", Color3.fromRGB(112, 149, 120))
+            end
         end
-    end
-end)
+    end)
 end
