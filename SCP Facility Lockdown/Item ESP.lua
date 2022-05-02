@@ -6,7 +6,7 @@ local SCPS = {"096", "939", "3199"}
 
 local CS = game:GetService("CollectionService")
 
-local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/ESP%20Module.lua"))
+local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/ESP%20Module.lua"))()
 
 local function isGun(name)
     if table.find(Weapons, name) then
