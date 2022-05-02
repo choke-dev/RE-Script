@@ -1,3 +1,6 @@
+local Announcement = require(game:GetService("Players").LocalPlayer.PlayerScripts.GameUI.Announcement)
+Announcement.Display("Script Loaded!", "Press [V] to search for hints!")
+
 synlog = NEON:github('belkworks', 'synlog')
 if game.PlaceId ~= 5765666934 then 
     synlog:error("You must join an Outlaster game to use this script!")
@@ -36,5 +39,3 @@ local function search()
 end
 
 ContextActionService:BindAction("V | Search", search, false, Enum.KeyCode.V)
-synlog:success("Script loaded.")
-synlog:info("Press [ V ] to search for hints!")
