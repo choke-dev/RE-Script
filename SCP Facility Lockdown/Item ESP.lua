@@ -85,10 +85,6 @@ end
 
 local function search()
     for _,v in pairs(workspace.Debris:GetChildren()) do
-        pcall(function()
-            local splitstr = string.split(v.Name, "-")
-        end)
-
         if v.Name == "KeyCard" and not CS:HasTag(v, "ESP") then
             local cardlvl = getLevel(v) or "❌"
             ESP(v.Card, "Keycard Level: "..cardlvl, Color3.fromRGB(52, 255, 154))
