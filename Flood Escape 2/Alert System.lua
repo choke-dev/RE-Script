@@ -239,3 +239,5 @@ function module.newAlert(p63, p64, p65, p66, p67)
     end)
 	return u53;
 end;
+
+return module
