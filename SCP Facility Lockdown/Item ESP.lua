@@ -50,6 +50,6 @@ end)
 
 workspace.Debris.ChildRemoved:Connect(function(instance)
     pcall(function()
-        CS:RemoveTag(instance, "ESP")
+        CS:RemoveTag(instance.hand, "3D_ESP")
     end)
 end)
