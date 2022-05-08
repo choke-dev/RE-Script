@@ -228,7 +228,7 @@ function module.newAlert(p63, p64, p65, p66, p67)
 			handleAlert(v389, v390);		
 		end;
 	end);
-    spawn(function()
+    --[[spawn(function()
         local insanesound = Instance.new("Sound", l__Alerts__39);
         insanesound.Playing = false
         insanesound.Volume = 5
@@ -236,6 +236,8 @@ function module.newAlert(p63, p64, p65, p66, p67)
         insanesound:Play();
         task.wait(1.816)
         insanesound:Destroy()
-    end)
+    end)]]
 	return u53;
 end;
+
+return module
