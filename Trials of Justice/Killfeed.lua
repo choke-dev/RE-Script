@@ -2,6 +2,8 @@ local text = "[ %s ] %s killed %s"
 -- [TIME] killer killed victim
 local targettext = "[ %s ] %s is a %s of %s"
 -- [TIME] victim is a [TARGET TYPE] of person
+local hangedtext = "[ %s ] %s was hanged"
+-- [TIME] victim was hanged
 
 local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua"))()
 local Players = game:GetService("Players")
@@ -22,7 +24,7 @@ local TargetLogs = TargetFeed:Section("Logs")
 -- // Kill Feed \\ --
 for i,v in pairs(Players:GetDescendants()) do
     if v.Name == "Killer" and v.Value ~= nil then
-        KillLogs:Label(text:format("UNKNOWN", v.Value.Name, v.Parent.Name))
+        KillLogs:Label(text:format("Unknown Time", v.Value.Name, v.Parent.Name))
         --[[KillLogs:Button(text:format(game:GetService("Players").LocalPlayer.PlayerGui.Time.Bar.DayLabel.Text, v.Value.Name, v.Parent.Name), function()
             SolarisLib:Notification("Reason for death:", "["..v.Parent.Name.."] "..v.Parent.DeathReason.Value)
         end)]]
@@ -37,6 +39,13 @@ for i,v in pairs(Players:GetDescendants()) do
                 SolarisLib:Notification("Reason for death:", "["..v.Parent.Name.."] "..v.Parent.DeathReason.Value)
             end)]]
             KillEvent:Disconnect()
+        end)
+        local HangedEvent = v.Parent.Dead:GetPropertyChangedSignal("Value"):Connect(function()
+            if v.Value == nil and v.Parent.Dead then
+                KillLogs:Label(text:format(game:GetService("Players").LocalPlayer.PlayerGui.Time.Bar.DayLabel.Text, v.Parent.Name))
+                KillEvent:Disconnect()
+                HangedEvent:Disconnect()
+            end
         end)
     end
 end
