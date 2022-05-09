@@ -7,8 +7,8 @@ local hangedtext = "[ %s ] %s was hanged"
 local atkDictionary = {
     [0] = "None",
     [1] = "🔪 | Basic",
-    [2] = "🛡️ | Powerful",
-    [3] = "💣 | Unstoppable",
+    [2] = "🔫 | Powerful",
+    [3] = "🔥 | Unstoppable",
 }
 local defDictionary = {
     [0] = "None",
