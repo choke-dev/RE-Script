@@ -1,9 +1,21 @@
 local text = "[ %s ] %s killed %s"
 -- [TIME] killer killed victim
-local targettext = "[ %s ] %s is a %s of %s"
+local targettext = "[ %s ] %s is [%sing] %s"
 -- [TIME] victim is a [TARGET TYPE] of person
 local hangedtext = "[ %s ] %s was hanged"
 -- [TIME] victim was hanged
+local atkDictionary = {
+    [0] = "None",
+    [1] = "🔪 | Basic",
+    [2] = "🛡️ | Powerful",
+    [3] = "💣 | Unstoppable",
+}
+local defDictionary = {
+    [0] = "None",
+    [1] = "🦺 | Basic",
+    [2] = "🛡️ | Powerful",
+    [3] = "🧿 | Invincible",
+}
 
 local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua"))()
 local Players = game:GetService("Players")
@@ -19,6 +31,9 @@ local KillLogs = KillFeed:Section("Logs")
 
 local TargetFeed = win:Tab("Target Logs")
 local TargetLogs = TargetFeed:Section("Logs")
+
+local PlayerInfo = win:Tab("Player Info")
+local InfoSection = PlayerInfo:Section("Click a player to learn more about them.")
 
 
 -- // Kill Feed \\ --
@@ -56,4 +71,14 @@ for i,v in pairs(Players:GetDescendants()) do
             TargetLogs:Label(targettext:format(game:GetService("Players").LocalPlayer.PlayerGui.Time.Bar.DayLabel.Text, v.Parent.Name, v.Name, v.Value.Name))
         end)
     end
+end
+-- // Player Info \\ --
+--sec:Dropdown(title <string>,options <table>,default <string>, flag <string>, callback <function>)
+local plrTable = {}
+local plrNameTable = {}
+local plrDictionary = {}
+for i,v in pairs(Players:GetChildren()) do
+    InfoSection:Button("("..Players[v.Name].ListNum.Value..") "..v.Name, function()
+        SolarisLib:Notification("Results", v.Name.."'s stats:\nAttack: "..tostring(atkDictionary[v.Attack.Value]).."\nDefense: "..tostring(defDictionary[v.Defense.Value]))
+    end)
 end
