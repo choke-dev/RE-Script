@@ -13,25 +13,39 @@ local Hum = LC.Humanoid
 local InfiniteAir = false
 
 -- // Main \\ --
-local InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-    if not InfiniteAir then return end
-    Hum.Health = 100
+Players.CharacterAdded:Connect(function(char)
+    if char.Name ~= LP.Name then return end
+    local InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
+        if not InfiniteAir then return end
+        Hum.Health = 100
+    end)
+end)
+
+-- // Handler when the player dies \\ --
+Players.CharacterRemoving:Connect(function(char)
+    if char.Name ~= LP.Name then return end
+    InfiniteAirEvent:Disconnect()
+    InfiniteAirEvent = nil
+    InfiniteAir = false
+    checkState()
 end)
 
 local function checkState()
-    if InfiniteAir then
-        for _,v in pairs(LC:GetDescendants()) do
-            if v:IsA("Part") then
-                v.Material = Enum.Material.ForceField
+    pcall(function()
+        if InfiniteAir then
+            for _,v in pairs(LC:GetDescendants()) do
+                if v:IsA("Part") then
+                    v.Material = Enum.Material.ForceField
+                end
+            end
+        else
+            for _,v in pairs(LC:GetDescendants()) do
+                if v:IsA("Part") then
+                    v.Material = Enum.Material.Plastic
+                end
             end
         end
-    else
-        for _,v in pairs(LC:GetDescendants()) do
-            if v:IsA("Part") then
-                v.Material = Enum.Material.Plastic
-            end
-        end
-    end
+    end)
 end
 
 -- // Keybinding \\ --
