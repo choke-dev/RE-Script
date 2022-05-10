@@ -34,6 +34,8 @@ local function checkState()
     end
 end
 
+-- // Keybinding \\ --
+
 ContextActionService:BindAction("FE2_Godmode", function(name, inputState)
     if inputState ~= Enum.UserInputState.Begin then return end
 
