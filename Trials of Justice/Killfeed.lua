@@ -5,16 +5,16 @@ local targettext = "[ %s ] %s is [%sing] %s"
 local hangedtext = "[ %s ] %s was hanged"
 -- [TIME] victim was hanged
 local atkDictionary = {
-    [0] = "None",
-    [1] = "🔪 | Basic",
-    [2] = "🔫 | Powerful",
-    [3] = "🔥 | Unstoppable",
+    [0] = "❌ None",
+    [1] = "🔪 Basic",
+    [2] = "🔫 Powerful",
+    [3] = "🔥 Unstoppable",
 }
 local defDictionary = {
-    [0] = "None",
-    [1] = "🦺 | Basic",
-    [2] = "🛡️ | Powerful",
-    [3] = "🧿 | Invincible",
+    [0] = "❌ None",
+    [1] = "🦺 Basic",
+    [2] = "🛡️ Powerful",
+    [3] = "🧿 Invincible",
 }
 
 local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua"))()
@@ -74,11 +74,8 @@ for i,v in pairs(Players:GetDescendants()) do
 end
 -- // Player Info \\ --
 --sec:Dropdown(title <string>,options <table>,default <string>, flag <string>, callback <function>)
-local plrTable = {}
-local plrNameTable = {}
-local plrDictionary = {}
 for i,v in pairs(Players:GetChildren()) do
     InfoSection:Button("("..Players[v.Name].ListNum.Value..") "..v.Name, function()
-        SolarisLib:Notification("Results", v.Name.."'s stats:\nAttack: "..tostring(atkDictionary[v.Attack.Value]).."\nDefense: "..tostring(defDictionary[v.Defense.Value]))
+        SolarisLib:Notification("Results", v.Name.."'s stats:\nAttack: "..tostring(atkDictionary[v.Attack.Value]).."\nDefense: "..tostring(defDictionary[v.Defense.Value]).."\nSelf Uses: "..Players[v.Name].SelfUses.Value)
     end)
 end
