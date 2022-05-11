@@ -7,30 +7,17 @@ local ContextActionService = game:GetService("ContextActionService")
 -- // References \\ --
 local LP = Players.LocalPlayer
 local LC = LP.Character
-local Hum = LC.Humanoid
+local Hum = LC:WaitForChild("Humanoid")
 
 -- // Variables \\ --
+local InfiniteAirEvent
+local HumDied
 local InfiniteAir = false
 
--- // Main \\ --
-Players.CharacterAdded:Connect(function(char)
-    if char.Name ~= LP.Name then return end
-    local InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-        if not InfiniteAir then return end
-        Hum.Health = 100
-    end)
-end)
-
--- // Handler when the player dies \\ --
-Players.CharacterRemoving:Connect(function(char)
-    if char.Name ~= LP.Name then return end
-    InfiniteAirEvent:Disconnect()
-    InfiniteAirEvent = nil
-    InfiniteAir = false
-    checkState()
-end)
-
+-- // Functions \\ --
 local function checkState()
+    local LC = LP.Character
+    local Hum = LC.Humanoid
     pcall(function()
         if InfiniteAir then
             for _,v in pairs(LC:GetDescendants()) do
@@ -48,9 +35,7 @@ local function checkState()
     end)
 end
 
--- // Keybinding \\ --
-
-ContextActionService:BindAction("FE2_Godmode", function(name, inputState)
+local keybindHandler = function(name, inputState)
     if inputState ~= Enum.UserInputState.Begin then return end
 
     if InfiniteAir then
@@ -60,7 +45,39 @@ ContextActionService:BindAction("FE2_Godmode", function(name, inputState)
         InfiniteAir = true
         checkState()
     end
-end, false, Enum.KeyCode.Q)
+end
+
+-- // Main \\ --
+    
+InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
+    if not InfiniteAir then return end
+    Hum.Health = 100
+end)
+
+LP.CharacterAdded:Connect(function(char)
+    if char.Name ~= LP.Name then return end
+    local LC = LP.Character
+    local Hum = LC:WaitForChild("Humanoid")
+    InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
+        if not InfiniteAir then return end
+        Hum.Health = 100
+    end)
+
+    HumDied = Hum.Died:Connect(function()
+        InfiniteAirEvent:Disconnect()
+        HumDied:Disconnect()
+    end)
+end)
+
+-- // Handler when the player dies \\ --
+HumDied = Hum.Died:Connect(function()
+    InfiniteAirEvent:Disconnect()
+    HumDied:Disconnect()
+end)
+
+
+-- // Keybinding \\ --
+ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, Enum.KeyCode.Q)
 
 Notify({
     Description = "Press [ Q ] to toggle.";
