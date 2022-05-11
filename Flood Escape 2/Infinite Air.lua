@@ -58,6 +58,7 @@ LP.CharacterAdded:Connect(function(char)
     if char.Name ~= LP.Name then return end
     local LC = LP.Character
     local Hum = LC:WaitForChild("Humanoid")
+    InfiniteAir = false -- just incase if the localplayer exceeds the time limit and the game forces them to respawn
     InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
         if not InfiniteAir then return end
         Hum.Health = 100
