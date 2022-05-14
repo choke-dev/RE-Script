@@ -1,6 +1,5 @@
 -- // Services \\ --
 local AlertModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/Alert%20System.lua"))()
-local Notify = AkaliNotif.Notify;
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local ContextActionService = game:GetService("ContextActionService")
@@ -27,12 +26,14 @@ local function checkState()
                     v.Material = Enum.Material.ForceField
                 end
             end
+            AlertModule.newAlert("Infinite Air Enabled.", Color3.new(0.188235, 1, 0.321568), 0.5)
         else
             for _,v in pairs(LC:GetDescendants()) do
                 if v:IsA("Part") and not table.find(BlacklistedParts, v.Name) then
                     v.Material = Enum.Material.Plastic
                 end
             end
+            AlertModule.newAlert("Infinite Air Disabled.", Color3.new(1, 0.301960, 0.301960), 0.5)
         end
     end)
 end
