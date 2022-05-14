@@ -26,14 +26,14 @@ local function checkState()
                     v.Material = Enum.Material.ForceField
                 end
             end
-            AlertModule.newAlert("Infinite Air Enabled.", Color3.new(0.188235, 1, 0.321568), 0.5)
+            --AlertModule.newAlert("Infinite Air Enabled.", Color3.new(0.188235, 1, 0.321568), 0.4, "event")
         else
             for _,v in pairs(LC:GetDescendants()) do
                 if v:IsA("Part") and not table.find(BlacklistedParts, v.Name) then
                     v.Material = Enum.Material.Plastic
                 end
             end
-            AlertModule.newAlert("Infinite Air Disabled.", Color3.new(1, 0.301960, 0.301960), 0.5)
+            --AlertModule.newAlert("Infinite Air Disabled.", Color3.new(1, 0.301960, 0.301960), 0.4, "event")
         end
     end)
 end
