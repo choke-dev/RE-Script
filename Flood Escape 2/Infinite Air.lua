@@ -1,5 +1,5 @@
 -- // Services \\ --
-local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local AlertModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/Alert%20System.lua"))()
 local Notify = AkaliNotif.Notify;
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -83,8 +83,5 @@ end)
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, Enum.KeyCode.Q)
 
-Notify({
-    Description = "Press [ Q ] to toggle.";
-    Title = "<b><font color=\"rgb(58, 67, 255)\">FE2 Infinite Air</font></b>";
-    Duration = 10;
-});
+AlertModule.newAlert("Press [ Q ] to toggle.", Color3.new(0.188235, 0.447058, 1), 10)
+AlertModule.newAlert("FE2 Infinite Air Loaded.", Color3.new(0.188235, 1, 0.321568), 10)
