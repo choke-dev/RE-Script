@@ -7,3 +7,5 @@ function module.newAlert(text, color, textime, event, autoLocalize)
 	    v:Fire(text, color, textime, event, autoLocalize)
 	end
 end
+
+return module
