@@ -2,6 +2,7 @@
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
 local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
 local ContextActionService = game:GetService("ContextActionService")
 
 -- // References \\ --
@@ -13,6 +14,7 @@ local Hum = LC:WaitForChild("Humanoid")
 local InfiniteAirEvent
 local HumDied
 local InfiniteAir = false
+local BlacklistedParts = {"Cycle1", "Cycle2", "Cycle3", "Cycle4", "Cycle5"}
 
 -- // Functions \\ --
 local function checkState()
@@ -21,13 +23,13 @@ local function checkState()
     pcall(function()
         if InfiniteAir then
             for _,v in pairs(LC:GetDescendants()) do
-                if v:IsA("Part") then
+                if v:IsA("Part") and not table.find(BlacklistedParts, v.Name) then
                     v.Material = Enum.Material.ForceField
                 end
             end
         else
             for _,v in pairs(LC:GetDescendants()) do
-                if v:IsA("Part") then
+                if v:IsA("Part") and not table.find(BlacklistedParts, v.Name) then
                     v.Material = Enum.Material.Plastic
                 end
             end
@@ -58,7 +60,7 @@ LP.CharacterAdded:Connect(function(char)
     if char.Name ~= LP.Name then return end
     LC = LP.Character
     Hum = LC:WaitForChild("Humanoid")
-    
+
     InfiniteAir = false -- just incase if the localplayer exceeds the time limit and the game forces them to respawn
     InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
         if not InfiniteAir then return end
