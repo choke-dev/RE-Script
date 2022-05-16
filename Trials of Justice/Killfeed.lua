@@ -17,6 +17,13 @@ local defDictionary = {
     [3] = "🧿 Invincible",
 }
 
+local timeDictionary = {
+    ["DAY"] = "☀ DAY"
+}
+
+local timeStat = game:GetService("Players").LocalPlayer.PlayerGui.Time.Bar.DayLabel.Text
+local splitTime = timeStat:split(" ")
+
 local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stebulous/solaris-ui-lib/main/source.lua"))()
 local Players = game:GetService("Players")
 local Targets = {"NightTarget", "SecondNightTarget", "DayTarget"}
@@ -54,13 +61,6 @@ for i,v in pairs(Players:GetDescendants()) do
                 SolarisLib:Notification("Reason for death:", "["..v.Parent.Name.."] "..v.Parent.DeathReason.Value)
             end)]]
             KillEvent:Disconnect()
-        end)
-        local HangedEvent = v.Parent.Dead:GetPropertyChangedSignal("Value"):Connect(function()
-            if v.Value == nil and v.Parent.Dead then
-                KillLogs:Label(text:format(game:GetService("Players").LocalPlayer.PlayerGui.Time.Bar.DayLabel.Text, v.Parent.Name))
-                KillEvent:Disconnect()
-                HangedEvent:Disconnect()
-            end
         end)
     end
 end
