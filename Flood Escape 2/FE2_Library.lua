@@ -10,9 +10,8 @@ function module.newAlert(text:string, color:Color3, textime:NumberRange, event:s
 end
 
 function module.toggleAir(status:boolean)
-	local state = status or not state
 	for i,v in pairs(getconnections(AirRemote.OnClientEvent)) do
-		v:Fire(state)
+		v:Fire(status)
 	end
 end
 
