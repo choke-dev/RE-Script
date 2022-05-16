@@ -11,7 +11,7 @@ end
 
 function module.toggleAir(status:boolean)
 	local state = status or not state
-	for i,v in pairs(getconnections(AirToggleRemote.OnClientEvent)) do
+	for i,v in pairs(getconnections(AirRemote.OnClientEvent)) do
 		v:Fire(state)
 	end
 end
