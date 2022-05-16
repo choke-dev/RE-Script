@@ -51,7 +51,7 @@ local keybindHandler = function(name, inputState)
 end
 
 -- // Main \\ --
-    
+
 InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
     if not InfiniteAir then return end
     Hum.Health = 100
@@ -85,4 +85,4 @@ end)
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, Enum.KeyCode.Q)
 
 AlertModule.newAlert("Press [ Q ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
-AlertModule.newAlert("FE2 Infinite Air Loaded.", Color3.new(0.188235, 1, 0.321568), 8, "rainbow")
+AlertModule.newAlert("FE2 Infinite Air Loaded.", Color3.new(1, 0, 0), 8, "rainbow")

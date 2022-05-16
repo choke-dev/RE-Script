@@ -1,10 +1,18 @@
 local module = {}
 
-local remote = game:GetService("ReplicatedStorage").Remote.Alert
+local AlertRemote = game:GetService("ReplicatedStorage").Remote.Alert
+local AirRemote = game:GetService("ReplicatedStorage").Remote.TEST.AirToggle
 
 function module.newAlert(text:string, color:Color3, textime:NumberRange, event:string, autoLocalize:boolean)
-	for i,v in pairs(getconnections(remote.OnClientEvent)) do
+	for i,v in pairs(getconnections(AlertRemote.OnClientEvent)) do
 	    v:Fire(text, color, textime, event, autoLocalize)
+	end
+end
+
+function module.toggleAir(status:boolean)
+	local state = status or not state
+	for i,v in pairs(getconnections(AirToggleRemote.OnClientEvent)) do
+		v:Fire(state)
 	end
 end
 
