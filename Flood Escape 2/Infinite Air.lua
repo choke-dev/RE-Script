@@ -1,5 +1,5 @@
 -- // Services \\ --
-local AlertModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/Alert%20System.lua"))()
+local FE2Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/FE2_Library.lua"))()
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local ContextActionService = game:GetService("ContextActionService")
@@ -38,51 +38,24 @@ local function checkState()
     end)
 end
 
+-- // Main \\ --
+
 local keybindHandler = function(name, inputState)
     if inputState ~= Enum.UserInputState.Begin then return end
 
     if InfiniteAir then
         InfiniteAir = false
+        FE2Lib.toggleAir(InfiniteAir)
         checkState()
     else
         InfiniteAir = true
+        FE2Lib.toggleAir(InfiniteAir)
         checkState()
     end
 end
 
--- // Main \\ --
-
-InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-    if not InfiniteAir then return end
-    Hum.Health = 100
-end)
-
-LP.CharacterAdded:Connect(function(char)
-    if char.Name ~= LP.Name then return end
-    LC = LP.Character
-    Hum = LC:WaitForChild("Humanoid")
-
-    InfiniteAir = false -- just incase if the localplayer exceeds the time limit and the game forces them to respawn
-    InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-        if not InfiniteAir then return end
-        Hum.Health = 100
-    end)
-
-    HumDied = Hum.Died:Connect(function()
-        InfiniteAirEvent:Disconnect()
-        HumDied:Disconnect()
-    end)
-end)
-
--- // Handler when the player dies \\ --
-HumDied = Hum.Died:Connect(function()
-    InfiniteAirEvent:Disconnect()
-    HumDied:Disconnect()
-end)
-
-
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, Enum.KeyCode.Q)
 
-AlertModule.newAlert("Press [ Q ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
-AlertModule.newAlert("FE2 Infinite Air Loaded.", Color3.new(1, 0, 0), 8, "rainbow")
+FE2Lib.newAlert("Press [ Q ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
+FE2Lib.newAlert("FE2 Infinite Air Loaded.", Color3.new(1, 0, 0), 8, "rainbow")
