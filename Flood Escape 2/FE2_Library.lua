@@ -22,7 +22,7 @@ function module.toggleAir(status:boolean)
 end
 
 function module.newNotification(title, description, func, img)
-	NotificationEvent:Fire(title, description, func, img)
+	NotificationEvent:Fire(description, title, func, img)
 end
 
 return module
