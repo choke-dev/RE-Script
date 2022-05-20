@@ -1,5 +1,6 @@
 local module = {}
 
+local NotificationEvent = game:GetService("Players").LocalPlayer.PlayerScripts["CL_MAIN_GameScript"].Notify
 local AlertRemote = game:GetService("ReplicatedStorage").Remote.Alert
 local AirRemote = game:GetService("ReplicatedStorage").Remote.TEST.AirToggle
 
@@ -13,6 +14,10 @@ function module.toggleAir(status:boolean)
 	for i,v in pairs(getconnections(AirRemote.OnClientEvent)) do
 		v:Fire(status)
 	end
+end
+
+function module.newNotification(info, title, func, img)
+	NotificationEvent:Fire(info, title, func, img)
 end
 
 return module
