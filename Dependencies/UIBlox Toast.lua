@@ -36,3 +36,5 @@ function module.newToast(title, text, image, time)
         game:GetService("CoreGui").guidname:Destroy()
     end)
 end
+
+return module
