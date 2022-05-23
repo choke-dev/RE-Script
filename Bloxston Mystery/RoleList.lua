@@ -1,3 +1,5 @@
+if true then warn("This script has been patched.") return end
+
 local Players = game:GetService("Players")
 local Teams = game:GetService("Teams")
 
