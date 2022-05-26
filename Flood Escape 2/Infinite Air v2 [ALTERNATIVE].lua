@@ -28,14 +28,15 @@ local InfiniteAir
 local HumanoidDied_Event
 local Status = false
 local Highlight_Status
-local ColorStatus_ON = Color3.new(0, 1, 0.3176470588235294)
+local ColorStatus_ON = Color3.new(0, 1, 0.6666666666666667)
+local ColorStatusALT_ON = Color3.new(0, 1, 0.4666666666666667)
 
 -- // Highlighting \\ --
 local TEMPHighlight_Status = Instance.new("Highlight", LC)
 TEMPHighlight_Status.FillTransparency = 1
 TEMPHighlight_Status.FillColor = ColorStatus_ON 
 TEMPHighlight_Status.OutlineTransparency = 1
-TEMPHighlight_Status.OutlineColor = ColorStatus_ON
+TEMPHighlight_Status.OutlineColor = ColorStatusALT_ON
 Highlight_Status = TEMPHighlight_Status
 
 -- // Tweens \\ --
@@ -95,7 +96,7 @@ LP.CharacterAdded:Connect(function(char)
     TEMPHighlight_Status.FillTransparency = 1
     TEMPHighlight_Status.FillColor = ColorStatus_ON 
     TEMPHighlight_Status.OutlineTransparency = 1
-    TEMPHighlight_Status.OutlineColor = ColorStatus_ON
+    TEMPHighlight_Status.OutlineColor = ColorStatusALT_ON
     Highlight_Status = TEMPHighlight_Status
     HighlightOutline_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 0})
     HighlightOutline_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 1})
