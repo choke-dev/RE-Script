@@ -2,7 +2,9 @@
 
     faq:
     Q: whats new with inf air v2??
-    A: this just replaces the forcefield thing with roblox's new highlight class
+    A: this just replaces the forcefield thing with roblox's new highlight class\
+
+    Q: 
 
 ]]
 -- // Keybinding \\ --
@@ -48,11 +50,9 @@ function checkState()
     Hum = LC.Humanoid
     pcall(function()
         if Status then
-            print("Its on.")
             HighlightOutline_ON:Play()
             HighlightFill_ON:Play()
         else
-            print("Its off.")
             HighlightOutline_OFF:Play()
             HighlightFill_OFF:Play()
         end
