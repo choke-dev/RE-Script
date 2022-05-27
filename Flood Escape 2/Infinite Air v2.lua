@@ -71,6 +71,7 @@ function refreshTweens()
     HighlightFill_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {FillTransparency = 1})
 end
 
+-- // Main \\ --
 local keybindHandler = function(name, inputState)
     if inputState ~= Enum.UserInputState.Begin then return end
 
