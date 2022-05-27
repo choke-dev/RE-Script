@@ -94,16 +94,7 @@ end
 LP.CharacterAdded:Connect(function(char)
     if char.Name ~= LP.Name then return end
     LC = LP.Character
-    Hum = LC:WaitForChild("Humanoid")
     Status = false -- just incase if the localplayer exceeds the time limit and the game forces them to respawn
-    InfiniteAir = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-        if not Status then return end
-        Hum.Health = 100
-    end)
-    HumanoidDied_Event = Hum.Died:Connect(function()
-        InfiniteAir:Disconnect()
-        HumanoidDied_Event:Disconnect()
-    end)
     local TEMPHighlight_Status = Instance.new("Highlight", LC)
     TEMPHighlight_Status.FillTransparency = 1
     TEMPHighlight_Status.FillColor = ColorStatus_ON 
@@ -112,13 +103,6 @@ LP.CharacterAdded:Connect(function(char)
     Highlight_Status = TEMPHighlight_Status
     refreshTweens()
 end)
-
--- // Player Died Event \\ --
-HumanoidDied_Event = Hum.Died:Connect(function()
-    InfiniteAir:Disconnect()
-    HumanoidDied_Event:Disconnect()
-end)
-
 
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, getgenv().FE2_InfAirBind)
