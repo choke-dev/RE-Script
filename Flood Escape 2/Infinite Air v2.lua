@@ -1,8 +1,10 @@
 --[[
 
-    faq:
-    Q: whats new with inf air v2??
-    A: this just replaces the forcefield thing with roblox's new highlight class
+    FAQ:
+    Q: What's new with Infinite Air V2?
+    A: New Features
+        ├ Dosen't spam the "You've drowned" alert anymore.
+        └ Sexy new Tween Animations.
 
 ]]
 -- // Keybinding \\ --
@@ -12,8 +14,9 @@ end
 
 -- // Services \\ --
 local FE2Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/FE2_Library.lua"))()
+local MainScript = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts["CL_MAIN_GameScript"])
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 local ContextActionService = game:GetService("ContextActionService")
 
 -- // References \\ --
@@ -22,82 +25,104 @@ local LC = LP.Character
 local Hum = LC:WaitForChild("Humanoid")
 
 -- // Variables \\ --
-local InfiniteAirEvent
-local HumDied
-local InfiniteAir = false
-local InfAirStatus
-local clron = Color3.new(0, 1, 0.5019607843137255)
-local clroff = Color3.new(1, 0.4745098039215686, 0.4745098039215686)
+local InfiniteAir
+local HumanoidDied_Event
+local Status = false
+local Highlight_Status
+local ColorStatus_ON = Color3.new(0, 1, 0.6666666666666667)
+local ColorStatusALT_ON = Color3.new(0, 1, 0.4666666666666667)
+if not getgenv().OLD_takeAir then
+    getgenv().OLD_takeAir = MainScript.takeAir
+    FE2Lib.newAlert("✅ Saved old function!", Color3.new(0, 1, 0.533333), 5)
+end
 
-local StatusIndicator = Instance.new("Highlight", LC)
-StatusIndicator.FillTransparency = 1
-StatusIndicator.OutlineColor = clroff
-InfAirStatus = StatusIndicator
+-- // Highlighting \\ --
+local TEMPHighlight_Status = Instance.new("Highlight", LC)
+TEMPHighlight_Status.FillTransparency = 1
+TEMPHighlight_Status.FillColor = ColorStatus_ON 
+TEMPHighlight_Status.OutlineTransparency = 1
+TEMPHighlight_Status.OutlineColor = ColorStatusALT_ON
+Highlight_Status = TEMPHighlight_Status
+
+-- // Tweens \\ --
+local HighlightOutline_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 0})
+local HighlightOutline_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 1})
+local HighlightFill_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,-1,true,0), {FillTransparency = 0.65})
+local HighlightFill_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {FillTransparency = 1})
 
 -- // Functions \\ --
-local function checkState()
+function checkState()
     LC = LP.Character
     Hum = LC.Humanoid
     pcall(function()
-        if InfiniteAir then
-            InfAirStatus.OutlineColor = clron
+        if Status then
+            HighlightOutline_ON:Play()
+            HighlightFill_ON:Play()
         else
-            InfAirStatus.OutlineColor = clroff
+            HighlightOutline_OFF:Play()
+            HighlightFill_OFF:Play()
         end
     end)
+end
+
+function refreshTweens()
+    HighlightOutline_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 0})
+    HighlightOutline_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 1})
+    HighlightFill_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,-1,true,0), {FillTransparency = 0.65})
+    HighlightFill_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {FillTransparency = 1})
 end
 
 local keybindHandler = function(name, inputState)
     if inputState ~= Enum.UserInputState.Begin then return end
 
-    if InfiniteAir then
-        InfiniteAir = false
+    if Status then
+        Status = false
+        FE2Lib.toggleAir(Status)
+        MainScript.takeAir = getgenv().OLD_takeAir
         checkState()
     else
-        InfiniteAir = true
+        Status = true
+        FE2Lib.toggleAir(Status)
+        MainScript.takeAir = function(airvalue)
+            return 0
+        end
         checkState()
     end
 end
 
--- // Main \\ --
-
-InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-    if not InfiniteAir then return end
-    Hum.Health = 100
-end)
-
+-- // Player Respawn Event \\ --
 LP.CharacterAdded:Connect(function(char)
     if char.Name ~= LP.Name then return end
     LC = LP.Character
     Hum = LC:WaitForChild("Humanoid")
-
-    local StatusIndicator = Instance.new("Highlight", LC)
-    StatusIndicator.FillTransparency = 1
-    StatusIndicator.OutlineColor = clroff
-    InfAirStatus = StatusIndicator
-
-    InfiniteAir = false -- just incase if the localplayer exceeds the time limit and the game forces them to respawn
-    InfiniteAirEvent = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-        if not InfiniteAir then return end
+    Status = false -- just incase if the localplayer exceeds the time limit and the game forces them to respawn
+    InfiniteAir = Hum:GetPropertyChangedSignal("Health"):Connect(function()
+        if not Status then return end
         Hum.Health = 100
     end)
-
-    HumDied = Hum.Died:Connect(function()
-        InfiniteAirEvent:Disconnect()
-        HumDied:Disconnect()
+    HumanoidDied_Event = Hum.Died:Connect(function()
+        InfiniteAir:Disconnect()
+        HumanoidDied_Event:Disconnect()
     end)
+    local TEMPHighlight_Status = Instance.new("Highlight", LC)
+    TEMPHighlight_Status.FillTransparency = 1
+    TEMPHighlight_Status.FillColor = ColorStatus_ON 
+    TEMPHighlight_Status.OutlineTransparency = 1
+    TEMPHighlight_Status.OutlineColor = ColorStatusALT_ON
+    Highlight_Status = TEMPHighlight_Status
+    refreshTweens()
 end)
 
--- // Handler when the player dies \\ --
-HumDied = Hum.Died:Connect(function()
-    InfiniteAirEvent:Disconnect()
-    HumDied:Disconnect()
+-- // Player Died Event \\ --
+HumanoidDied_Event = Hum.Died:Connect(function()
+    InfiniteAir:Disconnect()
+    HumanoidDied_Event:Disconnect()
 end)
 
 
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, getgenv().FE2_InfAirBind)
 
-FE2Lib.newAlert("Made by choke#3588 with ❤", Color3.new(0,1,0), 8)
+--FE2Lib.newAlert("Made by choke#3588 with ❤", Color3.new(0,1,0), 8)
 FE2Lib.newAlert("Press [ "..getgenv().FE2_InfAirBind.Name.." ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
 FE2Lib.newAlert("FE2 Infinite Air Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
