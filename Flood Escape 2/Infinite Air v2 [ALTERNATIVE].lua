@@ -60,6 +60,13 @@ function checkState()
     end)
 end
 
+function refreshTweens()
+    HighlightOutline_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 0})
+    HighlightOutline_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 1})
+    HighlightFill_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,-1,true,0), {FillTransparency = 0.65})
+    HighlightFill_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {FillTransparency = 1})
+end
+
 local keybindHandler = function(name, inputState)
     if inputState ~= Enum.UserInputState.Begin then return end
 
@@ -98,10 +105,7 @@ LP.CharacterAdded:Connect(function(char)
     TEMPHighlight_Status.OutlineTransparency = 1
     TEMPHighlight_Status.OutlineColor = ColorStatusALT_ON
     Highlight_Status = TEMPHighlight_Status
-    HighlightOutline_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 0})
-    HighlightOutline_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {OutlineTransparency = 1})
-    HighlightFill_ON = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,-1,true,0), {FillTransparency = 0.65})
-    HighlightFill_OFF = TweenService:Create(Highlight_Status, TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.InOut,0,false,0), {FillTransparency = 1})
+    refreshTweens()
 end)
 
 -- // Player Died Event \\ --
@@ -114,6 +118,6 @@ end)
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, getgenv().FE2_InfAirBind)
 
-FE2Lib.newAlert("Made by choke#3588 with ❤", Color3.new(0,1,0), 8)
+--FE2Lib.newAlert("Made by choke#3588 with ❤", Color3.new(0,1,0), 8)
 FE2Lib.newAlert("Press [ "..getgenv().FE2_InfAirBind.Name.." ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
 FE2Lib.newAlert("FE2 Infinite Air Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
