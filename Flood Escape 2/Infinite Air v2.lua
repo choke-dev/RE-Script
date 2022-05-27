@@ -122,6 +122,5 @@ end)
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, getgenv().FE2_InfAirBind)
 
---FE2Lib.newAlert("Made by choke#3588 with ❤", Color3.new(0,1,0), 8)
 FE2Lib.newAlert("Press [ "..getgenv().FE2_InfAirBind.Name.." ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
 FE2Lib.newAlert("FE2 Infinite Air Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
