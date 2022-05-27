@@ -14,6 +14,7 @@ end
 
 -- // Services \\ --
 local FE2Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/FE2_Library.lua"))()
+local MainScript = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts["CL_MAIN_GameScript"])
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local ContextActionService = game:GetService("ContextActionService")
@@ -30,6 +31,10 @@ local Status = false
 local Highlight_Status
 local ColorStatus_ON = Color3.new(0, 1, 0.6666666666666667)
 local ColorStatusALT_ON = Color3.new(0, 1, 0.4666666666666667)
+if not getgenv().OLD_takeAir then
+    getgenv().OLD_takeAir = MainScript.takeAir
+    FE2Lib.newAlert("✅ Saved old function!", Color3.new(0, 1, 0.533333), 5)
+end
 
 -- // Highlighting \\ --
 local TEMPHighlight_Status = Instance.new("Highlight", LC)
@@ -72,18 +77,18 @@ local keybindHandler = function(name, inputState)
 
     if Status then
         Status = false
+        FE2Lib.toggleAir(Status)
+        MainScript.takeAir = getgenv().OLD_takeAir
         checkState()
     else
         Status = true
+        FE2Lib.toggleAir(Status)
+        MainScript.takeAir = function(airvalue)
+            return 0
+        end
         checkState()
     end
 end
-
--- // Main \\ --
-InfiniteAir = Hum:GetPropertyChangedSignal("Health"):Connect(function()
-    if not Status then return end
-    Hum.Health = 100
-end)
 
 -- // Player Respawn Event \\ --
 LP.CharacterAdded:Connect(function(char)
