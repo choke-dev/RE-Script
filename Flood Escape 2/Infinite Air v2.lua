@@ -33,7 +33,6 @@ local ColorStatus_ON = Color3.new(0, 1, 0.6666666666666667)
 local ColorStatusALT_ON = Color3.new(0, 1, 0.4666666666666667)
 if not getgenv().OLD_takeAir then
     getgenv().OLD_takeAir = MainScript.takeAir
-    FE2Lib.newAlert("✅ Saved old function!", Color3.new(0, 1, 0.533333), 5)
 end
 
 -- // Highlighting \\ --
