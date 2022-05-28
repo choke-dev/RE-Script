@@ -84,6 +84,6 @@ end)
 -- // Keybinding \\ --
 ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, Enum.KeyCode.Q)
 
-FE2Lib.newAlert("Made by choke#3588 with ❤", Color3.new(0,1,0), 8)
+FE2Lib.newAlert("⚠ This version is deprecated.", Color3.new(1, 0.301960, 0.301960), 8)
 FE2Lib.newAlert("Press [ Q ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
-FE2Lib.newAlert("FE2 Infinite Air Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
+FE2Lib.newAlert("FE2 Infinite Air v1 Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
