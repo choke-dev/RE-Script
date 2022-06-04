@@ -12,8 +12,6 @@ local FakeHumanoid = Instance.new("Humanoid")
 New.__index = newcclosure(function(self, index)
     if index == "WalkSpeed" then
         return 20
-    elseif index == "JumpPower" then
-        return 50
     elseif index == "Changed" then
         return Meta.__index(FakeHumanoid, "Changed")
     else
@@ -32,7 +30,9 @@ end)
 local HookChar = function(Char)
     if Char then
         setrawmetatable(Char:WaitForChild("Humanoid"), New)
+        print("Set new character to metatable.")
     end
 end
 HookChar(Me.Character)
 Me.CharacterAdded:Connect(HookChar)
+print("Loaded Bypass")

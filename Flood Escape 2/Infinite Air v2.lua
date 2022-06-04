@@ -109,3 +109,5 @@ ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, getgen
 
 FE2Lib.newAlert("Press [ "..getgenv().FE2_InfAirBind.Name.." ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
 FE2Lib.newAlert("FE2 Infinite Air v2 Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()  
