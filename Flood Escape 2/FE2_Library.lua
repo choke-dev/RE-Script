@@ -1,3 +1,29 @@
+--[[
+
+	DOCUMENTATION
+
+	newAlert Parameters:
+	├ text - The text to display in the alert
+	├ color - The color of the alert
+	├ textime - Time in seconds before the alert disappears.
+	├ Event Parameters:
+	│	├ "event" - Creates a flashing text on top of the HUD.
+	│	└ "rainbow" - Creates an animated rainbow text alert on top of the HUD.
+	│
+	└ autoLocalize - Automatically localize the text.
+
+	toggleAir Parameters:
+	├ true - Prevents the player from dying when the oxygen bar reaches 0%.
+	└ false - Allows the player to die when the oxygen bar reaches 0%.
+
+	newNotification Parameters:
+	├ "title" - The title of the notification.
+	├ "description" - The description of the notification.
+	├ "img" - The image of the notification.
+	└ "func" - The function to be called when the "Confirm" button is clicked.
+	
+]]
+
 -- // Services \\ --
 local RS = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
@@ -22,25 +48,7 @@ function module.toggleAir(status:boolean)
 end
 
 function module.newNotification(title, description, img, func)
-	local TEMP_Title = title or "newNotification Guide"
-	local TEMP_Description = description or "newNotification(Title <string>, Description <string>, Image <number>, <Function to run when \"Confirm\" is clicked>)"
-	NotificationEvent:Fire(TEMP_Description, TEMP_Title, func, img)
+	NotificationEvent:Fire(description, title, func, img)
 end
 
 return module
-
---[[
-
-	what the last 2 parameters do:
-	event is just either "event" or "rainbow"
-	├ rainbow is self explanatory
-	└ event makes a flashing text between the color you chose and red just above the hud
-
-	autoLocalize is a boolean that will automatically localize the text
-	└ true will automatically localize the text
-	└ false will not localize the text (default)
-
-	textime is a number range that will determine how long the text will stay on screen
-
-	( i am bad at explaining things :> )
-]]
