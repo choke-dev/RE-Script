@@ -21,8 +21,10 @@ function module.toggleAir(status:boolean)
 	end
 end
 
-function module.newNotification(title, description, func, img)
-	NotificationEvent:Fire(description, title, func, img)
+function module.newNotification(title, description, img, func)
+	local TEMP_Title = title or "newNotification Guide"
+	local TEMP_Description = description or "newNotification(Title <string>, Description <string>, Image <number>, <Function to run when \"Confirm\" is clicked>)"
+	NotificationEvent:Fire(TEMP_Description, TEMP_Title, func, img)
 end
 
 return module
