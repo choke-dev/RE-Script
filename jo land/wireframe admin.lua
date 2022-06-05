@@ -1,8 +1,19 @@
 local Players = game:GetService("Players")
 local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-local currentPlayer
+local colorRed = Color3.new(1,0.3294117647058824,0.3294117647058824)
+local colorGreen = Color3.new(0.3607843137254902,1,0.596078431372549)
+local Prefix = "!"
 
-function makeMsg(msg, clr)
+function modifyPlayerHealth(playerName, health)
+    task.spawn(function()
+        repeat
+            game:GetService("ReplicatedStorage").dremote:FireServer(Players[playerName].Character.Humanoid, 2, "flamethrower")
+            task.wait()
+        until Players[playerName].Character.Humanoid.Health == health
+    end)
+end
+
+function newMessage(msg, clr)
     game.StarterGui:SetCore("ChatMakeSystemMessage", { 
         Text = "[ WIREFRAME ADMIN ] "..msg, 
         Color = clr, 
@@ -13,65 +24,76 @@ function makeMsg(msg, clr)
 end
 
 function findPlayer(string)
-    local lower = string:lower()
-    for _, plr in next, game.Players:GetPlayers() do
-        if plr.Name:sub(1,#string):lower() == lower then
+    local lowercase = string:lower()
+    local result
+    for _, plr in next, Players:GetPlayers() do
+        if plr.Name:sub(1,#string):lower() == lowercase then
+            result = plr
             return plr
         end
     end
+    if not result then
+        return newMessage("Player not found!", colorRed)
+    end
 end
 
-Players.LocalPlayer.Chatted:Connect(function(msg)
-    local args = msg:split(" ")
-    if args[1] == "/kill" then
-        currentPlayer = findPlayer(args[2])
-        local args = {
-            [1] = Players[currentPlayer.Name].Character.Humanoid,
-            [2] = 999999999999
-        }
-        
-        game:GetService("ReplicatedStorage").dremote:FireServer(unpack(args))
-        makeMsg("Killed "..currentPlayer.Name..".", Color3.new(1,0.3294117647058824,0.3294117647058824))
-    elseif args[1] == "/god" then
-        currentPlayer = findPlayer(args[2])
-        local args = {
-            [1] = Players[currentPlayer.Name].Character.Humanoid,
-            [2] = -999999999
-        }
-        
-        game:GetService("ReplicatedStorage").dremote:FireServer(unpack(args))
-        makeMsg("Godded "..currentPlayer.Name..".", Color3.new(0.3607843137254902,1,0.596078431372549))
-    elseif args[1] == "/ungod" then
-        currentPlayer = findPlayer(args[2])
-        local args = {
-            [1] = Players[currentPlayer.Name].Character.Humanoid,
-            [2] = 999999999
-        }
-        
-        game:GetService("ReplicatedStorage").dremote:FireServer(unpack(args))
-        makeMsg("Ungodded "..currentPlayer.Name..".", Color3.new(1,0.3294117647058824,0.3294117647058824))
-    elseif args[1] == "/heal" then
-        currentPlayer = findPlayer(args[2])
-        local healthToAdd = 100 - Players[currentPlayer.Name].Character.Humanoid.Health
-        local args = {
-            [1] = Players[currentPlayer.Name].Character.Humanoid,
-            [2] = healthToAdd
-        }
-        
-        game:GetService("ReplicatedStorage").dremote:FireServer(unpack(args))
-        makeMsg("Gave "..healthToTake.." health to "..currentPlayer.Name..".", Color3.new(0.3607843137254902,1,0.596078431372549))
-    elseif args[1] == "/hurt" then
-        currentPlayer = findPlayer(args[2])
-        local healthToTake = args[3] or 10
-        local args = {
-            [1] = Players[currentPlayer.Name].Character.Humanoid,
-            [2] = healthToTake
-        }
-        
-        game:GetService("ReplicatedStorage").dremote:FireServer(unpack(args))
-        makeMsg("Took "..healthToTake.." health away from "..currentPlayer.Name..".", Color3.new(1,0.3294117647058824,0.3294117647058824))
+function checkPrefix(message)
+    if message:sub(1,1) == Prefix then
+        return true
+    end
+end
+
+Commands = {}
+
+-- // Commands \\ --
+Commands.kill = function(...)
+    local args = {...}
+    local Target = findPlayer(args[1])
+    modifyPlayerHealth(Target.Name, 0)
+    newMessage("Killed "..Target.Name..".", colorRed)
+end
+
+Commands.god = function(...)
+    local args = {...}
+    local Target = findPlayer(args[1])
+    modifyPlayerHealth(Target.Name, 100)
+    newMessage(Target.Name.." is now immortal.", colorGreen)
+end
+
+Commands.ungod = function(...)
+    local args = {...}
+    local Target = findPlayer(args[1])
+    modifyPlayerHealth(Target.Name, 1)
+    newMessage(Target.Name.." is no longer immortal.", colorRed)
+end
+
+Commands.heal = function(...)
+    local args = {...}
+    local Target = findPlayer(args[1])
+    local HealthToAdd = 100 - tonumber(args[2])
+    modifyPlayerHealth(Target.Name, -HealthToAdd)
+    newMessage("Gave "..HealthToAdd.." health to "..Target.Name..".", colorGreen)
+end
+
+Commands.hurt = function(...)
+    local args = {...}
+    local Target = findPlayer(args[1])
+    local HealthToTake = 100 - tonumber(args[2])
+    modifyPlayerHealth(Target.Name, HealthToTake)
+    newMessage("Took "..HealthToTake.." health from "..Target.Name..".", colorRed)
+end
+newMessage("Loaded "..#Commands.." commands.", colorGreen)
+
+-- // Command Handler \\ --
+Players.LocalPlayer.Chatted:Connect(function(message)
+    if not checkPrefix(message) then return end
+
+    local args = string.split(message, " ")
+    local RequestedCommand = args[1]:sub(2)
+
+    if Commands[RequestedCommand] then
+        Commands[RequestedCommand](table.concat(args, ' ', 2))
+    else
+        return newMessage("\""..RequestedCommand.."\" is not a valid command.", colorRed)
     end
 end)
-
-makeMsg("Initialized in \""..gameName.."\".", Color3.new(0.3607843137254902,1,0.596078431372549))
-makeMsg("Loaded 5 Game-Specific Commands.", Color3.new(0.3607843137254902,1,0.596078431372549))
