@@ -88,11 +88,12 @@ newMessage("Loaded "..#Commands.." commands.", colorGreen)
 Players.LocalPlayer.Chatted:Connect(function(message)
     if not checkPrefix(message) then return end
 
-    local args = string.split(message, " ")
+    local raw_args = string.split(message, " ")
+    local args = table.concat(raw_args, ' ', 2)
     local RequestedCommand = args[1]:sub(2)
 
     if Commands[RequestedCommand] then
-        Commands[RequestedCommand](table.concat(args, ' ', 2))
+        Commands[RequestedCommand](args)
     else
         return newMessage("\""..RequestedCommand.."\" is not a valid command.", colorRed)
     end
