@@ -14,7 +14,16 @@ end
 
 -- // Services \\ --
 local FE2Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Flood%20Escape%202/FE2_Library.lua"))()
-local MainScript = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts["CL_MAIN_GameScript"])
+local MainScript
+local status = pcall(function()
+    MainScript = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts["CL_MAIN_GameScript"])
+end)
+if not status then
+    FE2Lib.newAlert("⚠ An error occured.", Color3.new(1,0.3294117647058824,0.3294117647058824))
+    FE2Lib.newAlert("")
+    FE2Lib.newAlert("Are you running the script at autoexec?", Color3.new(1,0.3294117647058824,0.3294117647058824))
+    return FE2Lib.newAlert("If so, please spawn first and re-execute the script.", Color3.new(1,0.3294117647058824,0.3294117647058824))
+end
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local ContextActionService = game:GetService("ContextActionService")
@@ -109,5 +118,3 @@ ContextActionService:BindAction("InfiniteAirBind", keybindHandler, false, getgen
 
 FE2Lib.newAlert("Press [ "..getgenv().FE2_InfAirBind.Name.." ] to toggle.", Color3.new(0.188235, 0.447058, 1), 8)
 FE2Lib.newAlert("FE2 Infinite Air v2 Loaded.", Color3.new(0,1,0), 8.001, "rainbow")
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()  
