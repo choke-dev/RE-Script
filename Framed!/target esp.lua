@@ -17,7 +17,7 @@ local CollectionService = game:GetService("CollectionService")
 local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/choke-dev/RE-Script/main/Dependencies/ESP%20Module.lua",true))()
 
 -- // Variables \\ --
-local Target = tostring(workspace.Events.GetTargetLocal:InvokeServer())
+local Target
 
 -- // Functions \\ --
 local function highlightPlayer(playerName)
@@ -31,12 +31,11 @@ local function scanForNewTarget()
 		if Target ~= nil then
 			highlightPlayer(tostring(Target))
 			synlog:success("Found new target, Displaying...")
-			local DiedTrigger = Players[tostring(Target)].Character.Humanoid.HealthChanged:Connect(function(newHealth)
-				if newHealth == 0 then
-					synlog:success("Target died, Scanning for new target...")
-					scanForNewTarget()
-					DiedTrigger:Disconnect()
-				end
+			local DiedTrigger = Players[tostring(Target)].Character.Humanoid.Died:Connect(function()
+				synlog:success("Target died, Scanning for new target...")
+				scanForNewTarget()
+				DiedTrigger:Disconnect()
+		end
 			end)
 			table.insert(getgenv().Connections, DiedTrigger)
 		else
