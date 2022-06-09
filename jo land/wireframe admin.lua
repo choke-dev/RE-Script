@@ -7,8 +7,8 @@ local Prefix = "!"
 
 -- // Functions \\ --
 function killPlayer(playerName)
-    for i = 1, 50 do
-        game:GetService("ReplicatedStorage").dremote:FireServer(Players[playerName].Character.Humanoid, 2, "flamethrower")
+    for i = 1, 100 do
+        game:GetService("ReplicatedStorage").dremote:FireServer(Players[playerName].Character.Humanoid, 1, "flamethrower")
     end
 end
 
@@ -26,7 +26,6 @@ function findPlayer(string)
     local lowercase = string:lower()
     local result
     for _, plr in next, Players:GetPlayers() do
-        print(plr.Name:lower().." attempting to match with "..lowercase)
         if plr.Name:sub(1,#string):lower() == lowercase then
             result = plr
             return plr
@@ -52,6 +51,7 @@ Commands.kill = function(...)
     killPlayer(Target.Name)
     newMessage("Killed "..Target.Name..".", colorRed)
 end
+-- // Command Loaded Notification \\ --
 for i,v in pairs(Commands) do
     commandCount += 1
 end
@@ -71,8 +71,6 @@ Players.LocalPlayer.Chatted:Connect(function(message)
     end
 
     if Commands[RequestedCommand] then
-        print("Running Command: "..RequestedCommand)
-        print("Arguments: "..table.concat(args, ", "))
         Commands[RequestedCommand](args)
         table.clear(args)
     else
