@@ -3,4 +3,4 @@ Welcome! This repository is committed to archiving the scripts that may be usefu
 
 Maintained by choke-dev / choke#3588
 
-fuck you hoontee nigga
+fuck you hunter L chambers nigga
