@@ -35,11 +35,10 @@ local function scanForNewTarget()
 				synlog:success("Target died, Scanning for new target...")
 				scanForNewTarget()
 				DiedTrigger:Disconnect()
-		end
 			end)
 			table.insert(getgenv().Connections, DiedTrigger)
 		else
-			synlog:error("Didn't find a target.")
+			synlog:error("This isn't supposed to happen, but it did.\nTarget's character wasn't found.")
 		end
 	end)
 end
