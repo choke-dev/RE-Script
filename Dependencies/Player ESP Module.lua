@@ -105,15 +105,18 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
                         BoxQuad.PointB = Vector2.new(Left.X, Top.Y)
                         BoxQuad.PointC = Vector2.new(Left.X, Bottom.Y)
                         BoxQuad.PointD = Vector2.new(Right.X, Bottom.Y)
-
+                        nameText.Visible = true
                         BoxQuad.Visible = true
-                    else 
+                    else
+                        nameText.Visible = false
                         BoxQuad.Visible = false
                     end
-                else 
+                else
+                    nameText.Visible = false
                     BoxQuad.Visible = false
                 end
             else
+                nameText.Visible = false
                 BoxQuad.Visible = false
                 if game.Players:FindFirstChild(plr.Name) == nil then
                     c:Disconnect()
