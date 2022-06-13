@@ -36,7 +36,6 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
     BoxQuad.PointB = Vector2.new(0, 0)
     BoxQuad.PointC = Vector2.new(0, 0)
     BoxQuad.PointD = Vector2.new(0, 0)
-    BoxQuad.Color = Color3.fromRGB(255, 255, 255)
     BoxQuad.Thickness = 1
     BoxQuad.Transparency = 1
     getgenv().PlayerESPs[plr.Name] = {BoxQuad, nameText, true}
