@@ -13,6 +13,7 @@ local function WTS(part)
 end
 
 function module.CreateESP(playerName:string, clr:Color3, txt:string)
+    if Players[playerName] == nil then return error("Player ESP Module: Player not found!") end
     local plr = Players[playerName]
     local color = clr or Color3.new(1,1,1)
     local text = txt or plr.Name
@@ -38,8 +39,8 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
     Box.Transparency = 1
 
     local function Update()
-        local c
-        c = game:GetService("RunService").RenderStepped:Connect(function()
+        local renderstepconnection
+        renderstepconnection = game:GetService("RunService").RenderStepped:Connect(function()
             local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
             name.Text = "["..math.round(Distance).."]\n"..text
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character.PrimaryPart ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
@@ -117,7 +118,7 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
                 end
             end
         end)
-        getgenv().PlayerESPs[plr.Name] = {Box, name, c}
+        getgenv().PlayerESPs[plr.Name] = {Box, name, renderstepconnection}
     end
     
     coroutine.wrap(Update)()
