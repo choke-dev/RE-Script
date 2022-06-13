@@ -10,11 +10,14 @@ local Mouse = LP:GetMouse()
 local module = {}
 
 local function WTS(part)
-    local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
-    return Vector2.new(screen.x, screen.y)
+    pcall(function()
+            local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
+            return Vector2.new(screen.x, screen.y)
+    end)
 end
 
 function module.CreateESP(playerName:string, clr:Color3, txt:string)
+    pcall(function()
     if Players[playerName] == nil then return end
     local plr = Players[playerName]
     local color = clr or Color3.new(1,1,1)
@@ -125,14 +128,17 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
         end)
     end
     coroutine.wrap(Update)()
+    end)
 end
 
 function module.RemoveESP(playerName:string)
+    pcall(function()
     getgenv().PlayerESPs[playerName][3] = nil
     getgenv().PlayerESPs[playerName][2]:Remove()
     getgenv().PlayerESPs[playerName][1]:Remove()
     getgenv().PlayerESPs[playerName][2] = nil
     getgenv().PlayerESPs[playerName][1] = nil
+    end)
 end
 
 return module
