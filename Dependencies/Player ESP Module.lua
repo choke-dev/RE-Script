@@ -3,6 +3,12 @@ if not getgenv().PlayerESPs then
     print("Created global table.")
 end
 
+-- for some reason this module wont work correctly unless i do this terribleness >:(
+local tempval = HttpService:GenerateGUID(false)
+getgenv().PlayerESPs[tempval] = {tempval}
+getgenv().PlayerESPs[tempval] = nil
+tempval = nil
+
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer
 local Camera = game:GetService("Workspace").CurrentCamera
