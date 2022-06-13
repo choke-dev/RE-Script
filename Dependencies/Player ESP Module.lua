@@ -9,8 +9,10 @@ local function WTS(part)
     return Vector2.new(screen.x, screen.y)
 end
 
-function module.CreateESP(playerName:string, color:Color3, text:string)
+function module.CreateESP(playerName:string, clr:Color3, txt:string)
     local plr = Players[playerName]
+    local color = clr or Color3.new(1,1,1)
+    local text = txt or plr.Name
     local Box = Drawing.new("Quad")
     local name = Drawing.new("Text")
     -- // Text Settings \\ --
