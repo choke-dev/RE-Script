@@ -1,4 +1,6 @@
-getgenv().PlayerESPs = {}
+if (next(getgenv().PlayerESPs) == nil) then
+    getgenv().PlayerESPs = {}
+end
 
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer
