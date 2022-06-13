@@ -2,9 +2,9 @@ if not getgenv().PlayerESPs then
     getgenv().PlayerESPs = {}
     print("Created global table.")
 end
-
+local HS = game:GetService("HttpService")
 -- for some reason this module wont work correctly unless i do this terribleness >:(
-local tempval = HttpService:GenerateGUID(false)
+local tempval = HS:GenerateGUID(false)
 getgenv().PlayerESPs[tempval] = {tempval}
 getgenv().PlayerESPs[tempval] = nil
 tempval = nil
