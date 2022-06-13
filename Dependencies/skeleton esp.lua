@@ -1,15 +1,15 @@
 local Player = game:GetService("Players").LocalPlayer
 local Mouse = Player:GetMouse()
-local Camera = game:GetService("Workspace").CurrentCamera
+local Camera = game:GetService("Workspace").CurrentCamera   
 
 local function DrawLine()
     local l = Drawing.new("Line")
     l.Visible = false
     l.From = Vector2.new(0, 0)
     l.To = Vector2.new(1, 1)
-    l.Color = Color3.fromRGB(112, 112, 112)
-    l.Thickness = 0.6
-    l.Transparency = 0.7
+    l.Color = Color3.fromRGB(255, 255, 255)
+    l.Thickness = 0.8
+    l.Transparency = 0.9
     return l
 end
 
