@@ -2,12 +2,6 @@ if not getgenv().PlayerESPs then
     getgenv().PlayerESPs = {}
     print("Created global table.")
 end
-local HS = game:GetService("HttpService")
--- for some reason this module wont work correctly unless i do this terribleness >:(
-local tempval = HS:GenerateGUID(false)
-getgenv().PlayerESPs[tempval] = {tempval}
-getgenv().PlayerESPs[tempval] = nil
-tempval = nil
 
 local Players = game:GetService("Players")
 local LP = Players.LocalPlayer
@@ -46,9 +40,10 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
     BoxQuad.Color = Color3.fromRGB(255, 255, 255)
     BoxQuad.Thickness = 1
     BoxQuad.Transparency = 1
-
+    getgenv().PlayerESPs[plr.Name] = {BoxQuad, nameText, true}
     local function Update()
         renderstepconnection = game:GetService("RunService").RenderStepped:Connect(function()
+            if not getgenv().PlayerESPs[plr.Name][3] then return renderstepconnection:Disconnect() end
             local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
             nameText.Text = "["..math.round(Distance).."]\n"..text
             nameText.Position = WTS(plr.Character:FindFirstChild("Head"))
@@ -127,20 +122,16 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
                 end
             end
         end)
-        print(renderstepconnection)
     end
-    print(renderstepconnection)
-    getgenv().PlayerESPs[plr.Name] = {BoxQuad, nameText, renderstepconnection}
     coroutine.wrap(Update)()
 end
 
 function module.RemoveESP(playerName:string)
     print("Attempting to disable...")
-    getgenv().PlayerESPs[playerName][3]:Disconnect()
+    getgenv().PlayerESPs[playerName][3] = nil
     getgenv().PlayerESPs[playerName][2]:Remove()
     getgenv().PlayerESPs[playerName][1]:Remove()
     print("Setting values to nil...")
-    getgenv().PlayerESPs[playerName][3] = nil
     getgenv().PlayerESPs[playerName][2] = nil
     getgenv().PlayerESPs[playerName][1] = nil
 end
