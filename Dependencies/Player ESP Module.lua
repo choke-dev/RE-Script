@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local module = {}
 
 function module.CreateESP(playerName:string, color:Color3)
-    local plr = Players[player]
+    local plr = Players[playerName]
     local Box = Drawing.new("Quad")
     local name = Drawing.new("Text")
     -- // Text Settings \\ --
