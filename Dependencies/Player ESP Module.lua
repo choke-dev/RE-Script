@@ -1,5 +1,6 @@
 if not getgenv().PlayerESPs then
     getgenv().PlayerESPs = {}
+    print("Created global table.")
 end
 
 local Players = game:GetService("Players")
