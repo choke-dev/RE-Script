@@ -122,6 +122,7 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
             end
         end)
     end
+    print(renderstepconnection)
     getgenv().PlayerESPs[plr.Name] = {BoxQuad, nameText, renderstepconnection}
     coroutine.wrap(Update)()
 end
