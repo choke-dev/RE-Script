@@ -1,4 +1,4 @@
-if (next(getgenv().PlayerESPs) == nil) then
+if (next(getgenv().PlayerESPs) == nil) or not getgenv().PlayerESPs then
     getgenv().PlayerESPs = {}
 end
 
