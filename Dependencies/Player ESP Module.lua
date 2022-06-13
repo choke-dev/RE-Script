@@ -1,6 +1,13 @@
 getgenv().PlayerESPs = {}
+
 local Players = game:GetService("Players")
+
 local module = {}
+
+local function WTS(part)
+    local screen = workspace.CurrentCamera:WorldToViewportPoint(part.Position)
+    return Vector2.new(screen.x, screen.y)
+end
 
 function module.CreateESP(playerName:string, color:Color3)
     local plr = Players[playerName]
