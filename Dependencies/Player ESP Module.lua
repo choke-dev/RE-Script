@@ -1,10 +1,11 @@
 getgenv().PlayerESPs = {}
+local Players = game:GetService("Players")
 local module = {}
 
-function module.CreateESP(plr, color)
+function module.CreateESP(playerName:string, color:Color3)
+    local plr = Players[player]
     local Box = Drawing.new("Quad")
     local name = Drawing.new("Text")
-    getgenv().PlayerESPs[plr.Name] = {Box, name}
     -- // Text Settings \\ --
     name.Text = "Initializing..."
     name.Color = color
@@ -104,13 +105,17 @@ function module.CreateESP(plr, color)
                 end
             end
         end)
+        getgenv().PlayerESPs[plr.Name] = {Box, name, c}
     end
+    
     coroutine.wrap(Update)()
 end
 
-function module.RemoveESP(plr)
-    getgenv().PlayerESPs[plr.Name][2]:Destroy()
-    getgenv().PlayerESPs[plr.Name][1]:Destroy()
+function module.RemoveESP(playerName:string)
+    getgenv().PlayerESPs[playerName][3]:Disconnect()
+    getgenv().PlayerESPs[playerName][3] = nil
+    getgenv().PlayerESPs[playerName][2]:Destroy()
+    getgenv().PlayerESPs[playerName][1]:Destroy()
 end
 
 return module
