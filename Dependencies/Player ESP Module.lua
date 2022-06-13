@@ -35,7 +35,7 @@ function module.CreateESP(playerName:string, color:Color3)
     local function Update()
         local c
         c = game:GetService("RunService").RenderStepped:Connect(function()
-            local Distance = (workspace.Camera.CFrame.Position - part.Position).Magnitude
+            local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
             name.Text = "["..math.round(Distance).."]\n"..text
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character.PrimaryPart ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
                 local pos, vis = Camera:WorldToViewportPoint(plr.Character.PrimaryPart.Position)
