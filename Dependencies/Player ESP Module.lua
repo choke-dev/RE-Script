@@ -43,6 +43,7 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
         renderstepconnection = game:GetService("RunService").RenderStepped:Connect(function()
             local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
             name.Text = "["..math.round(Distance).."]\n"..text
+            name.Position = WTS(plr.Character:FindFirstChild("Head"))
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character.PrimaryPart ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
                 local pos, vis = Camera:WorldToViewportPoint(plr.Character.PrimaryPart.Position)
                 if vis then 
@@ -118,9 +119,8 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
                 end
             end
         end)
-        getgenv().PlayerESPs[plr.Name] = {Box, name, renderstepconnection}
     end
-    
+    getgenv().PlayerESPs[plr.Name] = {Box, name, renderstepconnection}
     coroutine.wrap(Update)()
 end
 
