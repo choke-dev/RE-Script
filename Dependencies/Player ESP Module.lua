@@ -16,7 +16,7 @@ function module.CreateESP(playerName:string, color:Color3)
     -- // Text Settings \\ --
     name.Text = "Initializing..."
     name.Color = color
-    name.Position = WTS(part)
+    name.Position = WTS(plr.Character:FindFirstChild("Head"))
     name.Size = 20.0
     name.Outline = true
     name.Center = true
