@@ -40,8 +40,8 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
     BoxQuad.Thickness = 1
     BoxQuad.Transparency = 1
 
+    local renderstepconnection
     local function Update()
-        local renderstepconnection
         renderstepconnection = game:GetService("RunService").RenderStepped:Connect(function()
             local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
             nameText.Text = "["..math.round(Distance).."]\n"..text
