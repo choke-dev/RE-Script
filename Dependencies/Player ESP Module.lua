@@ -48,7 +48,7 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
             local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
             nameText.Text = "["..math.round(Distance).."]\n"..text
             nameText.Position = WTS(plr.Character:FindFirstChild("Head"))
-            if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character.PrimaryPart ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
+            if plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil and plr.Character.PrimaryPart ~= nil and plr.Character:FindFirstChild("Humanoid").Health > 0 then
                 local pos, vis = Camera:WorldToViewportPoint(plr.Character.PrimaryPart.Position)
                 if vis then 
                     local points = {}
