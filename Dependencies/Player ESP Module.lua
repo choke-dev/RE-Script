@@ -129,8 +129,8 @@ end
 function module.RemoveESP(playerName:string)
     getgenv().PlayerESPs[playerName][3]:Disconnect()
     getgenv().PlayerESPs[playerName][3] = nil
-    getgenv().PlayerESPs[playerName][2]:Destroy()
-    getgenv().PlayerESPs[playerName][1]:Destroy()
+    getgenv().PlayerESPs[playerName][2]:Remove()
+    getgenv().PlayerESPs[playerName][1]:Remove()
 end
 
 return module
