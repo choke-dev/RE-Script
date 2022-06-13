@@ -1,6 +1,9 @@
 getgenv().PlayerESPs = {}
 
 local Players = game:GetService("Players")
+local LP = Players.LocalPlayer
+local Camera = game:GetService("Workspace").CurrentCamera
+local Mouse = LP:GetMouse()
 
 local module = {}
 
