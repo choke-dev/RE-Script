@@ -1,6 +1,5 @@
 if not getgenv().PlayerESPs then
     getgenv().PlayerESPs = {}
-    print("Created global table.")
 end
 
 local Players = game:GetService("Players")
@@ -16,7 +15,7 @@ local function WTS(part)
 end
 
 function module.CreateESP(playerName:string, clr:Color3, txt:string)
-    if Players[playerName] == nil then return error("Player ESP Module: Player not found!") end
+    if Players[playerName] == nil then return end
     local plr = Players[playerName]
     local color = clr or Color3.new(1,1,1)
     local text = txt or plr.Name
@@ -127,11 +126,9 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
 end
 
 function module.RemoveESP(playerName:string)
-    print("Attempting to disable...")
     getgenv().PlayerESPs[playerName][3] = nil
     getgenv().PlayerESPs[playerName][2]:Remove()
     getgenv().PlayerESPs[playerName][1]:Remove()
-    print("Setting values to nil...")
     getgenv().PlayerESPs[playerName][2] = nil
     getgenv().PlayerESPs[playerName][1] = nil
 end
