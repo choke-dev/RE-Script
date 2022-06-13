@@ -1,3 +1,4 @@
+-- credits to https://v3rmillion.net/showthread.php?tid=1103054 for making this script, i just modified this version
 local Player = game:GetService("Players").LocalPlayer
 local Mouse = Player:GetMouse()
 local Camera = game:GetService("Workspace").CurrentCamera   
