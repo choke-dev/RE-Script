@@ -17,33 +17,33 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
     local plr = Players[playerName]
     local color = clr or Color3.new(1,1,1)
     local text = txt or plr.Name
-    local Box = Drawing.new("Quad")
-    local name = Drawing.new("Text")
+    local BoxQuad = Drawing.new("Quad")
+    local nameText = Drawing.new("Text")
     -- // Text Settings \\ --
-    name.Text = "Initializing..."
-    name.Color = color
-    name.Position = WTS(plr.Character:FindFirstChild("Head"))
-    name.Size = 20.0
-    name.Outline = true
-    name.Center = true
-    name.Visible = true
+    nameText.Text = "Initializing..."
+    nameText.Color = color
+    nameText.Position = WTS(plr.Character:FindFirstChild("Head"))
+    nameText.Size = 20.0
+    nameText.Outline = true
+    nameText.Center = true
+    nameText.Visible = true
     -- // Box Settings \\ --
-    Box.Visible = false
-    Box.Color = color
-    Box.PointA = Vector2.new(0, 0)
-    Box.PointB = Vector2.new(0, 0)
-    Box.PointC = Vector2.new(0, 0)
-    Box.PointD = Vector2.new(0, 0)
-    Box.Color = Color3.fromRGB(255, 255, 255)
-    Box.Thickness = 1
-    Box.Transparency = 1
+    BoxQuad.Visible = false
+    BoxQuad.Color = color
+    BoxQuad.PointA = Vector2.new(0, 0)
+    BoxQuad.PointB = Vector2.new(0, 0)
+    BoxQuad.PointC = Vector2.new(0, 0)
+    BoxQuad.PointD = Vector2.new(0, 0)
+    BoxQuad.Color = Color3.fromRGB(255, 255, 255)
+    BoxQuad.Thickness = 1
+    BoxQuad.Transparency = 1
 
     local function Update()
         local renderstepconnection
         renderstepconnection = game:GetService("RunService").RenderStepped:Connect(function()
             local Distance = (workspace.Camera.CFrame.Position - plr.Character:FindFirstChild("Head").Position).Magnitude
-            name.Text = "["..math.round(Distance).."]\n"..text
-            name.Position = WTS(plr.Character:FindFirstChild("Head"))
+            nameText.Text = "["..math.round(Distance).."]\n"..text
+            nameText.Position = WTS(plr.Character:FindFirstChild("Head"))
             if plr.Character ~= nil and plr.Character:FindFirstChildOfClass("Humanoid") ~= nil and plr.Character.PrimaryPart ~= nil and plr.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
                 local pos, vis = Camera:WorldToViewportPoint(plr.Character.PrimaryPart.Position)
                 if vis then 
@@ -100,27 +100,27 @@ function module.CreateESP(playerName:string, clr:Color3, txt:string)
                     end
 
                     if Left ~= nil and Right ~= nil and Top ~= nil and Bottom ~= nil then
-                        Box.PointA = Vector2.new(Right.X, Top.Y)
-                        Box.PointB = Vector2.new(Left.X, Top.Y)
-                        Box.PointC = Vector2.new(Left.X, Bottom.Y)
-                        Box.PointD = Vector2.new(Right.X, Bottom.Y)
+                        BoxQuad.PointA = Vector2.new(Right.X, Top.Y)
+                        BoxQuad.PointB = Vector2.new(Left.X, Top.Y)
+                        BoxQuad.PointC = Vector2.new(Left.X, Bottom.Y)
+                        BoxQuad.PointD = Vector2.new(Right.X, Bottom.Y)
 
-                        Box.Visible = true
+                        BoxQuad.Visible = true
                     else 
-                        Box.Visible = false
+                        BoxQuad.Visible = false
                     end
                 else 
-                    Box.Visible = false
+                    BoxQuad.Visible = false
                 end
             else
-                Box.Visible = false
+                BoxQuad.Visible = false
                 if game.Players:FindFirstChild(plr.Name) == nil then
                     c:Disconnect()
                 end
             end
         end)
     end
-    getgenv().PlayerESPs[plr.Name] = {Box, name, renderstepconnection}
+    getgenv().PlayerESPs[plr.Name] = {BoxQuad, nameText, renderstepconnection}
     coroutine.wrap(Update)()
 end
 
